@@ -1,0 +1,10 @@
+/*Estilos cadastro funcionário */
+
+.employee-image {
+    margin-top: 20px;
+}
+
+.employee-image img {
+    max-width: 40%;
+    border-radius: 50%; /* Tornar a imagem arredondada */
+}

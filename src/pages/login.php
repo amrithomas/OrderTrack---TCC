@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css">
-    <title>Cadastro de Funcionário</title>
+    <title>Página de Login</title>
 </head>
 <body>
     <header>
@@ -20,20 +20,21 @@
     
     <main>
         <div class="login-form">
-            <h2>Cadastrar Funcionário</h2>
-            <form action="cadastrar_funcionario.php" method="post">
-                <input type="text" name="nome" placeholder="Nome" required>
-                <input type="password" name="senha" placeholder="Senha" required>
-                <div class="employee-image">
-                    <img src="images/funcionario.png" alt="Foto do Funcionário">
+            <h2>Login</h2>
+            <form action="login.php" method="post">
+                <input type="text" name="username" placeholder="Nome de Usuário" required>
+                <input type="password" name="password" placeholder="Senha" required>
+                <div>
+                    <a href="#" class="forget"> Esqueceu a senha?</a>
                 </div>
-                <button type="submit">Cadastrar</button>
+                <button type="submit">Entrar</button>
             </form>
         </div>
+        
     </main>
     
     <footer>
-        <p>&copy;OrderTech . Todos os direitos reservados.</p>
+        <p>&copy; OrderTech . Todos os direitos reservados.</p>
     </footer>
 </body>
 </html>
