@@ -1,0 +1,64 @@
+/* Estilos da tela Principal */
+
+.main-card {
+    background-color: #f4f4f4;
+    border-radius: 15px;
+    padding: 50px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 40px auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 colunas */
+    grid-gap: 40px; /* Espaçamento entre os subcards */
+}
+
+.sub-card {
+    background-color: white;
+    border-radius: 25px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 30px; /* Aumentar o espaçamento inferior entre os subcards */
+}
+
+.sub-card img {
+    max-width: 60px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 1;
+}
+
+.employee-card {
+    background-color: white;
+    border-radius: 5px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: relative;
+    top: -15px; /* Sobressair metade para fora da parte superior */
+    z-index: 2;
+    width: 80px; /* Largura do card do funcionário */
+    text-align: center;
+    margin-bottom: -15px; /* Compensar o espaçamento negativo da imagem */
+}
+.sub-card h3 {
+    margin: 0;
+    font-size: 1.1em;
+}
+
+.sub-card p {
+    margin: 5px 0;
+    font-size: 0.9em;
+}
+
+.sub-card a {
+    margin-left: auto;
+}
+
+.sub-card a img {
+    max-width: 20px;
+}
+
