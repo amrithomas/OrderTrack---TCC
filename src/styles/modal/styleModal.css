@@ -1,0 +1,254 @@
+
+    .fechar {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        z-index: 9999; /* Certifica-se de que o botão esteja acima do conteúdo */
+        background-color: rgb(255, 0, 0);
+        width: 45px;
+        height: 45px;
+        position: absolute;
+
+        @media (max-width: 768px){
+            margin-top: -5px;
+            margin-right: -5px;
+        }
+
+
+    }
+
+    #x{
+        color: white;
+        font-size: 40px;
+        margin-left: -42px;
+    }
+
+
+
+
+    #titulo_chamado{
+        font-weight: 400;
+        font-size: 24px;
+    }
+
+  .header{
+    background-color: #8CB2B0;
+    width: 100%;
+    height: 45px;
+    padding-left: 20px;
+  }
+
+  #Titulo{
+    font-weight: 700;
+    color: white;
+    font-size: 25px;
+  }
+
+
+    /* Ajuste para a posição do botão de fechar em telas pequenas */
+    @media (max-width: 768px) {
+        .fechar {
+        top: 5px;
+        right: 5px;
+        }
+    }
+
+
+
+    .modalBody{
+        padding-top: 60px;
+    }
+
+    #myModal{
+        padding-top: 60px;
+    }
+
+    /* é modal todo. Aqui se determina a largura máxima dele */
+    .modal-lg{
+        max-width: 90%;
+        margin: 0 auto;
+        padding-right: 0px;
+        overflow: auto;
+        height: 95%;
+
+
+
+    @media (max-width: 566px){
+            max-width: 95%;
+        }
+
+    @media (max-width: 336px){
+        .modalBody{
+            font-size: 13px;
+
+        }
+
+        #lista, #aguardando, #concluido{
+            width: 40px;
+        }
+    }
+
+    @media (max-width: 296px){
+        .modalBody{
+            font-size: 10px;
+
+        }
+
+        #lista, #aguardando, #concluido{
+            width: 30px;
+        }
+    }
+
+    }
+
+
+
+
+    .perfil{
+        background-color: #DDE6DB;
+        height: 110px;
+        margin-top: 60px;
+        width: 97%;
+        margin-left: 19px;
+        position: relative;
+        display: flex;
+
+
+
+    @media(max-width: 1342px){
+        width: 96.6%;
+
+        table{
+            overflow-y: scroll;
+        }
+    }
+
+    @media(max-width: 1144px){
+        width: 96%;
+
+        table{
+            overflow-y: scroll;
+        }
+    }
+
+    @media(max-width: 986px){
+        width: 95.4%;
+    }
+
+    @media(max-width: 874px){
+        width: 95%;
+    }
+
+    @media(max-width: 794px){
+        width: 94.4%;
+    }
+
+    @media(max-width: 700px){
+        width: 94%;
+    }
+
+    @media(max-width: 675px){
+        width: 93%;
+    }
+
+    @media(max-width: 495px){
+        width: 92%;
+    }
+
+    @media(max-width: 442px){
+        width: 91%;
+    }
+
+    @media(max-width: 398px){
+        width: 89.5%;
+        
+
+        table{
+            overflow-y: scroll;
+            height: 300px;
+        }
+
+        #listaPadrão{
+            margin-bottom: 150px;
+            
+        }
+
+        #status{
+            margin-bottom: 150px;
+        }
+    }
+}
+
+    #pessoa{
+        margin-left: 19px;
+        margin-top: 5px;
+        width: 100px;
+    }
+
+    #nome{
+        color: black;
+        font-size: 25px;
+        font-weight: 700;
+        margin-left: 20px;
+    }
+
+    p{
+        font-weight: 700;
+    }
+
+    #urgencia{
+        padding-top: 10px;
+        padding-bottom: 5px;
+    }
+
+
+    .nivel{
+        width: 100px;
+        height: 40px;
+        border-radius: 20px;
+        margin-left: 90px;
+        margin-top: -50px;
+        z-index: 9999;
+        
+    }
+
+
+    .table-bordered td{
+        border: none;
+    }
+
+
+
+    .table-bordered td{
+        border-bottom: 1px solid #dee2e6;
+    
+    }
+
+    #seg_col{
+        padding-top: 21px;
+    }
+
+    #status{
+        padding-bottom: 5px;
+    }
+
+
+    
+    /* botões */
+
+    #concluido, #aguardando{
+        opacity: 0.4;
+    
+    }
+
+    .visivel{
+
+        display: table-row;
+
+    }
+
+    .invisivel{
+
+        display: none;
+
+    }
