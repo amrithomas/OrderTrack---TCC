@@ -57,7 +57,7 @@
             <form action="cadastrar_funcionario.php" method="post">
                 <input type="text" name="nome" placeholder="Nome" required>
                 <input type="password" name="senha" placeholder="Senha" required>
-                <div class="employee-image">
+                <div class="employee-image">  
                     <img src="../../assets/images/telaPrincipal/funcionario.png" alt="Foto do Funcionário">
                 </div>
                 <button type="submit">Cadastrar</button>
