@@ -61,28 +61,16 @@
     </header>
 
     <main>
-    <div class="main-card">
-            <div class="sub-card">
-                <img src="images/funcionario.png" alt="Abrir Chamado">
-                <h3>Nome do Funcionário 1</h3>
-                <p>Cargo 1</p>
-                <a href="#"><img src="images/messagem.png" alt="Ícone de Mensagem"></a>
-            </div>
-            <div class="sub-card">
-                <img src="images/funcionario.png" alt="Lista de Chamados">
-                <h3>Nome do Funcionário 2</h3>
-                <p>Cargo 2</p>
-                <a href="#"><img src="images/messagem.png" alt="Ícone de Mensagem"></a>
-            </div>
-            <div class="sub-card">
-                <img src="images/funcionario.png" alt="Adicionar Funcionário">
-                <h3>Nome do Funcionário 3</h3>
-                <p>Cargo 3</p>
-                <a href="#"><img src="images/messagem.png" alt="Ícone de Mensagem"></a>
-            </div>
-            
-            
+      <div class="card">
+        <div class="imgBX">
+          <img src="images/funcionario.png" alt="Abrir Chamado">
         </div>
+        <div class="content">
+          <div class="details">
+            <h2>Abrir Chamado</h2>
+          </div>
+        </div>     
+      </div>
     </main>
 
     <footer>
