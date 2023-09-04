@@ -60,15 +60,8 @@ while($row_usuario = mysqli_fetch_assoc($resultado_usuario) AND $row_historico =
     // Extrair a data
     $data = $datehora->format('Y-m-d');
     echo "Data de Criação do Chamado:".$data."<br><br>";
-
-
-    
-    if ($row_usuario['STATUS'] == 'CONCLUIDO') {
-        $consulta_conclu = mysqli_query($conn, "SELECT * FROM historico_ordem WHERE FK_ORDEM = '" . $row_usuario['ID_ORDEM'] . "'");
-        $data_conclu = mysqli_fetch_assoc($consulta_conclu);
-
-        echo 'Data da conclusão: ' . $data_conclu['DATA_FINALIZACAO'];
-        echo '<br><br>';
+    if($row_usuario['STATUS'] == 'CONCLUIDO' AND $row_usuario > 0 AND $row_usuario['TEMPO_CONCLUSAO'] != null){
+        echo "Data de conclusão:".$row_usuario['TEMPO_CONCLUSAO']."<br><br>";
     }
 
     echo "<a href='edit_chamado.php?id=".$row_usuario['ID_ORDEM']."'>Editar</a><br>";
