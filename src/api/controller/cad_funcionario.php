@@ -12,7 +12,6 @@ $nome = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_STRING);
 $usuario = filter_input(INPUT_POST, 'usuario', FILTER_SANITIZE_STRING);
 $senha_funcionario = filter_input(INPUT_POST, 'senha_funcionario', FILTER_SANITIZE_STRING);
 $sobrenome = '';//ENQUANTO NÃO FAZ PARA NÃO FICAR SEM NADA NO CAMPO DO SOBRENOME
-$status_funcionario = 'ATIVO';
 
 //Criptografia senha(MÉTODO UTILIZADO MEU FIH >>>>> password_hash($variavel, PASSWORD_DEFAULT))
 $criptosenha = password_hash($senha_funcionario, PASSWORD_DEFAULT);
@@ -50,11 +49,9 @@ if (isset($_FILES["img"]) && $_FILES["img"]["error"] === UPLOAD_ERR_OK) {
 }
 
 // Se a imagem não foi enviada, ou após o tratamento da imagem, realizamos a inserção no banco de dados apenas com o nome do usuário
-$insereImagem =  "INSERT INTO funcionarios (NOME_FUNCIONARIO, SOBRENOME_FUNCIONARIO, IMAGEM_FUNCIONARIO, USUARIO_FUNCIONARIO, SENHA_FUNCIONARIO, STATUS_FUNCIONARIO) VALUES (? , ?, ?, ?, ?, ?)";
-$stmt = $conn->prepare($insereImagem);
-$stmt->bind_param('ssssss', $nome, $sobrenome, $path, $usuario, $criptosenha, $status_funcionario);
+$insereImagem = mysqli_query($conn, "INSERT INTO funcionarios (NOME_FUNCIONARIO,SOBRENOME_FUNCIONARIO, IMAGEM_FUNCIONARIO,USUARIO_FUNCIONARIO,SENHA_FUNCIONARIO,STATUS_FUNCIONARIO) VALUES ('$nome', '$sobrenome','$path','$usuario','$criptosenha','ATIVO');");
 
-if ($stmt->execute()) {
+if ($insereImagem) {
     $id = mysqli_insert_id($conn);
     $_SESSION['msg'] = "<center><span style='color:blue;'>Perfil Criado com sucesso!</span></center>";
     $_SESSION['id'] = $id;

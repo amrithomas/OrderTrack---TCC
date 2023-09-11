@@ -10,7 +10,6 @@ $validanome = false;
 $validasenha = false;
 $validausuario = false;
 $dadostrocados = false;
-$data_atual = date("Y-m-d H:i:s");
 
 
 
@@ -40,18 +39,10 @@ if (isset($_FILES["img"]) && $_FILES["img"]["error"] == 0) {
             //Criptografia senha(MÉTODO UTILIZADO MEU FIH >>>>> password_hash($variavel, PASSWORD_DEFAULT))
             
             $criptosenha = password_hash($senha_funcionario, PASSWORD_DEFAULT);
-            $result_usuario = "UPDATE FUNCIONARIOS SET NOME_FUNCIONARIO = ?, IMAGEM_FUNCIONARIO = ?, USUARIO_FUNCIONARIO = ?, SENHA_FUNCIONARIO = ? WHERE ID_FUNCIONARIO = ?";
-            $stmt = $conn->prepare($result_usuario);
-            $stmt->bind_param('ssssi', $nome, $path, $usuario, $criptosenha, $id);
-            $stmt->execute();
-
-
+            $result_usuario = mysqli_query($conn, "UPDATE FUNCIONARIOS SET NOME_FUNCIONARIO='$nome', IMAGEM_FUNCIONARIO='$path', USUARIO_FUNCIONARIO='$usuario', SENHA_FUNCIONARIO='$criptosenha' WHERE ID_FUNCIONARIO='$id';");
         }else{
             
-            $result_usuario = "UPDATE FUNCIONARIOS SET NOME_FUNCIONARIO = ?, IMAGEM_FUNCIONARIO = ?, USUARIO_FUNCIONARIO = ? WHERE ID_FUNCIONARIO = ? ";
-            $stmt = $conn->prepare($result_usuario);
-            $stmt->bind_param('sssi', $nome, $path, $usuario, $id);
-            $stmt->execute();
+            $result_usuario = mysqli_query($conn, "UPDATE FUNCIONARIOS SET NOME_FUNCIONARIO='$nome', IMAGEM_FUNCIONARIO='$path', USUARIO_FUNCIONARIO='$usuario' WHERE ID_FUNCIONARIO='$id';");
         }   
 
         //PARA NO FINAL SAIR A MENSAGEM DE QUE TODOS OS DADOS FORAM TROCADOS
@@ -81,25 +72,16 @@ if (isset($_FILES["img"]) && $_FILES["img"]["error"] == 0) {
             $_SESSION['msg'] = "<p style='color:blue;'>Senha alterada com sucesso</p>";
             $validasenha = true;
             $criptosenha = password_hash($senha_funcionario, PASSWORD_DEFAULT);
-            $result_senha = "UPDATE FUNCIONARIOS SET SENHA_FUNCIONARIO = ? WHERE ID_FUNCIONARIO = ?";
-            $stmt = $conn->prepare($result_senha);
-            $stmt->bind_param('si', $criptosenha, $id);
-            $stmt->execute();
+            $result_senha = mysqli_query($conn, "UPDATE FUNCIONARIOS SET SENHA_FUNCIONARIO='$criptosenha' WHERE ID_FUNCIONARIO='$id';");
         }
 
         if ($usuario != $dados_usuario['USUARIO_FUNCIONARIO']) {
             $_SESSION['msg'] = "<p style='color:blue;'>Usuario alterado com sucesso</p>";
             $validausuario = true;
-            $result_usuario = "UPDATE FUNCIONARIOS SET USUARIO_FUNCIONARIO = ? WHERE ID_FUNCIONARIO = ?";
-            $stmt = $conn->prepare($result_usuario);
-            $stmt->bind_param('si', $usuario, $id);
-            $stmt->execute();
+            $result_usuario = mysqli_query($conn, "UPDATE FUNCIONARIOS SET USUARIO_FUNCIONARIO='$usuario' WHERE ID_FUNCIONARIO='$id';");
         }
 
-        $result_usuario = "UPDATE FUNCIONARIOS SET NOME_FUNCIONARIO = ? WHERE ID_FUNCIONARIO = ?";
-        $stmt = $conn->prepare($result_usuario);
-        $stmt->bind_param('si', $nome, $id);
-        $stmt->execute();
+        $result_usuario = mysqli_query($conn, "UPDATE FUNCIONARIOS SET NOME_FUNCIONARIO='$nome' WHERE ID_FUNCIONARIO='$id';");
 
     } else if (!empty($senha_funcionario) or $usuario != $dados_usuario['USUARIO_FUNCIONARIO']) {
 
@@ -107,19 +89,13 @@ if (isset($_FILES["img"]) && $_FILES["img"]["error"] == 0) {
             $validasenha = true;
             $_SESSION['msg'] = "<p style='color:blue;'>Senha alterada com sucesso</p>";
             $criptosenha = password_hash($senha_funcionario, PASSWORD_DEFAULT);
-            $result_senha = "UPDATE FUNCIONARIOS SET SENHA_FUNCIONARIO = ? WHERE ID_FUNCIONARIO = ?";
-            $stmt = $conn->prepare($result_senha);
-            $stmt->bind_param('si', $criptosenha, $id);
-            $stmt->execute();
+            $result_usuario = mysqli_query($conn, "UPDATE FUNCIONARIOS SET SENHA_FUNCIONARIO='$criptosenha' WHERE ID_FUNCIONARIO='$id';");
         }
 
         if ($usuario != $dados_usuario['USUARIO_FUNCIONARIO']) {
             $_SESSION['msg'] = "<p style='color:blue;'>Usuario alterado com sucesso</p>";
             $validausuario = true;
-            $result_usuario = "UPDATE FUNCIONARIOS SET USUARIO_FUNCIONARIO = ? WHERE ID_FUNCIONARIO = ?";
-            $stmt = $conn->prepare($result_usuario);
-            $stmt->bind_param('si', $usuario, $id);
-            $stmt->execute();
+            $result_usuario = mysqli_query($conn, "UPDATE FUNCIONARIOS SET USUARIO_FUNCIONARIO='$usuario' WHERE ID_FUNCIONARIO='$id';");
         }
 
     }
@@ -127,7 +103,7 @@ if (isset($_FILES["img"]) && $_FILES["img"]["error"] == 0) {
 }
 
 
-if ($result_usuario !== null || $stmt->errno == 0) {
+if ($result_usuario !== null || mysqli_affected_rows($conn)) {
     if ($validanome && $validasenha && $validausuario) {
         $_SESSION['msg'] = "<p style='color:blue;'>Dados atualizados com sucesso</p>";
     } else if ($validasenha && $validausuario) {

@@ -20,28 +20,18 @@ if ($servico == $row_usuario['SERVICO'] && $item == $row_usuario['ITEM'] && $loc
     exit;
 }
 
-// $update_query = "UPDATE ordem SET SERVICO='$servico', ITEM='$item', LOCALIZACAO='$local', PRAZO='$prazo' WHERE ID_ORDEM='$id'";
-// $resultado_update = mysqli_query($conn, $update_query);
-
-
-$update_query = "UPDATE ordem SET SERVICO = ?, ITEM = ?, LOCALIZACAO = ?, PRAZO = ? WHERE ID_ORDEM = ?";
-$stmt = $conn->prepare($update_query);
-$stmt->bind_param('ssssi', $servico, $item, $local, $prazo, $id);
-$resultado_update = $stmt->execute();
-
-
+$update_query = "UPDATE ordem SET SERVICO='$servico', ITEM='$item', LOCALIZACAO='$local', PRAZO='$prazo' WHERE ID_ORDEM='$id'";
+$resultado_update = mysqli_query($conn, $update_query);
 
 if (!$resultado_update) {
     die("Erro na consulta: " . mysqli_error($conn));
 }
 
-if ($stmt->errno == 0) { // Verifica se alguma linha foi afetada
+if (mysqli_affected_rows($conn)) {
     $_SESSION['msg'] = "<p style='color:green;'>CHAMADO EDITADO COM SUCESSO</p>";
+    header("Location: edit_chamado.php?id=$id");
 } else {
     $_SESSION['msg'] = "<p style='color:red;'>CHAMADO NÃO FOI EDITADO</p>";
+    header("Location: edit_chamado.php?id=$id");
 }
-
-$stmt->close(); // Fecha a declaração preparada
-
-header("Location: edit_chamado.php?id=$id");
 ?>
