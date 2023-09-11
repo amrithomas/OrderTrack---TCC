@@ -8,6 +8,8 @@ $prazo = $_POST['data'];
 $local = $_POST['local'];
 $funcionario = filter_input(INPUT_POST, 'funcionarios', FILTER_SANITIZE_STRING);
 $descricao_tarefa = filter_input(INPUT_POST, 'descricao_tarefa', FILTER_SANITIZE_STRING);
+$data_atual = date("Y-m-d H:i:s");
+$status = "PENDENTE";
 
 if (isset($_FILES["imagem"]) && $_FILES["imagem"]["error"] === UPLOAD_ERR_OK) {
     $dir = "img/"; // Certifique-se de que há uma pasta chamada "img" no mesmo diretório deste arquivo PHP.
@@ -44,12 +46,15 @@ if (isset($_FILES["imagem"]) && $_FILES["imagem"]["error"] === UPLOAD_ERR_OK) {
 }
 
 
+$insert_query = "INSERT INTO ordem (SERVICO, PRIORIDADE,ITEM, PRAZO, STATUS, LOCALIZACAO,FOTO,CRIADO) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+$stmt = $conn->prepare($insert_query);
+$stmt->bind_param('ssssssss', $titulo_chamado, $urgens, $descricao_tarefa, $prazo, $status, $local, $path, $data_atual);
 
-$result_usuario = "INSERT INTO ordem (SERVICO, PRIORIDADE,ITEM, PRAZO, STATUS, LOCALIZACAO,FOTO) VALUES ('$titulo_chamado', '$urgencia','$descricao_tarefa','$prazo', 'PENDENTE', '$local', '$path')";
+// $result_usuario = "INSERT INTO ordem (SERVICO, PRIORIDADE,ITEM, PRAZO, STATUS, LOCALIZACAO,FOTO,CRIADO) VALUES ('$titulo_chamado', '$urgencia','$descricao_tarefa','$prazo', 'PENDENTE', '$local', '$path',NOW())";
 
 echo "Query: $result_usuario"; // Depuração
 
-if ($conn->query($result_usuario)) {
+if ($stmt->execute()) {
     $ultimoIDInserido = $conn->insert_id;
 
     $cadastro = mysqli_query($conn, "INSERT INTO rel (FK_ORDEM, FK_FUNCIONARIO) values ('$ultimoIDInserido', '$funcionario')");
