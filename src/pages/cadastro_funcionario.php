@@ -66,7 +66,7 @@
     <main class="container">
         <div class="login-form">
             <h2>Cadastrar Funcionário</h2>
-            <form action="../controller/api/cadastrar_funcionario.php" method="post" >
+            <form action="../controller/api/cad_funcionario.php" method="post" enctype="multipart/form-data">
                 <input type="text" name="nome" placeholder="Nome" required>
                 <input type="password" name="senha" placeholder="Senha" required>
                 <div class="employee-image">  

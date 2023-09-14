@@ -18,7 +18,7 @@ $criptosenha = password_hash($senha_funcionario, PASSWORD_DEFAULT);
 
 if (isset($_FILES["img"]) && $_FILES["img"]["error"] === UPLOAD_ERR_OK) {
     // seleção do diretório
-    $dir = "img/"; // Certifique-se de que há uma pasta chamada "img" no mesmo diretório deste arquivo PHP.
+    $dir = "../../../assets/imagens/foto_cadastro/"; // Certifique-se de que há uma pasta chamada "img" no mesmo diretório deste arquivo PHP.
     
     // pega dados da imagem (nome, nome temporário, tipo do arquivo)
     $image = $_FILES["img"];
@@ -38,11 +38,11 @@ if (isset($_FILES["img"]) && $_FILES["img"]["error"] === UPLOAD_ERR_OK) {
     } else {
         if ($image['size'] > 2097152) {   
             $_SESSION['msg'] = "<center><span style='color:red;'>Perfil não cadastrado. Tamanho de imagem não aceita. Máx 2MB.</span></center>";
-            header('Location: cadastro.php');
+            header('Location: ../../pages/cadastro_funcionario.php');
             exit; // Encerra o script após redirecionar para evitar processamento adicional
         } else {
             $_SESSION['msg'] = "<center><span style='color:red;'>Perfil não cadastrado. Apenas arquivos JPG, PNG e JPEG são permitidos.</span></center>";
-            header('Location: cadastro.php');
+            header('Location: ../../pages/cadastro_funcionario.php');
             exit; // Encerra o script após redirecionar para evitar processamento adicional
         }
     }
@@ -55,9 +55,9 @@ if ($insereImagem) {
     $id = mysqli_insert_id($conn);
     $_SESSION['msg'] = "<center><span style='color:blue;'>Perfil Criado com sucesso!</span></center>";
     $_SESSION['id'] = $id;
-    header('Location: ../../../pages/index.php');
+    header('Location: ../../pages/menu.php');
 } else {
     $_SESSION['msg'] = "<center><span style='color:red;'>Erro ao inserir perfil no banco de dados.</span></center>";
-    header('Location: cadastro_funcionario.php');
+    header('Location: ../../pages/cadastro_funcionario.php');
 }
 ?>
