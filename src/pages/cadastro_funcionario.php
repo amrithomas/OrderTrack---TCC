@@ -20,7 +20,7 @@
     
     <main>
         <div class="login-form">
-            <h2>Cadastrar Funcionário</h2>
+            <h2>Cadastrar Funcionári</h2>
             <form action="cadastrar_funcionario.php" method="post">
                 <input type="text" name="nome" placeholder="Nome" required>
                 <input type="password" name="senha" placeholder="Senha" required>
