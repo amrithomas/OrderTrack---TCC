@@ -18,8 +18,8 @@ $criptosenha = password_hash($senha_funcionario, PASSWORD_DEFAULT);
 
 if (isset($_FILES["img"]) && $_FILES["img"]["error"] === UPLOAD_ERR_OK) {
     // seleção do diretório
-    $dir = "../../../assets/imagens/foto_cadastro/"; // Certifique-se de que há uma pasta chamada "img" no mesmo diretório deste arquivo PHP.
-    
+    $dir = "../../../assets/images/foto_cadastro/"; // Certifique-se de que há uma pasta chamada "img" no mesmo diretório deste arquivo PHP.
+
     // pega dados da imagem (nome, nome temporário, tipo do arquivo)
     $image = $_FILES["img"];
     $tmp_name = $image['tmp_name'];
@@ -31,6 +31,7 @@ if (isset($_FILES["img"]) && $_FILES["img"]["error"] === UPLOAD_ERR_OK) {
 
     // caso seja png, jpg ou jpeg, move o arquivo para a pasta images/imgCliente com o nome dele
     $allowTypes = array('jpg','png','jpeg');
+    $dirbcd = "../../assets/images/foto_cadastro/" . $name . "." .  $fileType;
 
     if (in_array($fileType, $allowTypes) && $image['size'] <= 2097152) {
         // Upload the image to the designated folder
@@ -49,7 +50,7 @@ if (isset($_FILES["img"]) && $_FILES["img"]["error"] === UPLOAD_ERR_OK) {
 }
 
 // Se a imagem não foi enviada, ou após o tratamento da imagem, realizamos a inserção no banco de dados apenas com o nome do usuário
-$insereImagem = mysqli_query($conn, "INSERT INTO funcionarios (NOME_FUNCIONARIO,SOBRENOME_FUNCIONARIO, IMAGEM_FUNCIONARIO,USUARIO_FUNCIONARIO,SENHA_FUNCIONARIO,STATUS_FUNCIONARIO) VALUES ('$nome', '$sobrenome','$path','$usuario','$criptosenha','ATIVO');");
+$insereImagem = mysqli_query($conn, "INSERT INTO funcionarios (NOME_FUNCIONARIO,SOBRENOME_FUNCIONARIO, IMAGEM_FUNCIONARIO,USUARIO_FUNCIONARIO,SENHA_FUNCIONARIO,STATUS_FUNCIONARIO) VALUES ('$nome', '$sobrenome','$dirbcd','$usuario','$criptosenha','ATIVO');");
 
 if ($insereImagem) {
     $id = mysqli_insert_id($conn);
