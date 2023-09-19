@@ -73,6 +73,8 @@ main {
     justify-content: center;
     align-items: center;
     min-height: calc(100vh - 112px);
+    margin-top: 25px;
+    margin-bottom: 25px;
 }
 
 .login-form {
@@ -131,7 +133,8 @@ footer {
     margin: 30px auto; /* Adicionando margem para espaçamento vertical */
   
 }
-  
+
+
   .sub-card {
     background-color: #8CB2B0;
     padding: 10px;
@@ -141,10 +144,12 @@ footer {
     max-width: 800px;
     margin: 0 auto 20px; /* Adicionando margem inferior para espaçamento vertical */
     transform: scale(1.2);
+    cursor: pointer; /* o cursor de mão */
 }
   
-  .sub-card img {
-    
+
+/* Estilo para a imagem do funcionário */
+.funcionario-img {
     width: 150px;
     height: 150px;
     background: #fff;
@@ -152,9 +157,20 @@ footer {
     box-shadow: 0 15px 50px rgba(0,0,0,0.15);
     overflow: hidden;
     transition: 0.5s;
- 
+    
+}
 
-  }
+/* Estilo para a imagem do ícone de mensagem */
+.mensagem-img {
+    width: 50px;
+    height: 50px;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.15);
+    overflow: hidden;
+    transition: 0.5s;
+}
+
   
   .sub-card h3 {
     font-size: 16px; /* Diminuindo o tamanho da fonte */
@@ -162,7 +178,7 @@ footer {
   }
   
   .sub-card p {
-    font-size: 12px; /* Diminuindo o tamanho da fonte */
+    font-size: 12px; /* Diminui o tamanho da fonte */
     color: #666;
     margin: 0;
   }
@@ -180,3 +196,17 @@ footer {
     margin-top: 20px; /* Margem superior para espaçamento entre o footer e os cards */
   }
   
+
+  @media (max-width: 800px) {
+    .main-card {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        cursor: pointer; /* o cursor de mão */
+    }
+    .sub-card {
+        width: calc(50% - 20px); /* 50% do tamanho menos o espaçamento */
+        margin: 10px;
+        cursor: pointer; /* o cursor de mão */
+    }
+}
