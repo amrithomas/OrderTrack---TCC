@@ -68,33 +68,29 @@
     </div>
   </nav>
 </div>
-    <main>
-        <?php
-    $cardData = array(
-        array("Funcionário", "../../assets/images/telaInicial/funcionario.png"),
-        array("Administrador", "../../assets/images/telaInicial/administrador.png"),
-        
-    );
-
-    foreach ($cardData as $data) {
-        $title = $data[0];
-        $image = $data[1];
-        ?>
-        <div class="card">
-            <div class="imgBX">
-                <img src="<?php echo $image; ?>" alt="<?php echo $title; ?>">
-            </div>
-            <div class="content">
-                <div class="details">
-                    <h2><?php echo $title; ?></h2>
-                </div>
+<main>
+    <div class="card">
+        <div class="imgBX">
+            <img src="../../assets/images/telaInicial/funcionario.png" alt="Funcionário">
+        </div>
+        <div class="content">
+            <div class="details">
+                <h2>Funcionário</h2>
             </div>
         </div>
-        <?php
-    }
-    ?>
-           
-    </main>
+    </div>
+    
+    <div class="card">
+        <div class="imgBX">
+            <img src="../../assets/images/telaInicial/administrador.png" alt="Administrador">
+        </div>
+        <div class="content">
+            <div class="details">
+                <h2>Administrador</h2>
+            </div>
+        </div>
+    </div>
+</main>
 
     <footer>
         <p>&copy; OrderTech . Todos os direitos reservados.</p>
