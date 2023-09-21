@@ -5,12 +5,14 @@ body, h1, h2, p, ul, li {
     color: #8CB2B0;
 
 }
+
 h3 {
     margin: 0;
     padding: 0;
     color: #ffffff;
-    margin-top: 100px; /* Ajuste a margem superior para mover o texto para baixo */
-    margin-bottom: 10px; /* Ajuste a margem inferior para mover o texto para cima */
+    margin-top: 100px;
+    margin-bottom: 10px;
+    font-size: 1em; /* Tamanho de fonte relativo */
 }
 
 
@@ -134,30 +136,16 @@ footer {
   
 }
 
-
-  .sub-card {
-    background-color: #8CB2B0;
-    padding: 10px;
-    border-radius: 30px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto 20px; /* Adicionando margem inferior para espaçamento vertical */
-    transform: scale(1.2);
-    cursor: pointer; /* o cursor de mão */
-}
-  
-
 /* Estilo para a imagem do funcionário */
-.funcionario-img {
-    width: 150px;
-    height: 150px;
+.funcionario-img  {
+    width: 100%; /* A imagem terá 100% da largura do card */
+    max-width: 150px; /* Define a largura máxima da imagem */
+    height: auto; /* Mantém a proporção da imagem */
     background: #fff;
     border-radius: 20px;
     box-shadow: 0 15px 50px rgba(0,0,0,0.15);
     overflow: hidden;
     transition: 0.5s;
-    
 }
 
 /* Estilo para a imagem do ícone de mensagem */
@@ -171,22 +159,40 @@ footer {
     transition: 0.5s;
 }
 
+.sub-card {
+    background-color: #8CB2B0;
+    padding: 10px;
+    border-radius: 30px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 20px;
+    transform: scale(1);
+    cursor: pointer;
+    transition: transform 0.5s; /* Adiciona uma transição suave para a propriedade transform */
+}
   
-  .sub-card h3 {
-    font-size: 16px; /* Diminuindo o tamanho da fonte */
+
+  
+.sub-card:hover {
+    transform: scale(1.2); /* Aumenta o tamanho no hover */
+}
+
+.sub-card h3 {
+    font-size: 16px;
     margin: 10px 0;
-  }
-  
-  .sub-card p {
-    font-size: 12px; /* Diminui o tamanho da fonte */
+}
+
+.sub-card p {
+    font-size: 12px;
     color: #666;
     margin: 0;
-  }
-  
-  .sub-card a img {
+}
+
+.sub-card a img {
     width: 20px;
     height: 20px;
-  }
+}
   
   
   footer {
@@ -210,3 +216,4 @@ footer {
         cursor: pointer; /* o cursor de mão */
     }
 }
+

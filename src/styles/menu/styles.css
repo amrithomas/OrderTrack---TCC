@@ -45,7 +45,7 @@ header {
 
 .employee-image img {
     max-width: 40%;
-    border-radius: 50%; /* Tornar a imagem arredondada */
+    border-radius: 50%; /* Torna a imagem arredondada */
 }
 
 
@@ -148,14 +148,13 @@ footer {
     border-radius: 20px;
     box-shadow: 0 35px 80px rgba(0, 0, 0, 0.15);
     transition: 0.5s;
-    margin: 20px; /* Adicione um espaçamento entre os cards */
+    margin: 20px; /* Adiciona um espaçamento entre os cards */
 }
 
 .card:hover {
     height: 450px;
 }
 
-/* Restante do seu CSS... */
 
 
 .imgBX{
