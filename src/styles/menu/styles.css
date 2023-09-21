@@ -78,9 +78,14 @@ header {
 
 main {
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     min-height: calc(100vh - 112px);
+    margin-top: 50px;
+    margin-bottom: 50px;
+    gap: 50px;
 }
 
 .login-form {
@@ -141,9 +146,9 @@ footer {
     background: #8cac99;
     font-size: 20px;
     border-radius: 20px;
-    box-shadow: 0 35px 80px rgba(0,0,0,0.15);
+    box-shadow: 0 35px 80px rgba(0, 0, 0, 0.15);
     transition: 0.5s;
-    margin: 20px; /* Adicione um espaçamento de 20px entre os cards */
+    margin: 20px; /* Adicione um espaçamento entre os cards */
 }
 
 .card:hover {
@@ -206,3 +211,43 @@ footer {
     color: #555;
     line-height: 1.2em;
 }
+
+@media screen and (max-width: 768px) {
+    .card-group-top,
+    .card-group-bottom {
+        flex-direction: column; /* Empilhe os cards verticalmente */
+        align-items: flex-start; /* Alinhe os cards à esquerda */
+    }
+    
+    .card-group-top .card,
+    .card-group-bottom .card {
+        width: 100%; /* Cards ocupam 100% da largura da tela */
+        margin: 10px 0; /* Espaçamento entre os cards */
+    }
+    
+    .card-group-bottom {
+        margin-top: 10px; /* Espaçamento entre os grupos */
+    }
+}
+
+.card-group-top {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Grupo de cards inferiores */
+.card-group-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    margin-top: 25px; /* Adicione um espaço entre os grupos */
+}
+
+
+
+

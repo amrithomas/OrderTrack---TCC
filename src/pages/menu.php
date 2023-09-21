@@ -68,35 +68,63 @@
     </div>
   </nav>
 </div>
-    <main>
-        <?php
-    $cardData = array(
-        array("Abertura de Lista de Serviço", "../../assets/images/menu/abrirChamado.png"),
-        array("Lista de Serviço", "../../assets/images/menu/lista_chamados.png"),
-        array("Adicionar Funcionários", "../../assets/images/menu/adicionar_funcionarios.png"),
-        array("Lista de Funcionários", "../../assets/images/menu/equipe.png"),
-        array("Relatórios", "../../assets/images/menu/relatorios.png")
-    );
-
-    foreach ($cardData as $data) {
-        $title = $data[0];
-        $image = $data[1];
-        ?>
-        <div class="card">
-            <div class="imgBX">
-                <img src="<?php echo $image; ?>" alt="<?php echo $title; ?>">
-            </div>
-            <div class="content">
-                <div class="details">
-                    <h2><?php echo $title; ?></h2>
-                </div>
+   <main>
+    <div class="card">
+        <div class="imgBX">
+            <img src="../../assets/images/menu/abrirChamado.png" alt="Abertura de Lista de Serviço">
+        </div>
+        <div class="content">
+            <div class="details">
+                <h2>Abertura de Lista de Serviço</h2>
             </div>
         </div>
-        <?php
-    }
-    ?>
-           
-    </main>
+    </div>
+
+    <div class="card">
+        <div class="imgBX">
+            <img src="../../assets/images/menu/lista_chamados.png" alt="Lista de Serviço">
+        </div>
+        <div class="content">
+            <div class="details">
+                <h2>Lista de Serviço</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="imgBX">
+            <img src="../../assets/images/menu/adicionar_funcionarios.png" alt="Adicionar Funcionários">
+        </div>
+        <div class="content">
+            <div class="details">
+                <h2>Adicionar Funcionários</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="imgBX">
+            <img src="../../assets/images/menu/equipe.png" alt="Lista de Funcionários">
+        </div>
+        <div class="content">
+            <div class="details">
+                <h2>Lista de Funcionários</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="imgBX">
+            <img src="../../assets/images/menu/relatorios.png" alt="Relatórios">
+        </div>
+        <div class="content">
+            <div class="details">
+                <h2>Relatórios</h2>
+            </div>
+        </div>
+    </div>
+</main>
+
 
     <footer>
         <p>&copy; OrderTech . Todos os direitos reservados.</p>
