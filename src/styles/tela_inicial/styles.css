@@ -189,8 +189,6 @@ footer {
     justify-content: center;
     align-items: flex-end;
     overflow: hidden;
-    transition: .35s;
-    cursor: pointer;
 }
 
 .card .content details{

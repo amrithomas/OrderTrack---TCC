@@ -9,8 +9,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
     
-    <link rel="stylesheet" href="../../src/styles/menu/styles.css">
-    <title>Menu</title>
+    <link rel="stylesheet" href="../../src/styles/tela_inicial/styles.css">
+    <title>Tela Inicial</title>
 
 </head>
 
@@ -71,11 +71,9 @@
     <main>
         <?php
     $cardData = array(
-        array("Abertura de Lista de Serviço", "../../assets/images/menu/abrirChamado.png"),
-        array("Lista de Serviço", "../../assets/images/menu/lista_chamados.png"),
-        array("Adicionar Funcionários", "../../assets/images/menu/adicionar_funcionarios.png"),
-        array("Lista de Funcionários", "../../assets/images/menu/equipe.png"),
-        array("Relatórios", "../../assets/images/menu/relatorios.png")
+        array("Funcionário", "../../assets/images/telaInicial/funcionario.png"),
+        array("Administrador", "../../assets/images/telaInicial/administrador.png"),
+        
     );
 
     foreach ($cardData as $data) {
