@@ -79,10 +79,10 @@
             <h2>Login</h2>
             <?php 
               session_start();
-              if($_SESSION['msg']){
-                echo $_SESSION['msg'];
+              if (isset($_SESSION['msg'])) {
+                  echo($_SESSION['msg'] . "<br>");
+                  unset($_SESSION['msg']);
               }
-
             ?>
             <form action="../api/controller/proc_login.php" method="post">
                 <input type="text" name="usuario" placeholder="Nome de Usuário" required>
