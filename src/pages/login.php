@@ -77,9 +77,16 @@
     <main>
         <div class="login-form">
             <h2>Login</h2>
-            <form action="login.php" method="post">
-                <input type="text" name="username" placeholder="Nome de Usuário" required>
-                <input type="password" name="password" placeholder="Senha" required>
+            <?php 
+              session_start();
+              if($_SESSION['msg']){
+                echo $_SESSION['msg'];
+              }
+
+            ?>
+            <form action="../api/controller/proc_login.php" method="post">
+                <input type="text" name="usuario" placeholder="Nome de Usuário" required>
+                <input type="password" name="senha" placeholder="Senha" required>
                 <div>
                     <a href="#" class="forget"> Esqueceu a senha?</a>
                 </div>
