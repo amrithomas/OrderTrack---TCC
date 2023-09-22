@@ -50,75 +50,33 @@
     </nav>
 
     <main>
-    <div class="main-card">
-        <div class="sub-card">
-            <img src="../../assets/images/telaPrincipal/funcionario.png" alt="Funcionário 1" class="funcionario-img">
-            <h3>Nome do Funcionário 1</h3>
-            <p>Cargo 1</p>
-            <a href="#"><img src="../../assets/images/telaPrincipal/messagem.png" alt="Ícone de Mensagem" class="mensagem-img"></a>
-            <!-- Subcard de sobreposição -->
-            <div class="subcard-overlay">
-                <h3>Detalhes do Funcionário 1</h3>
-                <!-- Coloque aqui mais detalhes sobre o funcionário -->
-            </div>
+        <div class="main-card">
+            <?php
+                include_once('../api/controller/conexao.php');
+                if(isset($_SESSION['msg'])){
+                    echo $_SESSION['msg'];
+                    unset($_SESSION['msg']);
+                }
+                
+                $result_usuario = "SELECT * FROM funcionarios ";
+                $resultado_usuario = mysqli_query($conn,$result_usuario);
+        
+                while($row_usuario = mysqli_fetch_assoc($resultado_usuario)){
+                    if($row_usuario['STATUS_FUNCIONARIO'] == 'ATIVO'){
+                        echo '<div class="sub-card">';
+                        echo '<img src="../../assets/images/telaInicial/funcionario.PNG" alt="' . $row_usuario['NOME_FUNCIONARIO'] . '" class="funcionario-img">';
+                        echo '<h3>' . $row_usuario['NOME_FUNCIONARIO'] . '</h3>';
+                        echo '<a href="#"><img src="../../assets/images/telaInicial/funcionario.PNG" alt="Ícone de Mensagem" class="mensagem-img"></a>';
+                        echo '<div class="subcard-overlay">';
+                        echo '<h3>Detalhes do ' . $row_usuario['NOME_FUNCIONARIO'] . '</h3>';
+                        // Coloque aqui mais detalhes sobre o funcionário
+                        echo '</div>';
+                        echo '</div>';
+                    }
+                }
+            ?>
         </div>
-        <div class="sub-card">
-            <img src="../../assets/images/telaPrincipal/funcionario.png" alt="Funcionário 2" class="funcionario-img">
-            <h3>Nome do Funcionário 2</h3>
-            <p>Cargo 2</p>
-            <a href="#"><img src="../../assets/images/telaPrincipal/messagem.png" alt="Ícone de Mensagem" class="mensagem-img"></a>
-            <!-- Subcard de sobreposição -->
-            <div class="subcard-overlay">
-                <h3>Detalhes do Funcionário 2</h3>
-                <!-- Coloque aqui mais detalhes sobre o funcionário -->
-            </div>
-        </div>
-        <div class="sub-card">
-            <img src="../../assets/images/telaPrincipal/funcionario.png" alt="Funcionário 3" class="funcionario-img">
-            <h3>Nome do Funcionário 3</h3>
-            <p>Cargo 3</p>
-            <a href="#"><img src="../../assets/images/telaPrincipal/messagem.png" alt="Ícone de Mensagem" class="mensagem-img"></a>
-            <!-- Subcard de sobreposição -->
-            <div class="subcard-overlay">
-                <h3>Detalhes do Funcionário 3</h3>
-                <!-- Coloque aqui mais detalhes sobre o funcionário -->
-            </div>
-        </div>
-        <div class="sub-card">
-            <img src="../../assets/images/telaPrincipal/funcionario.png" alt="Funcionário 4" class="funcionario-img">
-            <h3>Nome do Funcionário 4</h3>
-            <p>Cargo 4</p>
-            <a href="#"><img src="../../assets/images/telaPrincipal/messagem.png" alt="Ícone de Mensagem" class="mensagem-img"></a>
-            <!-- Subcard de sobreposição -->
-            <div class="subcard-overlay">
-                <h3>Detalhes do Funcionário 4</h3>
-                <!-- Coloque aqui mais detalhes sobre o funcionário -->
-            </div>
-        </div>
-        <div class="sub-card">
-            <img src="../../assets/images/telaPrincipal/funcionario.png" alt="Funcionário 5" class="funcionario-img">
-            <h3>Nome do Funcionário 5</h3>
-            <p>Cargo 5</p>
-            <a href="#"><img src="../../assets/images/telaPrincipal/messagem.png" alt="Ícone de Mensagem" class="mensagem-img"></a>
-            <!-- Subcard de sobreposição -->
-            <div class="subcard-overlay">
-                <h3>Detalhes do Funcionário 5</h3>
-                <!-- Coloque aqui mais detalhes sobre o funcionário -->
-            </div>
-        </div>
-        <div class="sub-card">
-            <img src="../../assets/images/telaPrincipal/funcionario.png" alt="Funcionário 6" class="funcionario-img">
-            <h3>Nome do Funcionário 6</h3>
-            <p>Cargo 6</p>
-            <a href="#"><img src="../../assets/images/telaPrincipal/messagem.png" alt="Ícone de Mensagem" class="mensagem-img"></a>
-            <!-- Subcard de sobreposição -->
-            <div class="subcard-overlay">
-                <h3>Detalhes do Funcionário 6</h3>
-                <!-- Coloque aqui mais detalhes sobre o funcionário -->
-            </div>
-        </div>
-    </div>
-</main>
+    </main>
 
 
 
