@@ -14,7 +14,7 @@ function substituirLayout() {
   modal.innerHTML = `
   
     
-    <link rel="stylesheet" href="../styles/lista_chamado/styleDescricao.css">
+    <link rel="stylesheet" href="../styles/modal/styleDescricao.css">
  
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content modal-lg">
@@ -35,7 +35,7 @@ function substituirLayout() {
           <div class="modal-body modalBody container" style="padding-top: 20px;">
         
             <div>
-              <img src="../../assets/images/lista_chamado/voltar.png" id="back" alt="" style="width: 50px; padding: 5px" > 
+              <img src="../../assets/images/modal/voltar.png" id="back" alt="" style="width: 50px; padding: 5px" > 
               <p style="font-weight: 700; margin-left: 80px; margin-top: -46px;" id="titulo_chamado">aaaa</p>
             </div>
             
@@ -44,7 +44,7 @@ function substituirLayout() {
               <div class="flex-row-reverse">
                
                 <div class="box-foto">
-                  <img src="../../assets/images/lista_chamado/pessoa.png" id="foto"  alt="">
+                  <img src="../../assets/images/modal/pessoa.png" id="foto"  alt="">
                 </div> 
               
                 <div class="col  informacoes ">
