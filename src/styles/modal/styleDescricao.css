@@ -1,0 +1,106 @@
+.flex-row-reverse{
+    
+    margin-top: 20px;
+    
+}
+
+#foto {
+    width: 350px;
+    height: 300px;
+    border-radius: 25px;
+    float: right;
+    margin-bottom: 30px;
+}
+
+.descricao {
+    width: 500px;
+    height: 150px;
+    resize: none;  /* não possibilita a alteração manual do tamanho da tabela de descrição */
+    border: 1;
+    border-color: #ebe9e9;
+}
+
+.descricao:focus{
+    outline: none;
+}
+
+.box-foto {
+    float: right;
+    
+
+}
+
+.botao{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 50px;
+    margin-bottom: 25px;
+}
+
+#botao_aceitar{
+    width: 150px;
+    height: 50px;
+    border: 0;
+    border-radius: 10px;
+    background-color: #8CB2B0;
+    color: white;
+    font-weight: 600;
+    font-size: 24px;
+    padding-bottom: 5px;
+    text-align: center;
+    transition: background-color 0.3s ease-in-out, box-shadow 0.0s ease-in-out;
+}
+
+#botao_aceitar:hover{
+    background-color:#799b99;
+    color: white;
+}
+
+#botao_aceitar:active{
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2); /* Adiciona uma sombra quando clicado */
+    transform: translateY(2px); /* Move o botão 2 pixels para baixo ao clicar */
+}
+
+.datas {
+    margin-left: 15px;
+}
+
+#linha {
+    border: 1px solid  #999999; 
+    width: 48.5%; 
+    margin-right: 100%;
+}
+
+
+@media (max-width: 1233px){
+    .box-foto  {
+        /* margin-right: 200px; */
+        display: flex;
+        justify-content: center;
+        float: none;
+    }
+    .descricao{
+        width: 100%;
+    }
+    #linha {
+        width: 100%;
+    }
+}
+
+@media (max-width: 763px){
+    .descricao {
+        width: 100%;
+
+    }
+}
+
+@media (max-width: 455px){
+    #foto {
+        width: 250px;
+        height: 200px;
+
+    }
+    
+}
+
