@@ -2,7 +2,9 @@
 session_start();
 include_once("conexao.php");
 
-$id = filter_input(INPUT_POST, 'ID_ORDEM', FILTER_SANITIZE_NUMBER_INT);
+$id = $_SESSION['id'];
+$titulo = filter_input(INPUT_POST, 'titulo', FILTER_SANITIZE_STRING);
+$assunto = filter_input(INPUT_POST, 'assunto', FILTER_SANITIZE_STRING);
 $servico = filter_input(INPUT_POST, 'SERVICO', FILTER_SANITIZE_STRING);
 $item = filter_input(INPUT_POST, 'ITEM', FILTER_SANITIZE_STRING);
 $local = filter_input(INPUT_POST, 'LOCAL', FILTER_SANITIZE_STRING);

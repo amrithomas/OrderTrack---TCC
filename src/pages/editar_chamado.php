@@ -1,9 +1,28 @@
+<?php
+
+session_start();
+include_once('../../conection.php');
+$id = $_GET['id'];
+
+$_SESSION['id'] = $id;
+
+$result_usuario="SELECT * FROM ordem WHERE ID_ORDEM = '$id'";//string para ver os campos da tabela identificados pelo id e sua inserção
+    
+$resultado_usuario= mysqli_query($conn, $result_usuario);// executa 
+$row_usuario = mysqli_fetch_assoc($resultado_usuario);// é usada para retornar uma matriz associativa representando a próxima linha no conjunto de resultados representado pelo parâmetro result , aonde cada chave representa o nome de uma coluna do conjunto de resultados.
+
+
+//setando data e hora do br
+ date_default_timezone_set('America/Sao_Paulo');
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abrir Chamado</title>
+    <title>Editar Chamado</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../styles/editar_chamado/styles.css">
@@ -12,7 +31,7 @@
     <nav class="navbar navbar-expand-lg ">
         <div class="container">
             <a class="navbar-brand" href="#">
-              <img src="../../assets/images/logo.svg" id="logo" alt="Logo" width="30" height="30">
+              <img src="../../assets/images/logo.png" id="logo" alt="Logo" width="30" height="30">
               
             </a>
 
@@ -55,19 +74,24 @@
             </div>
           </nav>
         </div>
+
       
     <div class="container">
             <div class="container container-form">
                 <div class="text-start">
                     <h2 class="d-flex justify-content-center align-items-center titulo">Editar Chamado</h2>
-                    <form class="cont-form">
+                    <form class="cont-form" method="post" action= "../../src/api/controller/proc_edit_chamado.php">
                         <div class="form-group">
-                            <label for="assunto">Assunto do Chamado: <span id="asterisco">*</span></label>
-                            <input type="text" class="form-control" id="assunto" name="assunto" required>
+                            <label for="assunto">Título do Chamado: <span id="asterisco">*</span></label>
+                            <input type="text" class="form-control" id="assunto" name="titulo" value="<?php echo $row_usuario['SERVICO']; ?>" required>
                         </div>
                         <div class="form-group">
                             <label for="mensagem">Assunto: <span id="asterisco">*</span></label>
-                            <textarea class="form-control" id="mensagem" name="mensagem" rows="4" required></textarea>
+                            <textarea class="form-control" id="mensagem" name="assunto" rows="4"  required><?php echo $row_usuario['ITEM']; ?></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="mensagem">Localização: <span id="asterisco">*</span></label>
+                            <input class="form-control" id="mensagem" name="assunto" rows="4" value="<?php echo $row_usuario['LOCALIZACAO']; ?>" required></input>
                         </div>
                         <div class="form-group">
                             <label for="imagem">Upload de Imagem: <span id="asterisco">*</span></label>
@@ -77,27 +101,33 @@
                         <div class="form-group">
                             <label for="selectOption" class="form-label">Urgência: <span id="asterisco">*</span></label>
                             <select class="form-select " style="width: 200px;" id="selectOption">
-                                <option value="" disabled selected>Selecione</option>
+                                <option value="" disabled selected><?php echo $row_usuario['PRIORIDADE']; ?></option>
                                 <option value="opcao1">Alta</option>
                                 <option value="opcao2">Média</option>
                                 <option value="opcao3">Baixa</option>
                             </select>
                         </div>
                         <div class="form-group ">
-                            <label for="">Data Inicial: <span id="asterisco">*</span></label><br>
-                            <input type="date" id="inputDate">
-                        </div>
-                        <div class="form-group ">
                             <label for="">Data Final: <span id="asterisco">*</span></label><br>
-                            <input type="date" id="inputDate">
+                            <input type="date" id="inputDate" value="<?php echo $row_usuario['PRAZO']; ?>">
                         </div>
                         <div class="form-group">
                             <label for="selectOption" class="form-label">Funcionario: <span id="asterisco">*</span></label>
                             <select class="form-select " style="width: 200px;" id="selectOption">
                                 <option value="" disabled selected>Selecione</option>
-                                <option value="opcao1">Funcionario 1</option>
-                                <option value="opcao2">Funcionario 2</option>
-                                <option value="opcao3">Funcionario 3</option>
+                                <?php 
+
+                                  $resultados_funcionarios = "SELECT * FROM funcionarios WHERE STATUS_FUNCIONARIO = 'ATIVO'";
+                                  $query_funcionarios = mysqli_query($conn, $resultados_funcionarios);
+                        
+                                  while($row_funcionarios = mysqli_fetch_assoc($query_funcionarios)){
+                        
+                                      $funcionarios = $row_funcionarios['NOME_FUNCIONARIO'];
+                                      $sobrenome = $row_funcionarios['SOBRENOME_FUNCIONARIO'];
+                                                  
+                                      echo "<option value='$funcionarios'>$funcionarios</option>";        
+                                  };
+                                ?>
                             </select>
                         </div>
                         <div class="d-flex justify-content-center align-items-center" style="margin-top: 50px;">
