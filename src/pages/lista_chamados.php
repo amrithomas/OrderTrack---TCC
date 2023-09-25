@@ -1,7 +1,10 @@
 <?php
 
-include_once('../../conection.php')
-
+include_once('../../conection.php');
+if(isset($_SESSION['msg'])){
+    echo $_SESSION['msg'];
+    unset($_SESSION['msg']);
+}
 ?>
 
 <!DOCTYPE html>

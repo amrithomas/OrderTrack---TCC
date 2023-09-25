@@ -91,10 +91,10 @@ $row_usuario = mysqli_fetch_assoc($resultado_usuario);// é usada para retornar 
                         </div>
                         <div class="form-group">
                             <label for="mensagem">Localização: <span id="asterisco">*</span></label>
-                            <input class="form-control" id="mensagem" name="assunto" rows="4" value="<?php echo $row_usuario['LOCALIZACAO']; ?>" required></input>
+                            <input class="form-control" id="mensagem" name="local" rows="4" value="<?php echo $row_usuario['LOCALIZACAO']; ?>" required></input>
                         </div>
                         <div class="form-group">
-                            <label for="imagem">Upload de Imagem: <span id="asterisco">*</span></label>
+                            <label for="imagem">Upload de Imagem: </label>
                             <br>
                             <input type="file" class="form-control-file " id="imagem" name="imagem">
                         </div>
@@ -114,19 +114,35 @@ $row_usuario = mysqli_fetch_assoc($resultado_usuario);// é usada para retornar 
                         <div class="form-group">
                             <label for="selectOption" class="form-label">Funcionario: <span id="asterisco">*</span></label>
                             <select class="form-select " style="width: 200px;" id="selectOption">
-                                <option value="" disabled selected>Selecione</option>
+                                
                                 <?php 
 
                                   $resultados_funcionarios = "SELECT * FROM funcionarios WHERE STATUS_FUNCIONARIO = 'ATIVO'";
                                   $query_funcionarios = mysqli_query($conn, $resultados_funcionarios);
-                        
+
+                                  $funcionarios = " ";
                                   while($row_funcionarios = mysqli_fetch_assoc($query_funcionarios)){
                         
-                                      $funcionarios = $row_funcionarios['NOME_FUNCIONARIO'];
+                                      $funcionario = $row_funcionarios['NOME_FUNCIONARIO'];
                                       $sobrenome = $row_funcionarios['SOBRENOME_FUNCIONARIO'];
                                                   
-                                      echo "<option value='$funcionarios'>$funcionarios</option>";        
+                                      $funcionarios .= "<option value='$funcionario'>$funcionario</option>";        
                                   };
+                                  
+                                  $result_funcionario_ordem = "SELECT * FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON historico_ordem.FK_ORDEM = ordem.ID_ORDEM  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO WHERE ID_ORDEM = '$id'";
+                                  $query_funcionario_ordem = mysqli_query($conn, $result_funcionario_ordem);
+                                  $funcionario_ordem = mysqli_fetch_assoc($query_funcionario_ordem);
+
+                                  $nome_funcionario = $funcionario_ordem['NOME_FUNCIONARIO'];
+                                  $sobrenome_funcionario = $funcionario_ordem['SOBRENOME_FUNCIONARIO'];
+
+                                  echo "<option value='$nome_funcionario $sobrenome_funcionario' disabled selected>$nome_funcionario $sobrenome_funcionario</option>";
+                                  echo $funcionarios;
+
+                                  $_SESSION['id_rel'] = $funcionario_ordem['ID_REL'];
+                                  
+
+
                                 ?>
                             </select>
                         </div>
