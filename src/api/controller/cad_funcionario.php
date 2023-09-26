@@ -29,6 +29,7 @@ if (isset($_FILES["img"]) && $_FILES["img"]["error"] === UPLOAD_ERR_OK) {
     
     $name = basename($image["name"]);
 
+    $allowTypes = array('jpg','png','jpeg');
 
     $fileType = strtolower(pathinfo($name, PATHINFO_EXTENSION));
 
@@ -39,11 +40,11 @@ if (isset($_FILES["img"]) && $_FILES["img"]["error"] === UPLOAD_ERR_OK) {
 
         if ($image['size'] > 2097152) { 
             $_SESSION['msg'] = "<center><span style='color:red;'>Perfil não cadastrado. Tamanho de imagem não aceita. Máx 2MB.</span></center>";
-            header('Location: cadastro.php');
+            header('Location: ../../pages/cadastro_funcionario.php');
             exit; // Encerra o script após redirecionar para evitar processamento adicional
         } else {
             $_SESSION['msg'] = "<center><span style='color:red;'>Perfil não cadastrado. Apenas arquivos JPG, PNG e JPEG são permitidos.</span></center>";
-            header('Location: cadastro.php');
+            header('Location: ../../pages/cadastro_funcionario.php');
             exit; // Encerra o script após redirecionar para evitar processamento adicional
         }
     }
