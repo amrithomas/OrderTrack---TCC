@@ -26,6 +26,27 @@ if (isset($_FILES["img"]) && $_FILES["img"]["error"] === UPLOAD_ERR_OK) {
     $image = $_FILES["img"];
 
     $tmp_name = $image['tmp_name'];
+    
+    $name = basename($image["name"]);
+
+
+    $fileType = strtolower(pathinfo($name, PATHINFO_EXTENSION));
+
+    if (in_array($fileType, $allowTypes) && $image['size'] <= 2097152) {
+        // Lê os dados binários da imagem
+        $imagem_binaria = file_get_contents($tmp_name);
+    }else {
+
+        if ($image['size'] > 2097152) { 
+            $_SESSION['msg'] = "<center><span style='color:red;'>Perfil não cadastrado. Tamanho de imagem não aceita. Máx 2MB.</span></center>";
+            header('Location: cadastro.php');
+            exit; // Encerra o script após redirecionar para evitar processamento adicional
+        } else {
+            $_SESSION['msg'] = "<center><span style='color:red;'>Perfil não cadastrado. Apenas arquivos JPG, PNG e JPEG são permitidos.</span></center>";
+            header('Location: cadastro.php');
+            exit; // Encerra o script após redirecionar para evitar processamento adicional
+        }
+    }
 
     // Lê os dados binários da imagem
     $imagem_binaria = file_get_contents($tmp_name);
