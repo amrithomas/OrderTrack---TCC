@@ -34,7 +34,7 @@
             // $_SESSION['logado'] = true; //Parte do esquema de autenticação aq
 
             //REDIRECIONANDO↓↓↓↓
-            header('Location: ../../pages/tela_principal.php');
+            header('Location: ../../pages/menu.php');
             exit();
             
         } else {

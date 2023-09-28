@@ -69,7 +69,7 @@
   </nav>
 </div>
    <main>
-    <div class="card">
+    <div class="card" href="../">
         <div class="imgBX">
             <img src="../../assets/images/menu/abrirChamado.png" alt="Abertura de Lista de Serviço">
         </div>
@@ -102,7 +102,7 @@
         </div>
     </div>
 
-    <div class="card">
+    <div class="card" >
         <div class="imgBX">
             <img src="../../assets/images/menu/equipe.png" alt="Lista de Funcionários">
         </div>
@@ -114,6 +114,7 @@
     </div>
 
     <div class="card">
+    <a href="relatorios.php">
         <div class="imgBX">
             <img src="../../assets/images/menu/relatorios.png" alt="Relatórios">
         </div>
@@ -122,12 +123,13 @@
                 <h2>Relatórios</h2>
             </div>
         </div>
-    </div>
+    </a> 
+</div>
 </main>
 
 
     <footer>
-        <p>&copy; OrderTech . Todos os direitos reservados.</p>
+        <p>&copy; ProTask . Todos os direitos reservados.</p>
     </footer>
     
     <!-- Incluindo os arquivos JavaScript do Bootstrap (opcional) -->

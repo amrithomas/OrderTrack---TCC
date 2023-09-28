@@ -142,7 +142,11 @@
 
                 <input type="text" name="nome" placeholder="Nome" required>
 
-                <input type="password" name="senha" placeholder="Senha" required>
+                <input type="text" name="sobrenome" placeholder="Sobrenome" required>
+
+                <!-- <input type="text" name="usuario" placeholder="Usuario" required> -->
+
+                <!-- <input type="password" name="senha" placeholder="Senha" required> -->
 
                 <div class="employee-image">  
 
@@ -162,7 +166,7 @@
 
     <footer class="mt-5">
 
-        <p>&copy;OrderTech . Todos os direitos reservados.</p>
+        <p>&copy; ProTask . Todos os direitos reservados.</p>
 
     </footer>
 

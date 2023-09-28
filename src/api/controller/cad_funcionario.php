@@ -15,7 +15,7 @@ if (isset($_SESSION['msg'])) {
 $nome = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_STRING);
 $usuario = filter_input(INPUT_POST, 'usuario', FILTER_SANITIZE_STRING);
 $senha_funcionario = filter_input(INPUT_POST, 'senha', FILTER_SANITIZE_STRING);
-$sobrenome = ''; // ENQUANTO NÃO FAZ PARA NÃO FICAR SEM NADA NO CAMPO DO SOBRENOME
+$sobrenome = filter_input(INPUT_POST, 'sobrenome', FILTER_SANITIZE_STRING);; // ENQUANTO NÃO FAZ PARA NÃO FICAR SEM NADA NO CAMPO DO SOBRENOME
 
 // Criptografia da senha (MÉTODO UTILIZADO MEU FILHO >>>>> password_hash($variavel, PASSWORD_DEFAULT))
 $criptosenha = password_hash($senha_funcionario, PASSWORD_DEFAULT);
