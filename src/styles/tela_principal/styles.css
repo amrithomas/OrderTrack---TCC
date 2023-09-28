@@ -130,10 +130,10 @@ footer {
 
 .main-card {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 100px;
-    margin: 30px auto; /* Adicionando margem para espaçamento vertical */
-  
+    grid-template-columns: repeat(4, 1fr);
+    margin: 40px auto; /* Adicionando margem para espaçamento vertical */
+    grid-column-gap: 200px;
+    grid-row-gap: 10em;
 }
 
 /* Estilo para a imagem do funcionário */
@@ -167,7 +167,7 @@ footer {
     text-align: center;
     max-width: 800px;
     margin: 0 auto 20px;
-    transform: scale(1);
+    transform: scale(1.3);
     cursor: pointer;
     transition: transform 0.5s; /* Adiciona uma transição suave para a propriedade transform */
 }
