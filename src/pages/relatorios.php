@@ -13,9 +13,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
     
-    <link rel="stylesheet" href="../../src/styles/cadastro_funcionario/styles.css">
+    <link rel="stylesheet" href="../../src/styles/relatorios/styles.css">
 
-    <title>Login</title>
+    <title>Relatórios</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
 
 </head>
 
@@ -75,24 +77,17 @@
 </div>
     
     <main>
-        <div class="login-form">
-            <h2>Login</h2>
-            <?php 
-              session_start();
-              if (isset($_SESSION['msg'])) {
-                  echo($_SESSION['msg'] . "<br>");
-                  unset($_SESSION['msg']);
-              }
-            ?>
-            <form action="../api/controller/proc_login.php" method="post">
-                <input type="text" name="usuario" placeholder="Nome de Usuário" required>
-                <input type="password" name="senha" placeholder="Senha" required>
-                <div>
-                    <a href="#" class="forget"> Esqueceu a senha?</a>
-                </div>
-                <button type="submit">Entrar</button>
-            </form>
+        <div>
+            <h1>Controle de Rendimento dos Funcionários</h1>
+            <label for="period">Selecione o Período:</label>
+            <select id="period">
+                <option value="semanal">Semanal</option>
+                <option value="mensal">Mensal</option>
+                <option value="anual">Anual</option>
+            </select>
+            <canvas id="myChart" width="652" height="326" style="display: block; box-sizing: border-box; height: 163px; width: 1000px;"></canvas>
         </div>
+        <script src="../../src/js/relatorios/script.js"></script>
         
     </main>
     

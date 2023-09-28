@@ -1,11 +1,7 @@
 <!DOCTYPE html>
-
 <html lang="pt-BR">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Incluindo os arquivos CSS do Bootstrap -->
@@ -13,9 +9,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
     
-    <link rel="stylesheet" href="../../src/styles/cadastro_funcionario/styles.css">
-
-    <title>Login</title>
+    <link rel="stylesheet" href="../../src/styles/tela_inicial/styles.css">
+    <title>Tela Inicial</title>
 
 </head>
 
@@ -73,32 +68,34 @@
     </div>
   </nav>
 </div>
-    
-    <main>
-        <div class="login-form">
-            <h2>Login</h2>
-            <?php 
-              session_start();
-              if (isset($_SESSION['msg'])) {
-                  echo($_SESSION['msg'] . "<br>");
-                  unset($_SESSION['msg']);
-              }
-            ?>
-            <form action="../api/controller/proc_login.php" method="post">
-                <input type="text" name="usuario" placeholder="Nome de Usuário" required>
-                <input type="password" name="senha" placeholder="Senha" required>
-                <div>
-                    <a href="#" class="forget"> Esqueceu a senha?</a>
-                </div>
-                <button type="submit">Entrar</button>
-            </form>
+<main>
+    <div class="card">
+        <div class="imgBX">
+            <img src="../../assets/images/telaInicial/funcionario.png" alt="Funcionário">
         </div>
-        
-    </main>
+        <div class="content">
+            <div class="details">
+                <h2>Funcionário</h2>
+            </div>
+        </div>
+    </div>
     
+    <div class="card">
+        <div class="imgBX">
+            <img src="../../assets/images/telaInicial/administrador.png" alt="Administrador">
+        </div>
+        <div class="content">
+            <div class="details">
+                <h2>Administrador</h2>
+            </div>
+        </div>
+    </div>
+</main>
+
     <footer>
         <p>&copy; OrderTech . Todos os direitos reservados.</p>
     </footer>
+    
     <!-- Incluindo os arquivos JavaScript do Bootstrap (opcional) -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -106,3 +103,10 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
+
+
+
+
+
+
+
