@@ -1,18 +1,22 @@
+<?php 
+  session_start();
+  include_once('../../conection.php');
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Abrir Chamado</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../styles/editar_chamado/styles.css">
+    <link rel="stylesheet" href="../styles/abrir_chamado/style.css">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg ">
         <div class="container">
             <a class="navbar-brand" href="#">
-              <img src="../../assets/images/logo.svg" id="logo" alt="Logo" width="30" height="30">
+              <img src="../../assets/images/logo.png" id="logo" alt="Logo" width="30" height="30">
               
             </a>
 
@@ -34,8 +38,8 @@
                   </a>
 
                   <div class="dropdown-menu" aria-labelledby="chamadosDropdown">
-                    <a class="dropdown-item" href="#">Lista de Chamados</a>
-                    <a class="dropdown-item" href="#">Abrir Chamado</a>
+                    <a class="dropdown-item" href="./lista_chamados.php">Lista de Chamados</a>
+                    <a class="dropdown-item" href="./abrir_chamado.php">Abrir Chamado</a>
                   </div>
                 </li>
 
@@ -47,8 +51,8 @@
                   </a>
 
                   <div class="dropdown-menu" aria-labelledby="funcionariosDropdown">
-                    <a class="dropdown-item" href="#">Lista de Funcionários</a>
-                    <a class="dropdown-item" href="#">Cadastrar Funcionário</a>
+                    <a class="dropdown-item" href="./lista_funcionarios.php">Lista de Funcionários</a>
+                    <a class="dropdown-item" href="./cadastrar_funcionario.php">Cadastrar Funcionário</a>
                   </div>
                 </li>
               </ul>
@@ -57,50 +61,70 @@
         </div>
       
     <div class="container">
+      <?php
+        if(isset($_SESSION['msg'])){//serve para dar a mensagem de cadastrado ou não//isset = basicamente verifica a existência de uma variável
+          echo $_SESSION['msg'];
+          unset($_SESSION['msg']);//unset tira o valor da variavel ou finalizar
+      }
+      ?>
             <div class="container container-form">
                 <div class="text-start">
-                    <h2 class="d-flex justify-content-center align-items-center titulo">Editar Chamado</h2>
-                    <form class="cont-form">
+                    <h2 class="d-flex justify-content-center align-items-center titulo">Abrir Chamado</h2>
+                    <form class="cont-form" method="post" action= "../../src/api/controller/proc_chamado.php" enctype="multipart/form-data">
                         <div class="form-group">
-                            <label for="assunto">Assunto do Chamado: <span id="asterisco">*</span></label>
-                            <input type="text" class="form-control" id="assunto" name="assunto" required>
+                            <label for="assunto">Titulo do Chamado: <span id="asterisco">*</span></label>
+                            <input type="text" class="form-control" id="assunto" name="titulo_chamado" required>
                         </div>
                         <div class="form-group">
                             <label for="mensagem">Assunto: <span id="asterisco">*</span></label>
-                            <textarea class="form-control" id="mensagem" name="mensagem" rows="4" required></textarea>
+                            <textarea class="form-control" id="mensagem" name="item" rows="4" required></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="imagem">Upload de Imagem: <span id="asterisco">*</span></label>
+                            <label for="local">Local: <span id="asterisco">*</span></label>
+                            <input type="text" class="form-control" id="local" name="local" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="imagem">Upload de Imagem: </label>
                             <br>
                             <input type="file" class="form-control-file " id="imagem" name="imagem">
                         </div>
                         <div class="form-group">
                             <label for="selectOption" class="form-label">Urgência: <span id="asterisco">*</span></label>
-                            <select class="form-select " style="width: 200px;" id="selectOption">
+                            <select class="form-select " style="width: 200px;" id="selectOption" name="urgencia">
                                 <option value="" disabled selected>Selecione</option>
-                                <option value="opcao1">Alta</option>
-                                <option value="opcao2">Média</option>
-                                <option value="opcao3">Baixa</option>
+                                <option value="ALTA">Alta</option>
+                                <option value="MEDIA">Média</option>
+                                <option value="BAIXA">Baixa</option>
                             </select>
-                        </div>
-                        <div class="form-group ">
-                            <label for="">Data Inicial: <span id="asterisco">*</span></label><br>
-                            <input type="date" id="inputDate">
                         </div>
                         <div class="form-group ">
                             <label for="">Data Final: <span id="asterisco">*</span></label><br>
-                            <input type="date" id="inputDate">
+                            <input name="data" type="date" id="inputDate" min="<?php echo date("Y-m-d");?>">
                         </div>
                         <div class="form-group">
                             <label for="selectOption" class="form-label">Funcionario: <span id="asterisco">*</span></label>
-                            <select class="form-select " style="width: 200px;" id="selectOption">
+                            <select name="funcionarios" class="form-select " style="width: 200px;" id="selectOption">
                                 <option value="" disabled selected>Selecione</option>
-                                <option value="opcao1">Funcionario 1</option>
-                                <option value="opcao2">Funcionario 2</option>
-                                <option value="opcao3">Funcionario 3</option>
+                                <?php
+
+                                   // Query para pegar todos os funcionarios Ativos
+                                    $resultados_funcionarios = "SELECT * FROM funcionarios WHERE STATUS_FUNCIONARIO = 'ATIVO'";
+                                    $query_funcionarios = mysqli_query($conn, $resultados_funcionarios);
+                          
+                                    while($row_funcionarios = mysqli_fetch_assoc($query_funcionarios)){
+                          
+                                        $funcionarios = $row_funcionarios['NOME_FUNCIONARIO'];
+                                        $sobrenome = $row_funcionarios['SOBRENOME_FUNCIONARIO'];
+
+                                        $id_funcionario = $row_funcionarios['ID_FUNCIONARIO'];
+                                                    
+                                        echo "<option value='$id_funcionario'>$funcionarios $sobrenome</option>";        
+                                    };
+
+                                ?>
                             </select>
                         </div>
-                        <div class="d-flex justify-content-center align-items-center" style="margin-top: 50px;">
+                        <div class="d-flex justify-content-center align-items-center">
                             <button type="submit" class="btn ">Enviar</button>
                         </div>
                     </form>
@@ -109,9 +133,15 @@
 
     </div>
 
-    <footer class="footer">
-        <p class="d-flex justify-content-center align-items-center">© OrderTech. Todos os direitos reservados.</p>
-    </footer>
+      <footer class="footer">
+        <div>
+            <img id="logo_equipe" src="../../assets/images/logo_equipe.png" alt="">
+        </div> 
+        <div class="container">
+          <p class="d-flex justify-content-center align-items-center">© OrderTech. Todos os direitos reservados.</p>
+
+        </div>                
+      </footer>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>

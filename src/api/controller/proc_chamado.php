@@ -1,5 +1,5 @@
 <?php
-include_once('conexao.php');
+include_once('../../../conection.php');
 session_start();
 
 $titulo_chamado = filter_input(INPUT_POST, 'titulo_chamado', FILTER_SANITIZE_STRING);
@@ -7,7 +7,7 @@ $urgencia = $_POST['urgencia'];
 $prazo = $_POST['data'];
 $local = $_POST['local'];
 $funcionario = filter_input(INPUT_POST, 'funcionarios', FILTER_SANITIZE_STRING);
-$descricao_tarefa = filter_input(INPUT_POST, 'descricao_tarefa', FILTER_SANITIZE_STRING);
+$descricao_tarefa = filter_input(INPUT_POST, 'item', FILTER_SANITIZE_STRING);
 
 if (isset($_FILES["imagem"]) && $_FILES["imagem"]["error"] === UPLOAD_ERR_OK) {
     $dir = "img/"; // Certifique-se de que há uma pasta chamada "img" no mesmo diretório deste arquivo PHP.
@@ -29,7 +29,7 @@ if (isset($_FILES["imagem"]) && $_FILES["imagem"]["error"] === UPLOAD_ERR_OK) {
             echo "Upload de imagem bem-sucedido!";
         } else {
             $_SESSION['msg'] = "<center><span style='color:red;'>Erro ao fazer upload da imagem.</span></center>";
-            header('Location: chamado.php');
+            header('Location: ../../../src/pages/abrir_chamado.php');
             exit;
         }
     } else {
@@ -38,14 +38,14 @@ if (isset($_FILES["imagem"]) && $_FILES["imagem"]["error"] === UPLOAD_ERR_OK) {
         } else {
             $_SESSION['msg'] = "<center><span style='color:red;'>Perfil não cadastrado. Apenas arquivos JPG, PNG e JPEG são permitidos.</span></center>";
         }
-        header('Location: chamado.php');
+        header('Location: ../../../src/pages/abrir_chamado.php');
         exit;
     }
 }
 
 
 
-$result_usuario = "INSERT INTO ordem (SERVICO, PRIORIDADE,ITEM, PRAZO, STATUS, LOCALIZACAO,FOTO) VALUES ('$titulo_chamado', '$urgencia','$descricao_tarefa','$prazo', 'PENDENTE', '$local', '$path')";
+$result_usuario = "INSERT INTO ordem (SERVICO, PRIORIDADE, ITEM, PRAZO, STATUS, LOCALIZACAO, FOTO) VALUES ('$titulo_chamado', '$urgencia','$descricao_tarefa','$prazo', 'PENDENTE', '$local', '$path')";
 
 echo "Query: $result_usuario"; // Depuração
 
@@ -59,14 +59,14 @@ if ($conn->query($result_usuario)) {
     $_SESSION['msg'] = "<p style='color:blue;'>Chamado criado com sucesso!</p>";
     
     // Redirecionar para a página lista_chamados.php
-    header("Location: lista_chamados.php");
+    header("Location: ../../../src/pages/abrir_chamado.php");
     exit();
 } else {
     echo "Erro ao inserir o registro: " . $conn->error;
     
     $_SESSION['msg'] = "<p style='color:red;'>Erro ao criar chamado: " . mysqli_error($conn) . "</p>";
     // Redirecionar para a página edit_chamado.php
-    header("Location: edit_chamado.php");
+    header("Location: ../../../src/pages/abrir_chamado.php.php");
     exit();
 }
 ?>

@@ -84,8 +84,13 @@ body {
     
 }
 
+#logo_equipe{
+    width: 70px;
+    height: 60px;
+}
+
 .footer {
-    background-color: #fff;
+    background-color: #000;
     display: flex;
     justify-content: center;
     text-align: center; 
