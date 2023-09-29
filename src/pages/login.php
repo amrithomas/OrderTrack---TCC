@@ -97,7 +97,7 @@
     </main>
     
     <footer>
-        <p>&copy; OrderTech . Todos os direitos reservados.</p>
+        <p>&copy; ProTask . Todos os direitos reservados.</p>
     </footer>
     <!-- Incluindo os arquivos JavaScript do Bootstrap (opcional) -->
 

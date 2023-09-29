@@ -70,6 +70,7 @@
 </div>
 <main>
     <div class="card">
+    <a href="login.php">
         <div class="imgBX">
             <img src="../../assets/images/telaInicial/funcionario.png" alt="Funcionário">
         </div>
@@ -81,6 +82,7 @@
     </div>
     
     <div class="card">
+    <a href="login.php">
         <div class="imgBX">
             <img src="../../assets/images/telaInicial/administrador.png" alt="Administrador">
         </div>
@@ -92,10 +94,13 @@
     </div>
 </main>
 
-    <footer>
-        <p>&copy; OrderTech . Todos os direitos reservados.</p>
-    </footer>
+<footer class="mt-5">
+
+    <p>&copy; ProTask . Todos os direitos reservados.</p>
+
+</footer>
     
+ 
     <!-- Incluindo os arquivos JavaScript do Bootstrap (opcional) -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
