@@ -353,7 +353,7 @@ include_once('../../conection.php');
 
                 }
 
-                if ($status != 'CANCELADO') {
+                if ($status == 'PENDENTE') {
 
                     // Dropdown menu para editar ou cancelar um chamado
                     $dados .= " <td>

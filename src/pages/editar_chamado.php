@@ -82,20 +82,20 @@ $row_usuario = mysqli_fetch_assoc($resultado_usuario);// é usada para retornar 
                     <h2 class="d-flex justify-content-center align-items-center titulo">Editar Chamado</h2>
                     <form class="cont-form" method="post" action= "../../src/api/controller/proc_edit_chamado.php">
                         <div class="form-group">
-                            <label for="assunto">Título do Chamado: </label>
+                            <label for="assunto">Título do Chamado: <span id="asterisco">*</span></label>
                             <input type="text" class="form-control" id="assunto" name="titulo" value="<?php echo $row_usuario['SERVICO']; ?>" required>
                         </div>
                         <div class="form-group">
-                            <label for="mensagem">Assunto: </label>
+                            <label for="mensagem">Assunto: <span id="asterisco">*</span></label>
                             <textarea class="form-control" id="mensagem" name="assunto" rows="4"  required><?php echo $row_usuario['ITEM']; ?></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="mensagem">Localização: </label>
+                            <label for="mensagem">Localização: <span id="asterisco">*</span></label>
                             <input class="form-control" id="mensagem" name="local" rows="4" value="<?php echo $row_usuario['LOCALIZACAO']; ?>" required></input>
                         </div>
                         <div class="form-group">
-                            <label for="selectOption" class="form-label">Urgência: </label>
-                            <select name='urgencia' class="form-select " style="width: 200px;" id="selectOption" required>
+                            <label for="selectOption" class="form-label">Urgência: <span id="asterisco">*</span></label>
+                            <select name='urgencia' class="form-select " style="width: 200px;" id="selectOption">
                                 <?php $prioridade = $row_usuario['PRIORIDADE']; ?> 
                                 <option value="<?php echo $prioridade; ?>"><?php echo $prioridade; ?></option>
                                 <option value="ALTA">Alta</option>
@@ -105,11 +105,11 @@ $row_usuario = mysqli_fetch_assoc($resultado_usuario);// é usada para retornar 
                         </div>
                         <div class="form-group ">
                             <label for="">Data Final: <span id="asterisco">*</span></label><br>
-                            <input type="date" name='prazo' id="inputDate" value="<?php echo $row_usuario['PRAZO']; ?>" required>
+                            <input type="date" name='prazo' id="inputDate" value="<?php echo $row_usuario['PRAZO']; ?>">
                         </div>
                         <div class="form-group">
-                            <label for="selectOption" class="form-label">Funcionario: </label>
-                            <select class="form-select " name='funcionario' style="width: 200px;" id="selectOption" required>
+                            <label for="selectOption" class="form-label">Funcionario: <span id="asterisco">*</span></label>
+                            <select class="form-select " name='funcionario' style="width: 200px;" id="selectOption">
                                 
                                 <?php 
 
@@ -137,20 +137,11 @@ $row_usuario = mysqli_fetch_assoc($resultado_usuario);// é usada para retornar 
 
                                   $_SESSION['id_rel'] = $funcionario_ordem['ID_REL'];
                                   
-                            
+
+
                                 ?>
                             </select>
                         </div>
-                          <div class="form-group">
-                              <label for="selectOption" class="form-label">Status Ordem: </label>
-                              <select class="form-select " name='status' style="width: 200px;" id="selectOption" required>
-                                <option value="<?php echo $row_usuario['STATUS']; ?>"><?php echo $row_usuario['STATUS']; ?></option>
-                                <option value='PENDENTE'>PENDENTE</option>
-                                <option value='EM ANDAMENTO'>EM ANDAMENTO</option>
-                                <option value='CONCLUIDO'>CONCLUIDO</option>
-                                <option value='CANCELADO'>CANCELADO</option>
-                              </select>
-                          </div>
                         <div class="d-flex justify-content-center align-items-center" style="margin-top: 50px;">
                             <button type="submit" class="btn ">Enviar</button>
                         </div>
