@@ -90,7 +90,7 @@
                         </div>
                         <div class="form-group">
                             <label for="selectOption" class="form-label">Urgência: <span id="asterisco">*</span></label>
-                            <select class="form-select " style="width: 200px;" id="selectOption" name="urgencia" required>
+                            <select class="form-select " style="width: 200px;" id="selectOption" name="urgencia">
                                 <option value="" disabled selected>Selecione</option>
                                 <option value="ALTA">Alta</option>
                                 <option value="MEDIA">Média</option>
@@ -99,11 +99,11 @@
                         </div>
                         <div class="form-group ">
                             <label for="">Data Final: <span id="asterisco">*</span></label><br>
-                            <input name="data" type="date" id="inputDate" min="<?php echo date("Y-m-d");?>" required>
+                            <input name="data" type="date" id="inputDate" min="<?php echo date("Y-m-d");?>">
                         </div>
                         <div class="form-group">
                             <label for="selectOption" class="form-label">Funcionario: <span id="asterisco">*</span></label>
-                            <select name="funcionarios" class="form-select " style="width: 200px;" id="selectOption" required>
+                            <select name="funcionarios" class="form-select " style="width: 200px;" id="selectOption">
                                 <option value="" disabled selected>Selecione</option>
                                 <?php
 
