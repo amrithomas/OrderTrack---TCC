@@ -25,7 +25,7 @@ $row_usuario = mysqli_fetch_assoc($resultado_usuario);// é usada para retornar 
     <title>Editar Chamado</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../styles/editar_chamado/styles.css">
+    <link rel="stylesheet" href="../styles/editar_chamado/style.css">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg ">
@@ -53,8 +53,8 @@ $row_usuario = mysqli_fetch_assoc($resultado_usuario);// é usada para retornar 
                   </a>
 
                   <div class="dropdown-menu" aria-labelledby="chamadosDropdown">
-                    <a class="dropdown-item" href="#">Lista de Chamados</a>
-                    <a class="dropdown-item" href="#">Abrir Chamado</a>
+                    <a class="dropdown-item" href="./lista_chamados.php">Lista de Chamados</a>
+                    <a class="dropdown-item" href="./abrir_chamado.php">Abrir Chamado</a>
                   </div>
                 </li>
 
@@ -66,8 +66,8 @@ $row_usuario = mysqli_fetch_assoc($resultado_usuario);// é usada para retornar 
                   </a>
 
                   <div class="dropdown-menu" aria-labelledby="funcionariosDropdown">
-                    <a class="dropdown-item" href="#">Lista de Funcionários</a>
-                    <a class="dropdown-item" href="#">Cadastrar Funcionário</a>
+                    <a class="dropdown-item" href="./lista_funcionarios.php">Lista de Funcionários</a>
+                    <a class="dropdown-item" href="./cadastrar_funcionario.php">Cadastrar Funcionário</a>
                   </div>
                 </li>
               </ul>
@@ -94,26 +94,22 @@ $row_usuario = mysqli_fetch_assoc($resultado_usuario);// é usada para retornar 
                             <input class="form-control" id="mensagem" name="local" rows="4" value="<?php echo $row_usuario['LOCALIZACAO']; ?>" required></input>
                         </div>
                         <div class="form-group">
-                            <label for="imagem">Upload de Imagem: </label>
-                            <br>
-                            <input type="file" class="form-control-file " id="imagem" name="imagem">
-                        </div>
-                        <div class="form-group">
                             <label for="selectOption" class="form-label">Urgência: <span id="asterisco">*</span></label>
-                            <select class="form-select " style="width: 200px;" id="selectOption">
-                                <option value="" disabled selected><?php echo $row_usuario['PRIORIDADE']; ?></option>
-                                <option value="opcao1">Alta</option>
-                                <option value="opcao2">Média</option>
-                                <option value="opcao3">Baixa</option>
+                            <select name='urgencia' class="form-select " style="width: 200px;" id="selectOption">
+                                <?php $prioridade = $row_usuario['PRIORIDADE']; ?> 
+                                <option value="<?php echo $prioridade; ?>"><?php echo $prioridade; ?></option>
+                                <option value="ALTA">Alta</option>
+                                <option value="MEDIA">Média</option>
+                                <option value="BAIXA">Baixa</option>
                             </select>
                         </div>
                         <div class="form-group ">
                             <label for="">Data Final: <span id="asterisco">*</span></label><br>
-                            <input type="date" id="inputDate" value="<?php echo $row_usuario['PRAZO']; ?>">
+                            <input type="date" name='prazo' id="inputDate" value="<?php echo $row_usuario['PRAZO']; ?>">
                         </div>
                         <div class="form-group">
                             <label for="selectOption" class="form-label">Funcionario: <span id="asterisco">*</span></label>
-                            <select class="form-select " style="width: 200px;" id="selectOption">
+                            <select class="form-select " name='funcionario' style="width: 200px;" id="selectOption">
                                 
                                 <?php 
 
@@ -126,7 +122,7 @@ $row_usuario = mysqli_fetch_assoc($resultado_usuario);// é usada para retornar 
                                       $funcionario = $row_funcionarios['NOME_FUNCIONARIO'];
                                       $sobrenome = $row_funcionarios['SOBRENOME_FUNCIONARIO'];
                                                   
-                                      $funcionarios .= "<option value='$funcionario'>$funcionario</option>";        
+                                      $funcionarios .= "<option value='$funcionario $sobrenome'>$funcionario  $sobrenome</option>";        
                                   };
                                   
                                   $result_funcionario_ordem = "SELECT * FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON historico_ordem.FK_ORDEM = ordem.ID_ORDEM  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO WHERE ID_ORDEM = '$id'";
@@ -136,7 +132,7 @@ $row_usuario = mysqli_fetch_assoc($resultado_usuario);// é usada para retornar 
                                   $nome_funcionario = $funcionario_ordem['NOME_FUNCIONARIO'];
                                   $sobrenome_funcionario = $funcionario_ordem['SOBRENOME_FUNCIONARIO'];
 
-                                  echo "<option value='$nome_funcionario $sobrenome_funcionario' disabled selected>$nome_funcionario $sobrenome_funcionario</option>";
+                                  echo "<option value='$nome_funcionario $sobrenome_funcionario'>$nome_funcionario $sobrenome_funcionario</option>";
                                   echo $funcionarios;
 
                                   $_SESSION['id_rel'] = $funcionario_ordem['ID_REL'];

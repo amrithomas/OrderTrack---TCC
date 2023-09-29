@@ -7,11 +7,11 @@
 
     if(!empty($id)){//significa se o campo id não estiver vazio ele vai executar//no caso esse empty significa vazio
 
-        $result_usuario="UPDATE funcionarios SET STATUS_FUNCIONARIO = 'INATIVO' WHERE ID_FUNCIONARIO = '$id' ";//deletar da tabela cliente no campo id deletar no caso o id
+        $result_usuario="UPDATE funcionarios SET STATUS_FUNCIONARIO = 'ATIVO' WHERE ID_FUNCIONARIO = '$id' ";//deletar da tabela cliente no campo id deletar no caso o id
 
         $resultado_usuario=mysqli_query($conn,$result_usuario); //variavel (conn) verifica se tem conexao do banco, query significa executar
         if(mysqli_affected_rows($conn)){//se eu encontar a conexao e realmente for modificado o registro 
-            $_SESSION['msg'] = "<p style='color:green;'>USUARIO ATIVADO COM SUCESSO</p>";
+            $_SESSION['msg'] = "<p style='color:green;'>USUARIO DESATIVADO COM SUCESSO</p>";
             header("location: ../../pages/lista_funcionarios.php");//no casso aonde eu quero que apareça a mensagem de usuario deletado com sucesso
         }else{
             $_SESSION['msg'] = "<p style='color:red;'>Erro: o usuário não foi DESATIVADO </p>";

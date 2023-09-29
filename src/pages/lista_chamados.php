@@ -1,10 +1,7 @@
 <?php
-
+session_start();
 include_once('../../conection.php');
-if(isset($_SESSION['msg'])){
-    echo $_SESSION['msg'];
-    unset($_SESSION['msg']);
-}
+
 ?>
 
 <!DOCTYPE html>
@@ -46,8 +43,8 @@ if(isset($_SESSION['msg'])){
                         </a>
 
                         <div class="dropdown-menu" aria-labelledby="chamadosDropdown">
-                            <a class="dropdown-item" href="#">Lista de Chamados</a>
-                            <a class="dropdown-item" href="#">Abrir Chamado</a>
+                            <a class="dropdown-item" href="./lista_chamados.php">Lista de Chamados</a>
+                            <a class="dropdown-item" href="./abrir_chamado.php">Abrir Chamado</a>
                         </div>
                     </li>
 
@@ -59,8 +56,8 @@ if(isset($_SESSION['msg'])){
                         </a>
 
                         <div class="dropdown-menu" aria-labelledby="funcionariosDropdown">
-                            <a class="dropdown-item" href="#">Lista de Funcionários</a>
-                            <a class="dropdown-item" href="#">Cadastrar Funcionário</a>
+                            <a class="dropdown-item" href="./lista_funcionarios.php">Lista de Funcionários</a>
+                            <a class="dropdown-item" href="./cadastrar_funcionario.php">Cadastrar Funcionário</a>
                         </div>
                     </li>
                 </ul>
@@ -71,6 +68,12 @@ if(isset($_SESSION['msg'])){
     <!-- Titulo -->
     <div class="titulo container">
         <h1>Lista de Chamados</h1>
+        <?php
+        if(isset($_SESSION['msg'])){//serve para dar a mensagem de cadastrado ou não//isset = basicamente verifica a existência de uma variável
+          echo $_SESSION['msg'];
+          unset($_SESSION['msg']);//unset tira o valor da variavel ou finalizar
+      }
+      ?>
     </div>
 
 
@@ -283,6 +286,8 @@ if(isset($_SESSION['msg'])){
                 // Funcionario
                 $funcionario = $row_usuario['NOME_FUNCIONARIO'];
 
+                $sobrenome_funcionario = $row_usuario['SOBRENOME_FUNCIONARIO'];
+
                 // Urgencia
                 $urgencia =  $row_usuario['PRIORIDADE'];
 
@@ -317,7 +322,7 @@ if(isset($_SESSION['msg'])){
                                 <td>$servico</td>
                                 <td>$item</td>
                                 <td>$localizacao</td>
-                                <td>$funcionario</td>
+                                <td>$funcionario $sobrenome_funcionario</td>
                                 <td>$data</td>
                                 <td>$data_prazo</td>
                                 <td>$data_finalizacao</td>
