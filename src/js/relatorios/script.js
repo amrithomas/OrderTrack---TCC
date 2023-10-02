@@ -67,7 +67,8 @@ function criarOuAtualizarGraficoSemanal(dados) {
                     stacked: true
                 },
                 y: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    stepSize: 1  // Define o intervalo de incremento para 1
                 }
             }
         }
@@ -123,7 +124,8 @@ function criarOuAtualizarGraficoMensal(dados) {
                     stacked: true
                 },
                 y: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    stepSize: 1  // Define o intervalo de incremento para 1
                 }
             }
         }
@@ -179,7 +181,8 @@ function criarOuAtualizarGraficoDiario(dados) {
                     stacked: true
                 },
                 y: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    stepSize: 1  // Define o intervalo de incremento para 1
                 }
             }
         }
@@ -235,7 +238,9 @@ function criarOuAtualizarGraficoAnual(dados) {
                     stacked: true
                 },
                 y: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    stepSize: 1  // Define o intervalo de incremento para 1
+                  
                 }
             }
         }
