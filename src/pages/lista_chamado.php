@@ -7,20 +7,16 @@
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
-    <script src="../../src/js/js_modal/script_descricao.js"></script>
+    <script src="../js/lista_chamado/script_descricao.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="../../src/styles/modal/styleModal.css" />
-    <script src="../../src/js/js_modal/script_botao.js"></script>
+    <link rel="stylesheet" href="../styles/lista_chamado/styleModal.css" />
+    <script src="././../js/lista_chamado/script_botao.js"></script>
     <title>Listagem de Chamados</title>
   </head>
   <body>
-
-  
     <div class="container">
       <h1>Bootstrap Modal Example</h1>
       <button 
@@ -61,7 +57,7 @@
 
             <div class="perfil">
               <div>
-                <img id="pessoa" style="padding-bottom: 7px;" src="../../assets/images/modal/pessoa.png" alt="" /><span id="nome"
+                <img id="pessoa" style="padding-bottom: 7px;" src="../../assets/images/lista_chamado/pessoa.png" alt="" /><span id="nome"
                   >NOME</span
                 >
               </div>
@@ -88,19 +84,19 @@
                       <div id="categoria" scope="col" style="justify-content: space-evenly; display: flex">
                         <img
                           id="lista"
-                          src="../../assets/images/modal/fechado.png"
+                          src="../../assets/images/lista_chamado/fechado.png"
                           onclick="pendente()" 
                           alt=""
                         >
                         <img
                           id="aguardando"
-                          src="../../assets/images/modal/aguardando.png"
+                          src="../../assets/images/lista_chamado/aguardando.png"
                           onclick="andamento()"
                           alt=""
                         >
                         <img
                           id="concluido"
-                          src="../../assets/images/modal/concluido.png"
+                          src="../../assets/images/lista_chamado/concluido.png"
                           onclick="finalizado()"
                           alt=""
                         >
