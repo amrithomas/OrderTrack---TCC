@@ -4,16 +4,12 @@ session_start();
 include_once('../../conection.php');
 $id = $_GET['id'];
 
-$_SESSION['id'] = $id;
+$result_funcionario = "SELECT * FROM funcionarios WHERE ID_FUNCIONARIO = '$id'";
+   
+$query_funcionario = mysqli_query($conn, $result_funcionario);
 
-$result_usuario="SELECT * FROM ordem WHERE ID_ORDEM = '$id'";//string para ver os campos da tabela identificados pelo id e sua inserção
-    
-$resultado_usuario= mysqli_query($conn, $result_usuario);// executa 
-$row_usuario = mysqli_fetch_assoc($resultado_usuario);// é usada para retornar uma matriz associativa representando a próxima linha no conjunto de resultados representado pelo parâmetro result , aonde cada chave representa o nome de uma coluna do conjunto de resultados.
+$row_funcionario = mysqli_fetch_assoc($query_funcionario);
 
-
-//setando data e hora do br
- date_default_timezone_set('America/Sao_Paulo');
 
 
 ?>
@@ -82,41 +78,35 @@ $row_usuario = mysqli_fetch_assoc($resultado_usuario);// é usada para retornar 
         <form class="cont-form" method="post" action="../../src/api/controller/proc_edit_funcionario.php">
             <div class="form-group">
                 <label for="nomeFuncionario">Nome do Funcionário:</label>
-                <input type="text" class="form-control" id="nomeFuncionario" name="nome" value="<?php echo $row_usuario['SERVICO']; ?>" required>
+                <input type="text" class="form-control" id="nomeFuncionario" name="nome" value="<?php echo $row_funcionario['NOME_FUNCIONARIO'] ." ". $row_funcionario['SOBRENOME_FUNCIONARIO'] ?>" required>
             </div>
 
             <div class="form-group" style="display: flex; gap: 20px;">
                 <div style="flex: 1;">
                     <label for="usuario">Usuário:</label>
-                    <input type="text" class="form-control" id="usuario" name="usuario" value="<?php echo $row_usuario['SERVICO']; ?>" required>
+                    <input type="text" class="form-control" id="usuario" name="usuario" value="<?php echo $row_funcionario['USUARIO_FUNCIONARIO']; ?>" required>
                 </div>
                 <div style="flex: 1;">
                     <label for="senha">Senha:</label>
-                    <input class="form-control" id="senha" name="password" rows="4" value="<?php echo $row_usuario['LOCALIZACAO']; ?>" required>
+                    <input class="form-control" id="senha" name="password" rows="4" value="<?php echo $row_funcionario['SENHA_FUNCIONARIO']; ?>" required>
                 </div>
             </div>
 
             <div style="display: flex;">
                 <div style="flex: 1;">
-                    <label for="imagemUpload" class="form-label">Imagem:</label>
+                    <label for="imagemUpload" class="form-label">Foto:</label>
                     <div style="width: 200px; height: 200px; border: 1px solid #ccc;">
-                        <img id="imagemPreview" src="caminho_para_sua_imagem.jpg" alt="Imagem" style="max-width: 100%; max-height: 100%; display: block; margin: auto;">
+                        <img id="imagemPreview" src="<?php echo $row_funcionario['IMAGEM_FUNCIONARIO'] ?>" alt="Imagem" style="max-width: 100%; max-height: 100%; display: block; margin: auto;">
                     </div>
                     <input type="file" id="imagemUpload" name="imagem" accept="image/*" required onchange="previewImagem(this);">
                 </div>
                 <div style="flex: 1;">
                     <div class="form-group">
-                        <label for="inputDate">Data Final: <span id="asterisco">*</span></label><br>
-                        <input type="date" name='prazo' id="inputDate" value="<?php echo $row_usuario['PRAZO']; ?>" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="statusSelect">Status Ordem:</label>
+                        <label for="statusSelect">Status:</label>
                         <select class="form-select" name='status' style="width: 200px;" id="statusSelect" required>
-                            <option value="<?php echo $row_usuario['STATUS']; ?>"><?php echo $row_usuario['STATUS']; ?></option>
-                            <option value='PENDENTE'>PENDENTE</option>
-                            <option value='EM ANDAMENTO'>EM ANDAMENTO</option>
-                            <option value='CONCLUIDO'>CONCLUIDO</option>
-                            <option value='CANCELADO'>CANCELADO</option>
+                            <option value="<?php echo $row_usuario['STATUS']; ?>"><?php echo $row_funcionario['STATUS_FUNCIONARIO']; ?></option>
+                            <option value='CONCLUIDO'>ATIVAR</option>
+                            <option value='CANCELADO'>DESATIVAR</option>
                         </select>
                     </div>
                 </div>
