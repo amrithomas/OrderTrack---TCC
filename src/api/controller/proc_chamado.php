@@ -180,7 +180,7 @@ if (isset($_FILES["img"]) && $_FILES["img"]["error"] === UPLOAD_ERR_OK) {
 
    
 
-        $historico_ordem =  mysqli_query($conn, "INSERT INTO historico_ordem (FK_ORDEM) VALUES ('$ultimoIDInserido')");
+        $historico_ordem =  mysqli_query($conn, "INSERT INTO historico_ordem (ID_HISTORICO) VALUES ('$ultimoIDInserido')");
 
    
 

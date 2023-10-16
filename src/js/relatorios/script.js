@@ -135,7 +135,7 @@ function criarOuAtualizarGraficoMensal(dados) {
 // Função para criar ou atualizar o gráfico de relatório diário
 function criarOuAtualizarGraficoDiario(dados) {
     if (graficoDiario) {
-        graficoDiario.destroy();
+        
     }
 
     var canvas = document.getElementById('graficoDiario');
