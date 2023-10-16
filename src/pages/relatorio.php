@@ -8,6 +8,13 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Inclua a biblioteca Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  
+
     <!-- Incluindo os arquivos CSS do Bootstrap -->
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
@@ -79,15 +86,60 @@
     <main>
         <div>
             <h1>Controle de Rendimento dos Funcionários</h1>
-            <label for="period">Selecione o Período:</label>
-            <select id="period">
-                <option value="semanal">Semanal</option>
-                <option value="mensal">Mensal</option>
-                <option value="anual">Anual</option>
+            <label for="relatorio">Relatórios:</label>
+            <select name="relatorio" id="relatorio" onchange="mostrarFormulario()">
+              <option value="mensal">Mensal</option>
+              <option value="semanal">Semanal</option>
+              <option value="diario">Diário</option>
+              <option value="anual">Anual</option>
             </select>
-            <canvas id="myChart" width="652" height="326" style="display: block; box-sizing: border-box; height: 163px; width: 1000px;"></canvas>
+            
+                      
+          <?php
+            include_once('../../conection.php');
+            session_start();
+
+            // Formulário Mensal
+            echo "<form id='formMensal' action='../api/controller/proc_relatorios.php' method='post' style='display:none;'>";
+            echo "<input type='month' name='mes' id='mes' max='" . date('Y-m') . "' required>";
+            echo "<input type='button' value='Gerar Relatório' onclick='enviarFormulario(\"formMensal\");' />";
+            echo "</form>";
+
+            // Formulário Anual
+            echo "<form id='formAnual' action='../api/controller/proc_relatorio_anual.php' method='POST' style='display:none;'>";
+            echo "<label for='ano'>Selecione o ano:</label>";
+            echo "<select name='ano' id='ano' required>";
+            $anoAtual = date('Y');
+            for ($ano = 2010; $ano <= $anoAtual; $ano++) {
+                echo "<option value='$ano'>$ano</option>";
+            }
+            echo "</select>";
+            echo "<input type='button' value='Gerar Relatório' onclick='enviarFormulario(\"formAnual\");' />";
+            echo "</form>";
+
+            // Formulário Semanal
+            echo "<form id='formSemanal' action='../api/controller/proc_semanal.php' method='post' style='display:none;'>";
+            echo "<input type='week' name='semana' id='semana' max='" . date('Y-\WW') . "' required>";
+            echo "<input type='button' value='Gerar Relatório' onclick='enviarFormulario(\"formSemanal\");' />";
+            echo "</form>";
+
+            // Formulário Diário
+            echo "<form id='formDiario' action='../api/controller/proc_relatorio_dia.php' method='post' style='display:none;'>";
+            echo "<input type='date' name='dia' id='dia' max='" . date("Y-m-d") . "' required>";
+            echo "<input type='button' value='Gerar Relatório' onclick='enviarFormulario(\"formDiario\");' />";
+            echo "</form>";
+            ?>
+
+
+            <!-- Local onde o gráfico será renderizado -->
+            <canvas id="graficoSemanal"></canvas>
+            <canvas id="graficoMensal"></canvas>
+            <canvas id="graficoDiario"></canvas>
+            <canvas id="graficoAnual"></canvas>
+
+            <div id="resultado"></div>
         </div>
-        <script src="../../src/js/relatorios/script.js"></script>
+        <script src="../js/relatorios/script.js"></script>
         
     </main>
     
@@ -97,7 +149,10 @@
     <!-- Incluindo os arquivos JavaScript do Bootstrap (opcional) -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></scrip>
 </body>
 </html>
+
+
+
+
