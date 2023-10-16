@@ -154,16 +154,6 @@ if (isset($_FILES["img"]) && $_FILES["img"]["error"] === UPLOAD_ERR_OK) {
 
    
 
-        echo "Último ID inserido na tabela ordem: " . $ultimoIDInserido . "<br>";
-
-        echo "Valor de \$funcionario: " . $funcionario . "<br>";
-
- 
-
- 
-
-   
-
         $cadastro = mysqli_query($conn, "INSERT INTO rel (FK_ORDEM, FK_FUNCIONARIO) values ('$ultimoIDInserido', '$funcionario')");
 
    
@@ -180,7 +170,7 @@ if (isset($_FILES["img"]) && $_FILES["img"]["error"] === UPLOAD_ERR_OK) {
 
    
 
-        $historico_ordem =  mysqli_query($conn, "INSERT INTO historico_ordem (FK_ORDEM) VALUES ('$ultimoIDInserido')");
+        $historico_ordem =  mysqli_query($conn, "INSERT INTO historico_ordem (ID_HISTORICO) VALUES ('$ultimoIDInserido')");
 
    
 
@@ -198,6 +188,22 @@ if (isset($_FILES["img"]) && $_FILES["img"]["error"] === UPLOAD_ERR_OK) {
 
         echo "Erro ao executar a consulta na tabela ordem: " . mysqli_error($conn) . "<br>";
 
+    }
+
+    if($cadastro AND $historico_ordem == TRUE){
+        
+        $id = mysqli_insert_id($conn);
+
+        $_SESSION['msg'] = "<center><span style='color:blue;'>Chamado Criado com sucesso!</span></center>";
+
+        $_SESSION['id'] = $id;
+
+        header('Location: ../../pages/menu.php');
+    }else{
+  
+        $_SESSION['msg'] = "<center><span style='color:blue;'>Chamado Criado com sucesso!</span></center>";
+        
+        header('Location: ../../pages/abrir_chamado.php');
     }
 
 }
