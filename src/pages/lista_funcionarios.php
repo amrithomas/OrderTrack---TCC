@@ -152,7 +152,7 @@ session_start();
                                             </svg>
                                         </button>
                                         <ul class='dropdown-menu'>
-                                            <li><a class='dropdown-item' href='edit_usuario.php?id=$id'>Editar Funcionário</a></li>
+                                            <li><a class='dropdown-item' href='./editar_funcionario.php?id=$id'>Editar Funcionário</a></li>
                                             <li><a class='dropdown-item' href='../api/controller/proc_desativar_usuario.php?id=$id'>Desativar Funcionário</a></li>
                                         </ul>
                                     </div>
@@ -167,7 +167,7 @@ session_start();
                                             </svg>
                                         </button>
                                         <ul class='dropdown-menu'>
-                                            <li><a class='dropdown-item' href='edit_usuario.php?id=$id'>Editar Funcionário</a></li>
+                                            <li><a class='dropdown-item' href='./editar_funcionario.php?id=$id'>Editar Funcionário</a></li>
                                             <li><a class='dropdown-item' href='../api/controller/proc_ativar_usuario.php?id=$id'>Ativar Funcionário</a></li>
                                         </ul>
                                     </div>
