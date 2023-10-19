@@ -73,7 +73,7 @@ include ('./modal.php');
         
                 while($row_usuario = mysqli_fetch_assoc($resultado_usuario)){
                     if($row_usuario['STATUS_FUNCIONARIO'] == 'ATIVO'){
-                        echo '<div onclick="aparecemodal()" class="sub-card">';
+                        echo '<div class="sub-card">';
                         
                         // Verifique se a imagem não está vazia
                         if (!empty($row_usuario['IMAGEM_FUNCIONARIO'])) {
@@ -86,12 +86,12 @@ include ('./modal.php');
                         }
                         
                         echo '<h3>' . $row_usuario['NOME_FUNCIONARIO'] . '</h3>';
-                        echo '<a data-toggle="modal"><img src="../../assets/images/telaPrincipal/messagem.png" alt="Ícone de Mensagem" class="mensagem-img" ></a>';
+                        echo '<a onclick="aparecemodal(' . $row_usuario['ID_FUNCIONARIO'] . ')"><img src="../../assets/images/telaPrincipal/messagem.png" alt="Ícone de Mensagem" class="mensagem-img"></a>';
                         echo '<div class="subcard-overlay">';
                         echo '<h3>Detalhes do ' . $row_usuario['NOME_FUNCIONARIO'] . '</h3>';
                         // Coloque aqui mais detalhes sobre o funcionário
                         echo '</div>';
-                        echo '</div>';
+                        echo '</div>';                        
                     }
                 }
             ?>
