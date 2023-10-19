@@ -48,7 +48,7 @@
        <div class="collapse navbar-collapse justify-content-end header" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link linkss" href="#">Home</a>
+          <a class="nav-link linkss" href="./tela_inicial.php">Home</a>
         </li>
 
         <li class="nav-item dropdown linkss">
@@ -144,7 +144,7 @@
     </main>
     
     <footer>
-        <p>&copy; OrderTech . Todos os direitos reservados.</p>
+        <p>&copy; ProTask . Todos os direitos reservados.</p>
     </footer>
     <!-- Incluindo os arquivos JavaScript do Bootstrap (opcional) -->
 

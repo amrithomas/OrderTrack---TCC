@@ -34,7 +34,7 @@
        <div class="collapse navbar-collapse justify-content-end header" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link linkss" href="#">Home</a>
+          <a class="nav-link linkss" href="./tela_inicial.php">Home</a>
         </li>
 
         <li class="nav-item dropdown linkss">

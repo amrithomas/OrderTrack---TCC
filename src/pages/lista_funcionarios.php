@@ -30,7 +30,7 @@ session_start();
             <div class="collapse navbar-collapse justify-content-end header" id="navbarNav">
               <ul class="navbar-nav">
                 <li class="nav-item">
-                  <a class="nav-link linkss" href="#">Home</a>
+                  <a class="nav-link linkss" href="./tela_inicial.php">Home</a>
                 </li>
 
                 <li class="nav-item dropdown linkss">
@@ -55,7 +55,7 @@ session_start();
 
                   <div class="dropdown-menu" aria-labelledby="funcionariosDropdown">
                     <a class="dropdown-item" href="./lista_funcionarios.php">Lista de Funcionários</a>
-                    <a class="dropdown-item" href="./cadastrar_funcionario.php">Cadastrar Funcionário</a>
+                    <a class="dropdown-item" href="./cadastro_funcionario.php">Cadastrar Funcionário</a>
                   </div>
                 </li>
               </ul>
@@ -202,7 +202,7 @@ session_start();
             <img id="logo_equipe" src="../../assets/images/logo_equipe.png" alt="">
         </div>
         <div class="container">
-          <p class="d-flex justify-content-center align-items-center">© OrderTech. Todos os direitos reservados.</p>
+          <p class="d-flex justify-content-center align-items-center">© ProTask. Todos os direitos reservados.</p>
         </div>
       </footer>
         

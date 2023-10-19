@@ -79,12 +79,11 @@ body {
     background-color: #fff;
 
     border-radius: 20px;
-
-   
+    
 
 }
 
- 
+
 
 .cont-form {
 
@@ -100,7 +99,11 @@ body {
 
 }
 
- 
+.input_imagem{
+    display: inline-block;
+}
+
+
 
 .titulo {
 
@@ -120,6 +123,12 @@ body {
 
 }
 
+.div_foto {
+    border: 1px solid #ccc;
+    width: 200px;
+    height: 200px;
+    margin-bottom: 20px;
+}
  
 
 .status {
@@ -157,27 +166,64 @@ body {
 }
 
  
+#logo_equipe{
+    width: 70px;
+    height: 60px;
+}
 
-.footer {
-
-    background-color: #fff;
-
-    display: flex;
-
-    justify-content: center;
-
-    text-align: center;
-
-    padding: 20px;
-
-    background-color: #f8f9fa;
-
-    margin-top: 100px;
-
+#p_footer{
     color: #A9A3A3;
+    font-weight: bold;
+}
 
+.funcionario-img{
+    width: 200px;
+    height: 200px;
+}
+  
+footer {
+    color: #A9A3A3;
     font-weight: 500;
+    background-color: #fff;
+    bottom: 0;
+    left:0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+   
+    width: 100%;
+    height: 70px;
 
-  }
+    
+    
+}
 
- 
+@media (max-width: 1000px){
+    .container-form {
+        width: 450px;
+    }
+}
+
+
+@media (max-width: 768px){
+    .funcionario-img{
+        width: 150px;
+        height: 150px;
+    }
+    .div_foto{
+        width: 150px;
+        height: 150px;
+    }
+}
+
+@media (max-width: 500px){
+    .container-form {
+        width: 350px;
+    }
+    .input_imagem{
+        display: flex;
+        flex-direction: column;
+        width: 200px;
+    }
+}

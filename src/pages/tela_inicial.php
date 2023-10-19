@@ -34,7 +34,7 @@
        <div class="collapse navbar-collapse justify-content-end header" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link linkss" href="#">Home</a>
+          <a class="nav-link linkss" href="./tela_inicial.php">Home</a>
         </li>
 
         <li class="nav-item dropdown linkss">
@@ -46,8 +46,8 @@
 
 
           <div class="dropdown-menu" aria-labelledby="chamadosDropdown">
-            <a class="dropdown-item" href="#">Lista de Chamados</a>
-            <a class="dropdown-item" href="#">Abrir Chamado</a>
+            <a class="dropdown-item" href="./lista_chamados.php">Lista de Chamados</a>
+            <a class="dropdown-item" href="./abrir_chamado.php">Abrir Chamado</a>
           </div>
         </li>
 
@@ -59,8 +59,8 @@
           </a>
 
           <div class="dropdown-menu" aria-labelledby="funcionariosDropdown">
-            <a class="dropdown-item" href="#">Lista de Funcionários</a>
-            <a class="dropdown-item" href="#">Login Funcionário</a>
+            <a class="dropdown-item" href="./lista_funcionarios.php">Lista de Funcionários</a>
+            <a class="dropdown-item" href="./cadastro_funcionario.php">Cadastrar Funcionário</a>
 
           </div>
         </li>

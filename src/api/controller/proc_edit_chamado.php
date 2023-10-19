@@ -12,6 +12,7 @@ $local = filter_input(INPUT_POST, 'local', FILTER_SANITIZE_STRING);
 
 $urgencia = filter_input(INPUT_POST, 'urgencia', FILTER_SANITIZE_STRING);
 $prazo = filter_input(INPUT_POST, 'prazo', FILTER_SANITIZE_STRING);
+$status = filter_input(INPUT_POST, 'status', FILTER_SANITIZE_STRING);
 
 $nome_completo = $_POST['funcionario'];
 $nome_sobrenome = explode(" ", $nome_completo);
@@ -26,9 +27,11 @@ $resultado_usuario = mysqli_query($conn, $result_usuario);
 $row_usuario = mysqli_fetch_assoc($resultado_usuario);
 
 
-$update_query = "UPDATE ordem SET SERVICO='$titulo', ITEM='$assunto', LOCALIZACAO='$local', PRIORIDADE='$urgencia', PRAZO='$prazo' WHERE ID_ORDEM='$id'";
+$update_query = "UPDATE ordem SET SERVICO='$titulo', ITEM='$assunto', LOCALIZACAO='$local', PRIORIDADE='$urgencia', PRAZO='$prazo', STATUS='$status' WHERE ID_ORDEM='$id'";
 
 $resultado_update = mysqli_query($conn, $update_query);
+
+
 
 if (mysqli_affected_rows($conn)) {
     $_SESSION['msg'] = "<p style='color:green;'>CHAMADO EDITADO COM SUCESSO</p>";
@@ -38,15 +41,21 @@ if (mysqli_affected_rows($conn)) {
     header("Location: ../../pages/lista_chamados.php");
 }
 
-
-$select_funcionario = "SELECT * from funcionarios WHERE NOME_FUNCIONARIO = '$nome'";
-$query_funcionario = mysqli_query($conn, $select_funcionario);
-$resultado_funcionario = mysqli_fetch_assoc($query_funcionario);
-
-$id_funcionario = $resultado_funcionario['ID_FUNCIONARIO'];
-
-$update_query_funcionario = "UPDATE rel SET FK_FUNCIONARIO='$id_funcionario' WHERE ID_REL = '$id_rel'";
-$query_update_funcionario = mysqli_query($conn, $update_query_funcionario);
+if(isset($nome_completo) && !empty($nome_completo) && $nome_completo != " "){
+    $select_funcionario = "SELECT * from funcionarios WHERE NOME_FUNCIONARIO = '$nome'";
+    $query_funcionario = mysqli_query($conn, $select_funcionario);
+    $resultado_funcionario = mysqli_fetch_assoc($query_funcionario);
+    
+    $id_funcionario = $resultado_funcionario['ID_FUNCIONARIO'];
+    
+    $update_query_funcionario = "UPDATE rel SET FK_FUNCIONARIO='$id_funcionario' WHERE ID_REL = '$id_rel'";
+    $query_update_funcionario = mysqli_query($conn, $update_query_funcionario);
+    
+    if (mysqli_affected_rows($conn)) {
+        $_SESSION['msg'] = "<p style='color:green;'>CHAMADO EDITADO COM SUCESSO</p>";
+        header("Location: ../../pages/lista_chamados.php");
+    } 
+} 
 
 
 

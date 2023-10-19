@@ -80,7 +80,7 @@ $_SESSION['id'] = $id;
 
                 <li class="nav-item">
 
-                  <a class="nav-link linkss" href="#">Home</a>
+                  <a class="nav-link linkss" href="./tela_inicial.php">Home</a>
 
                 </li>
 
@@ -130,7 +130,7 @@ $_SESSION['id'] = $id;
 
                     <a class="dropdown-item" href="./lista_funcionarios.php">Lista de Funcionários</a>
 
-                    <a class="dropdown-item" href="./cadastrar_funcionario.php">Cadastrar Funcionário</a>
+                    <a class="dropdown-item" href="./cadastro_funcionario.php">Cadastrar Funcionário</a>
 
                   </div>
 
@@ -152,80 +152,83 @@ $_SESSION['id'] = $id;
 
     <div class="container container-form col-6">
 
-        <h2 class="d-flex justify-content-center align-items-center titulo">Editar Funcionário</h2>
+      <h2 class="d-flex justify-content-center align-items-center titulo">Editar Funcionário</h2>
 
-        <form class="cont-form" method="post" action="../../src/api/controller/proc_edit_funcionario.php" enctype="multipart/form-data">
+      <form class="cont-form" method="post" action="../../src/api/controller/proc_edit_funcionario.php" enctype="multipart/form-data">
 
-            <div class="form-group">
+          <div class="form-group">
 
-                <label for="nomeFuncionario">Nome do Funcionário:</label>
+              <label for="nomeFuncionario">Nome do Funcionário:</label>
 
-                <input type="text" class="form-control" id="nomeFuncionario" name="nome" value="<?php echo $row_funcionario['NOME_FUNCIONARIO'] ." ". $row_funcionario['SOBRENOME_FUNCIONARIO'] ?>" required>
+              <input type="text" class="form-control" id="nomeFuncionario" name="nome" value="<?php echo $row_funcionario['NOME_FUNCIONARIO'] ." ". $row_funcionario['SOBRENOME_FUNCIONARIO'] ?>" required>
 
-            </div>
+          </div>
 
- 
 
-            <div style="display: flex; flex-direction: column; justify-content: center;">
 
-                <div>
+          <div style="display: flex; flex-direction: column; justify-content: center;">
 
-                    <label for="imagemUpload" class="form-label">Foto:</label>
+              <div>
 
-                    <div style="width: 200px; height: 200px; border: 1px solid #ccc;">
+                  <label for="imagemUpload" class="form-label">Foto:</label>
+
+                  <div class="div_foto">
+                  
+                  <!-- printar imagem -->
+                    <?php
+                           // Verifique se a imagem não está vazia
+                      if (!empty($row_funcionario['IMAGEM_FUNCIONARIO'])) {
+                        $tipo_mime = 'image/png'; // Defin4 o tipo MIME correto aqui (exemplo: image/png)
+                        $imagem_base64 = base64_encode($row_funcionario['IMAGEM_FUNCIONARIO']);//Codifica a imagem do funcionário em uma representação em base64.
+                        echo '<img src="data:' . $tipo_mime . ';base64,' . $imagem_base64 . '" alt="' . $row_funcionario['NOME_FUNCIONARIO'] . '" class="funcionario-img">';
+                    } else {
+                        // Caso a imagem esteja vazia, você pode exibir uma imagem padrão ou uma mensagem de erro.
+                        echo '<img src="../../assets/images/telaPrincipal/funcionario.png" alt="' . $row_funcionario['NOME_FUNCIONARIO'] . '" class="funcionario-img">';
+                    }
+                    ?>
                     
-                    <!-- printar imagem -->
-                      <?php
-                             // Verifique se a imagem não está vazia
-                        if (!empty($row_funcionario['IMAGEM_FUNCIONARIO'])) {
-                          $tipo_mime = 'image/png'; // Defin4 o tipo MIME correto aqui (exemplo: image/png)
-                          $imagem_base64 = base64_encode($row_funcionario['IMAGEM_FUNCIONARIO']);//Codifica a imagem do funcionário em uma representação em base64.
-                          echo '<img src="data:' . $tipo_mime . ';base64,' . $imagem_base64 . '" alt="' . $row_funcionario['NOME_FUNCIONARIO'] . '" class="funcionario-img" style="height:200px; width:200px;">';
-                      } else {
-                          // Caso a imagem esteja vazia, você pode exibir uma imagem padrão ou uma mensagem de erro.
-                          echo '<img src="../../assets/images/telaPrincipal/funcionario.png" alt="' . $row_funcionario['NOME_FUNCIONARIO'] . '" class="funcionario-img">';
-                      }
-                      ?>
-                      
 
-                    </div>
-
+                  </div>
+                  
+                  <div class="input_imagem">
                     <input type="file" id="imagem" name="imagem" accept="image/*">
-
-                </div>
-
-                <div>
-
-                  <div class="form-group status">
-                    <label for="statusSelect">Status:</label>
-                      <select class="form-select" name='status' style="width: 200px;" id="status">
-                          <?php
-                          $statusFuncionario = $row_funcionario['STATUS_FUNCIONARIO'];
-
-                          if ($statusFuncionario == 'ATIVO') {
-                              echo '<option value="ATIVO">ATIVO</option>';
-                              echo '<option value="INATIVO">DESATIVAR</option>';
-                          } else {
-                              echo '<option value="INATIVO">INATIVO</option>';
-                              echo '<option value="ATIVO">ATIVAR</option>';
-                          }
-                          ?>
-                      </select>
                   </div>
 
+              </div>
+
+              <div>
+
+                <div class="form-group status">
+                  <label for="statusSelect">Status:</label>
+                    <select class="form-select" name='status' style="width: 200px;" id="status">
+                        <?php
+                        $statusFuncionario = $row_funcionario['STATUS_FUNCIONARIO'];
+
+                        if ($statusFuncionario == 'ATIVO') {
+                            echo '<option value="ATIVO">ATIVO</option>';
+                            echo '<option value="INATIVO">DESATIVAR</option>';
+                        } else {
+                            echo '<option value="INATIVO">INATIVO</option>';
+                            echo '<option value="ATIVO">ATIVAR</option>';
+                        }
+                        ?>
+                    </select>
                 </div>
 
-            </div>
+              </div>
 
- 
+          </div>
 
-            <div class="d-flex justify-content-center align-items-center" style="margin-top: 50px;">
 
-                <button type="submit" class="btn">Enviar</button>
 
-            </div>
+          <div class="d-flex justify-content-center align-items-center" style="margin-top: 50px;">
 
-        </form>
+              <button type="submit" class="btn">Enviar</button>
+
+          </div>
+
+      </form>
+
 
     </div>
 
@@ -234,6 +237,19 @@ $_SESSION['id'] = $id;
  
 
 <script>
+
+function displayFileName() {
+  const fileInput = document.getElementById('imagem');
+  const fileNameDisplay = document.getElementById('file-name');
+
+  if (fileInput.files.length > 0) {
+    fileNameDisplay.textContent = fileInput.files[0].name;
+    fileNameDisplay.style.display = 'block';
+  } else {
+    fileNameDisplay.textContent = 'Nenhum arquivo escolhido';
+    fileNameDisplay.style.display = 'none';
+  }
+}
 
     function previewImagem(input) {
 
@@ -259,17 +275,21 @@ $_SESSION['id'] = $id;
 
  
 
- 
+</div>
 
  
 
  
 
-    <footer class="footer">
+<footer class="footer">
+    <div>
+      <img id="logo_equipe" src="../../assets/images/logo_equipe.png" alt="">
+    </div> 
+    <div class="container">
+      <p id="p_footer" class="d-flex justify-content-center align-items-center">© ProTask. Todos os direitos reservados.</p>
 
-        <p class="d-flex justify-content-center align-items-center">© OrderTech. Todos os direitos reservados.</p>
-
-    </footer>
+    </div>                
+</footer>
 
  
 

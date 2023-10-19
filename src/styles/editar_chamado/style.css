@@ -83,17 +83,33 @@ body {
     
 }
 
-.footer {
-    background-color: #fff;
-    display: flex;
-    justify-content: center;
-    text-align: center; 
-    padding: 20px; 
-    background-color: #f8f9fa; 
-    margin-top: 100px;
+#logo_equipe{
+    width: 70px;
+    height: 60px;
+}
+
+#p_footer{
+    color: #A9A3A3;
+    font-weight: bold;
+}
+
+  
+footer {
     color: #A9A3A3;
     font-weight: 500;
-  }
+    background-color: #fff;
+    bottom: 0;
+    left:0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+   
+    width: 100%;
+    height: 70px;
 
+    
+    
+}
 
 

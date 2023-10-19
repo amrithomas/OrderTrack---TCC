@@ -10,7 +10,7 @@
     <title>Abrir Chamado</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../styles/abrir_chamado/style.css">
+    <link rel="stylesheet" href="../styles/abrir_chamado/styles.css">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg ">
@@ -27,7 +27,7 @@
             <div class="collapse navbar-collapse justify-content-end header" id="navbarNav">
               <ul class="navbar-nav">
                 <li class="nav-item">
-                  <a class="nav-link linkss" href="#">Home</a>
+                  <a class="nav-link linkss" href="./tela_inicial.php">Home</a>
                 </li>
 
                 <li class="nav-item dropdown linkss">
@@ -138,7 +138,7 @@
             <img id="logo_equipe" src="../../assets/images/logo_equipe.png" alt="">
         </div> 
         <div class="container">
-          <p class="d-flex justify-content-center align-items-center">© OrderTech. Todos os direitos reservados.</p>
+          <p class="d-flex justify-content-center align-items-center">© ProTask. Todos os direitos reservados.</p>
 
         </div>                
       </footer>

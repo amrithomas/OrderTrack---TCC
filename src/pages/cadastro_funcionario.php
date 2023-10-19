@@ -46,7 +46,7 @@
             <div class="collapse navbar-collapse justify-content-end header" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link linkss" href="#">Home</a>
+                        <a class="nav-link linkss" href="./tela_inicial.php">Home</a>
                     </li>
                     <li class="nav-item dropdown linkss">
                         <a class="nav-link dropdown-toggle links" href="#" id="chamadosDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -56,8 +56,8 @@
                             </svg>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="chamadosDropdown">
-                            <a class="dropdown-item" href="#">Lista de Chamados</a>
-                            <a class="dropdown-item" href="#">Abrir Chamado</a>
+                            <a class="dropdown-item" href="./lista_chamados.php">Lista de Chamados</a>
+                            <a class="dropdown-item" href="./abrir_chamado.php">Abrir Chamado</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown ">
@@ -68,8 +68,8 @@
                             </svg>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="funcionariosDropdown">
-                            <a class="dropdown-item" href="#">Lista de Funcionários</a>
-                            <a class="dropdown-item" href="#">Login Funcionário</a>
+                            <a class="dropdown-item" href="./lista_funcionarios.php">Lista de Funcionários</a>
+                            <a class="dropdown-item" href="./cadastro_funcionario.php">Login Funcionário</a>
                         </div>
                     </li>
                 </ul>
@@ -106,11 +106,15 @@
         </div>
 
     </main>
-    <footer class="mt-5">
+    <footer class="footer">
+        <div>
+            <img id="logo_equipe" src="../../assets/images/logo_equipe.png" alt="">
+        </div> 
+        <div class="container">
+          <p id="p_footer" class="d-flex justify-content-center align-items-center">© ProTask. Todos os direitos reservados.</p>
 
-        <p>&copy; ProTask . Todos os direitos reservados.</p>
-
-    </footer>
+        </div>                
+      </footer>
     <!-- Incluindo os arquivos JavaScript do Bootstrap (opcional) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
