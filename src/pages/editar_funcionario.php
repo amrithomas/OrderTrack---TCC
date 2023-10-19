@@ -190,27 +190,28 @@ $_SESSION['id'] = $id;
 
                     </div>
 
-                    <input type="file" id="imagem" name="imagem" accept="image/*" required onchange="previewImagem(this);">
+                    <input type="file" id="imagem" name="imagem" accept="image/*">
 
                 </div>
 
                 <div>
 
-                    <div class="form-group status">
+                  <div class="form-group status">
+                    <label for="statusSelect">Status:</label>
+                      <select class="form-select" name='status' style="width: 200px;" id="status">
+                          <?php
+                          $statusFuncionario = $row_funcionario['STATUS_FUNCIONARIO'];
 
-                        <label for="statusSelect">Status:</label>
-
-                        <select class="form-select" name='status' style="width: 200px;" id="statusSelect" required>
-
-                            <option value="<?php echo $row_usuario['STATUS']; ?>"><?php echo $row_funcionario['STATUS_FUNCIONARIO']; ?></option>
-
-                            <option value='CONCLUIDO'>ATIVAR</option>
-
-                            <option value='CANCELADO'>DESATIVAR</option>
-
-                        </select>
-
-                    </div>
+                          if ($statusFuncionario == 'ATIVO') {
+                              echo '<option value="ATIVO">ATIVO</option>';
+                              echo '<option value="INATIVO">DESATIVAR</option>';
+                          } else {
+                              echo '<option value="INATIVO">INATIVO</option>';
+                              echo '<option value="ATIVO">ATIVAR</option>';
+                          }
+                          ?>
+                      </select>
+                  </div>
 
                 </div>
 
