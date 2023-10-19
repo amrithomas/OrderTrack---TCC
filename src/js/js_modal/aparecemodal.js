@@ -29,8 +29,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
                     const response = JSON.parse(data);
             
                     if (response.success) {
-                        // Aqui é onde você atualiza os detalhes do funcionário na modal
-                        $('#nome').text(response.funcionario); // Adiciona o nome do funcionário
                         // Limpa a tabela antes de inserir novos dados
                         const tableBody = $('.modal-body tbody');
                         tableBody.empty();
@@ -38,26 +36,33 @@ document.addEventListener('DOMContentLoaded', (event) => {
                         const ordens = response.ordens;
             
                         ordens.forEach(ordem => {
-                            // Criação de novas linhas na tabela para cada ordem
-                            const row = $('<tr></tr>');
+                            const statusClass = getStatusClass(ordem.STATUS); 
+                            const statusColor = getStatusColor(ordem.STATUS);
             
-                            // Aqui você precisa ajustar de acordo com os dados que deseja exibir
-                            row.append(`<td>Título do chamado: ${ordem.titulo}</td>`);
-                            row.append(`<td>Status: ${ordem.status}</td>`);
-                            row.append(`<td>Data: ${ordem.data}</td>`);
+                            // Criação de novas linhas na tabela para cada ordem
+                            const row = $(`
+                                <tr class="${statusClass}">
+                                    <td>
+                                        <p>Título do chamado: ${ordem.SERVICO}</p>
+                                        <p>Urgência: ${ordem.PRIORIDADE}</p>
+                                        <div class="nivel" style="background-color: ${statusColor};"></div>
+                                    </td>
+                                    <td>
+                                        <p>Status: ${ordem.STATUS}</p>
+                                        <p>Data: ${ordem.PRAZO}</p>
+                                    </td>
+                                </tr>
+                            `);
             
                             // Adiciona a nova linha à tabela
                             tableBody.append(row);
                         });
             
                         // Atualiza o nome do funcionário na modal
-                        $('#nome').text(response.nome);
+                        $('#nome').text(response.funcionario);
                     } else {
                         console.error(response.error);
                     }
-                },
-                error: function(error) {
-                    console.error("Erro ao buscar os dados do funcionário", error);
                 }
             });
             
@@ -77,5 +82,31 @@ function fecharModal() {
         modal.classList.add("show");
     } else {
         console.error('O elemento modal não foi encontrado');
+    }
+}
+
+function getStatusClass(status) {
+    switch (status) {
+        case 'ABERTO':
+            return 'abertos';
+        case 'EM ANDAMENTO':
+            return 'aguardando';
+        case 'CONCLUIDO':
+            return 'fechados';
+        default:
+            return '';
+    }
+}
+
+function getStatusColor(status) {
+    switch (status) {
+        case 'ABERTO':
+            return '#86cefb';
+        case 'EM ANDAMENTO':
+            return '#c286fb';
+        case 'CONCLUIDO':
+            return '#86fba3';
+        default:
+            return '#000';
     }
 }
