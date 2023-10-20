@@ -8,6 +8,14 @@ include_once('../../conection.php');
 
 $id = $_GET['id'];
 
+
+if(isset($_SESSION['msg'])){
+
+  echo $_SESSION['msg'];
+
+  unset($_SESSION['msg']);
+
+}
  
 
 $result_funcionario = "SELECT * FROM funcionarios WHERE ID_FUNCIONARIO = '$id'";

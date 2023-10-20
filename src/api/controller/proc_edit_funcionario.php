@@ -25,11 +25,11 @@ if (isset($_FILES["imagem"]) && $_FILES["imagem"]["error"] === UPLOAD_ERR_OK) {
         if ($image['size'] > 2097152) {
             $_SESSION['msg'] = "<center><span style='color:red;'>Perfil não cadastrado. Tamanho de imagem não aceita. Máx 2MB.</span></center>";
             header('Location: ../../pages/editar_funcionario.php');
-            exit;
+            exit();
         } else {
             $_SESSION['msg'] = "<center><span style='color:red;'>Perfil não cadastrado. Apenas arquivos JPG, PNG e JPEG são permitidos.</span></center>";
-            header('Location: ../../pages/editar_funcionario.php');
-            exit;
+            header('Location: ../../pages/editar_funcionario.php?id='.$id.'');
+            exit();
         }
     }
 
@@ -48,7 +48,8 @@ if (isset($_FILES["imagem"]) && $_FILES["imagem"]["error"] === UPLOAD_ERR_OK) {
         header("Location: ../../pages/lista_funcionarios.php");
     } else {
         $_SESSION['msg'] = "<p style='color:red;'>FUNCIONÁRIO NÃO FOI EDITADO</p>";
-        header('Location: ../../pages/editar_funcionario.php');
+        header('Location: ../../pages/editar_funcionario.php?id='.$id.'');
+        exit();
     }
 } else {
     $update_query = "UPDATE funcionarios SET NOME_FUNCIONARIO=?, SOBRENOME_FUNCIONARIO=?, STATUS_FUNCIONARIO=? WHERE ID_FUNCIONARIO = ?";
@@ -60,6 +61,7 @@ if (isset($_FILES["imagem"]) && $_FILES["imagem"]["error"] === UPLOAD_ERR_OK) {
         header("Location: ../../pages/lista_funcionarios.php");
     } else {
         $_SESSION['msg'] = "<p style='color:red;'>FUNCIONÁRIO NÃO FOI EDITADO</p>";
-        header('Location: ../../pages/editar_funcionario.php');
+        header('Location: ../../pages/editar_funcionario.php?id='.$id.'');
+        exit();
     }
 }

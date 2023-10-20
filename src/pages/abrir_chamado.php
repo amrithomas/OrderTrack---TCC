@@ -86,11 +86,11 @@
                         <div class="form-group">
                             <label for="imagem">Upload de Imagem: </label>
                             <br>
-                            <input type="file" class="form-control-file " id="imagem" name="imagem">
+                            <input type="file" class="form-control-file " id="img" name="img">
                         </div>
                         <div class="form-group">
                             <label for="selectOption" class="form-label">Urgência: <span id="asterisco">*</span></label>
-                            <select class="form-select " style="width: 200px;" id="selectOption" name="urgencia">
+                            <select class="form-select " style="width: 200px;" id="selectOption" name="urgencia" required>
                                 <option value="" disabled selected>Selecione</option>
                                 <option value="ALTA">Alta</option>
                                 <option value="MEDIA">Média</option>
@@ -98,12 +98,12 @@
                             </select>
                         </div>
                         <div class="form-group ">
-                            <label for="">Data Final: <span id="asterisco">*</span></label><br>
-                            <input name="data" type="date" id="inputDate" min="<?php echo date("Y-m-d");?>">
+                            <label for="">Prazo: <span id="asterisco">*</span></label><br>
+                            <input name="data" type="date" id="inputDate" min="<?php echo date("Y-m-d");?>" required>
                         </div>
                         <div class="form-group">
                             <label for="selectOption" class="form-label">Funcionario: <span id="asterisco">*</span></label>
-                            <select name="funcionarios" class="form-select " style="width: 200px;" id="selectOption">
+                            <select name="funcionarios" class="form-select " style="width: 200px;" id="selectOption" required>
                                 <option value="" disabled selected>Selecione</option>
                                 <?php
 

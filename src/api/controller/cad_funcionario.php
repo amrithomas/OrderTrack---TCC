@@ -64,6 +64,7 @@ if (isset($_FILES["img"]) && $_FILES["img"]["error"] === UPLOAD_ERR_OK) {
             $_SESSION['msg'] = "<center><span style='color:blue;'>Perfil Criado com sucesso!</span></center>";
             $_SESSION['id'] = $id;
             header('Location: ../../pages/menu.php');
+            
         } else {
             $_SESSION['msg'] = "<center><span style='color:red;'>Erro ao inserir perfil no banco de dados.</span></center>";
             header('Location: ../../pages/cadastro_funcionario.php');
