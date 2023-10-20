@@ -9,7 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
     
-    <link rel="stylesheet" href="../../src/styles/menu/styles.css">
+    <link rel="stylesheet" href="../../src/styles/menu/style.css">
     <title>Menu</title>
 
 </head>
@@ -38,32 +38,30 @@
         </li>
 
         <li class="nav-item dropdown linkss">
-          <a class="nav-link dropdown-toggle links" href="#" id="chamadosDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Chamados <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
-              </svg>
-          </a>
+                        <a class="nav-link dropdown-toggle" href="#" id="chamadosDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Chamados <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+                            </svg>
+                        </a>
 
+                        <div class="dropdown-menu" aria-labelledby="chamadosDropdown">
+                            <a class="dropdown-item" href="./lista_chamados.php">Lista de Chamados</a>
+                            <a class="dropdown-item" href="./abrir_chamado.php">Abrir Chamado</a>
+                        </div>
+                    </li>
 
-          <div class="dropdown-menu" aria-labelledby="chamadosDropdown">
-            <a class="dropdown-item" href="#">Lista de Chamados</a>
-            <a class="dropdown-item" href="#">Abrir Chamado</a>
-          </div>
-        </li>
+                    <li class="nav-item dropdown linkss">
+                        <a class="nav-link dropdown-toggle" href="#" id="funcionariosDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Funcionários <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+                            </svg>
+                        </a>
 
-        <li class="nav-item dropdown ">
-          <a class="nav-link dropdown-toggle linkss" href="#" id="funcionariosDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Funcionários <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
-              </svg>
-          </a>
-
-          <div class="dropdown-menu" aria-labelledby="funcionariosDropdown">
-            <a class="dropdown-item" href="#">Lista de Funcionários</a>
-            <a class="dropdown-item" href="#">Login Funcionário</a>
-
-          </div>
-        </li>
+                        <div class="dropdown-menu" aria-labelledby="funcionariosDropdown">
+                            <a class="dropdown-item" href="./lista_funcionarios.php">Lista de Funcionários</a>
+                            <a class="dropdown-item" href="./cadastro_funcionario.php">Cadastrar Funcionário</a>
+                        </div>
+                    </li>
       </ul>
     </div>
   </nav>
@@ -122,7 +120,7 @@
     </div>
 
     <div class="card">
-    <a href="./relatorios.php">
+    <a href="./relatorio.php">
         <div class="imgBX">
             <img src="../../assets/images/menu/relatorios.png" alt="Relatórios">
         </div>
@@ -136,9 +134,14 @@
 </main>
 
 
-    <footer>
-        <p>&copy; ProTask . Todos os direitos reservados.</p>
-    </footer>
+<footer class="footer">
+    <div>
+        <img id="logo_equipe" src="../../assets/images/logo_equipe.png" alt="">
+    </div>
+    <div class="container">
+        <p class="d-flex justify-content-center align-items-center">© ProTask. Todos os direitos reservados.</p>
+    </div>
+</footer>
     
     <!-- Incluindo os arquivos JavaScript do Bootstrap (opcional) -->
 
