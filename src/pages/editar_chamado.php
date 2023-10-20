@@ -144,11 +144,34 @@ $row_usuario = mysqli_fetch_assoc($resultado_usuario);// é usada para retornar 
                           <div class="form-group">
                               <label for="selectOption" class="form-label">Status Ordem: </label>
                               <select class="form-select " name='status' style="width: 200px;" id="selectOption" required>
-                                <option value="<?php echo $row_usuario['STATUS']; ?>"><?php echo $row_usuario['STATUS']; ?></option>
-                                <option value='PENDENTE'>PENDENTE</option>
-                                <option value='EM ANDAMENTO'>EM ANDAMENTO</option>
-                                <option value='CONCLUIDO'>CONCLUIDO</option>
-                                <option value='CANCELADO'>CANCELADO</option>
+                          
+                                  <?php
+                                  $statusUsuario = $row_usuario['STATUS'];
+
+                                  if ($statusUsuario == 'PENDENTE') {
+                                    echo '<option value="PENDENTE">PENDENTE</option>';
+                                    echo '<option value="EM ANDAMENTO">EM ANDAMENTO</option>';
+                                    echo '<option value="CONCLUIDO">CONCLUÍDO</option>';
+                                    echo '<option value="CANCELADO">CANCELADO</option>';
+                                  } elseif ($statusUsuario == 'EM ANDAMENTO') {
+                                    echo '<option value="EM ANDAMENTO">EM ANDAMENTO</option>';
+                                    echo '<option value="CONCLUIDO">CONCLUÍDO</option>';
+                                    echo '<option value="CANCELADO">CANCELADO</option>';
+                                    echo '<option value="PENDENTE">PENDENTE</option>';
+                                  } elseif ($statusUsuario == 'CONCLUIDO') {
+                                    echo '<option value="CONCLUIDO">CONCLUÍDO</option>';
+                                    echo '<option value="CANCELADO">CANCELADO</option>';
+                                    echo '<option value="PENDENTE">PENDENTE</option>';
+                                    echo '<option value="EM ANDAMENTO">EM ANDAMENTO</option>';
+                                  } elseif ($statusUsuario == 'CANCELADO') {
+                                    echo '<option value="CANCELADO">CANCELADO</option>';
+                                    echo '<option value="CONCLUIDO">CONCLUÍDO</option>';
+                                    echo '<option value="PENDENTE">PENDENTE</option>';
+                                    echo '<option value="EM ANDAMENTO">EM ANDAMENTO</option>';
+                                  }
+                                  ?>
+                              
+
                               </select>
                           </div>
 
