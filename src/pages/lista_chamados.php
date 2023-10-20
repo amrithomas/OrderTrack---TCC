@@ -21,7 +21,7 @@ include_once('../../conection.php');
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg ">
         <div class="container">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="./menu.php">
                 <img src="../../assets/images/logo.png" id="logo" alt="Logo" width="30" height="30">
             </a>
 
@@ -184,26 +184,26 @@ include_once('../../conection.php');
             if ((isset($_GET['status']) && !empty($_GET['status']) and $_GET['status'] == 'TODOS') and (isset($_GET['funcionario']) && !empty($_GET['funcionario']) and $_GET['funcionario'] == 'TODOS')) {
 
                 //Se o $_GET['status'] tiver o value de 'TODOS', mostar todos os Chamados
-                $result_usuario = "SELECT * FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON historico_ordem.FK_ORDEM = ordem.ID_ORDEM  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO ORDER BY ID_ORDEM $ordem LIMIT $inicio, $qnt_result_pg";
+                $result_usuario = "SELECT * FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON rel.FK_HISTORICO = historico_ordem.ID_HISTORICO  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO ORDER BY ID_ORDEM $ordem LIMIT $inicio, $qnt_result_pg";
 
             } else if ((isset($_GET['status']) && !empty($_GET['status'])) and (isset($_GET['funcionario']) && !empty($_GET['funcionario']))) { // Se existir algum value no $_GET['status'] e $_GET['funcionario']
 
                 if ($_GET['status'] == 'TODOS' && $_GET['funcionario'] != 'TODOS') {
 
                     $status_filter = $_GET['funcionario'];
-                    $result_usuario = "SELECT * FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON historico_ordem.FK_ORDEM = ordem.ID_ORDEM  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO WHERE NOME_FUNCIONARIO = '$status_filter' ORDER BY ID_ORDEM $ordem LIMIT $inicio, $qnt_result_pg";
+                    $result_usuario = "SELECT * FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON rel.FK_HISTORICO = historico_ordem.ID_HISTORICO  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO WHERE NOME_FUNCIONARIO = '$status_filter' ORDER BY ID_ORDEM $ordem LIMIT $inicio, $qnt_result_pg";
 
                 } else if ($_GET['status'] != 'TODOS' && $_GET['funcionario'] == 'TODOS') {
 
                     $status_filter = $_GET['status'];
-                    $result_usuario = "SELECT * FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON historico_ordem.FK_ORDEM = ordem.ID_ORDEM  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO WHERE STATUS = '$status_filter' ORDER BY ID_ORDEM $ordem LIMIT $inicio, $qnt_result_pg";
+                    $result_usuario = "SELECT * FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON rel.FK_HISTORICO = historico_ordem.ID_HISTORICO INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO WHERE STATUS = '$status_filter' ORDER BY ID_ORDEM $ordem LIMIT $inicio, $qnt_result_pg";
                 
                 } else if ($_GET['status'] != 'TODOS' && $_GET['funcionario'] != 'TODOS') {
 
                     $status_filter = $_GET['status'];
                     $status_filter2 = $_GET['funcionario'];
 
-                    $result_usuario = "SELECT * FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON historico_ordem.FK_ORDEM = ordem.ID_ORDEM  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO WHERE STATUS = '$status_filter' AND NOME_FUNCIONARIO = '$status_filter2' ORDER BY ID_ORDEM $ordem LIMIT $inicio, $qnt_result_pg";
+                    $result_usuario = "SELECT * FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON rel.FK_HISTORICO = historico_ordem.ID_HISTORICO  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO WHERE STATUS = '$status_filter' AND NOME_FUNCIONARIO = '$status_filter2' ORDER BY ID_ORDEM $ordem LIMIT $inicio, $qnt_result_pg";
                 }
 
             } elseif (isset($_GET['status']) && !empty($_GET['status'])) { // Se existir apenas o $_Get['status'] 
@@ -211,13 +211,13 @@ include_once('../../conection.php');
                 if ($_GET['status'] == 'TODOS') {
 
                     //Se o $_GET['status'] tiver o value de 'TODOS', mostar todos os Chamados
-                    $result_usuario = "SELECT * FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON historico_ordem.FK_ORDEM = ordem.ID_ORDEM  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO ORDER BY ID_ORDEM $ordem LIMIT $inicio, $qnt_result_pg";
+                    $result_usuario = "SELECT * FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON rel.FK_HISTORICO = historico_ordem.ID_HISTORICO  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO ORDER BY ID_ORDEM $ordem LIMIT $inicio, $qnt_result_pg";
                 
                 } else {
 
                     //Se tiver algum value no $_GET['status'], mostar os Chamados com status que o usuario filtrou
                     $status_filter = $_GET['status'];
-                    $result_usuario = "SELECT * FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON historico_ordem.FK_ORDEM = ordem.ID_ORDEM  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO WHERE STATUS = '$status_filter' ORDER BY ID_ORDEM $ordem LIMIT $inicio, $qnt_result_pg";
+                    $result_usuario = "SELECT * FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON rel.FK_HISTORICO = historico_ordem.ID_HISTORICO  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO WHERE STATUS = '$status_filter' ORDER BY ID_ORDEM $ordem LIMIT $inicio, $qnt_result_pg";
                 
                 }
 
@@ -226,19 +226,19 @@ include_once('../../conection.php');
                 //Se o $_GET['funcionario'] tiver o value de 'TODOS', mostar todos os Chamados
                 if ($_GET['funcionario'] == 'TODOS') {
 
-                    $result_usuario = "SELECT * FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON historico_ordem.FK_ORDEM = ordem.ID_ORDEM  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO ORDER BY ID_ORDEM $ordem LIMIT $inicio, $qnt_result_pg";
+                    $result_usuario = "SELECT * FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON rel.FK_HISTORICO = historico_ordem.ID_HISTORICO  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO ORDER BY ID_ORDEM $ordem LIMIT $inicio, $qnt_result_pg";
                 
                 } else {
 
                     $status_filter = $_GET['funcionario'];
-                    $result_usuario = "SELECT * FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON historico_ordem.FK_ORDEM = ordem.ID_ORDEM  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO WHERE NOME_FUNCIONARIO = '$status_filter' ORDER BY ID_ORDEM $ordem LIMIT $inicio, $qnt_result_pg";
+                    $result_usuario = "SELECT * FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON rel.FK_HISTORICO = historico_ordem.ID_HISTORICO  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO WHERE NOME_FUNCIONARIO = '$status_filter' ORDER BY ID_ORDEM $ordem LIMIT $inicio, $qnt_result_pg";
                 
                 }
 
             } else {
 
                 // Se não tiver nenhum value no $_GET mostrar todos os Chamados
-                $result_usuario = "SELECT * FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON historico_ordem.FK_ORDEM = ordem.ID_ORDEM  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO ORDER BY ID_ORDEM $ordem LIMIT $inicio, $qnt_result_pg";
+                $result_usuario = "SELECT * FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON rel.FK_HISTORICO = historico_ordem.ID_HISTORICO INNER JOIN funcionarios ON rel.FK_FUNCIONARIO = funcionarios.ID_FUNCIONARIO ORDER BY ID_ORDEM $ordem LIMIT $inicio, $qnt_result_pg";
             }
 
             // QUERY COM O BANCO
@@ -440,13 +440,13 @@ include_once('../../conection.php');
                 if ($_GET['status'] == 'TODOS' && $_GET['funcionario'] != 'TODOS') {
 
                     $filtro_paginacao = $_GET['funcionario'];
-                    $result_pg = "SELECT COUNT(ID_ORDEM) AS num_result FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON historico_ordem.FK_ORDEM = ordem.ID_ORDEM  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO WHERE NOME_FUNCIONARIO = '$filtro_paginacao'";
+                    $result_pg = "SELECT COUNT(ID_ORDEM) AS num_result FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON rel.FK_HISTORICO = historico_ordem.ID_HISTORICO  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO WHERE NOME_FUNCIONARIO = '$filtro_paginacao'";
 
 
                 } else if ($_GET['status'] != 'TODOS' && $_GET['funcionario'] == 'TODOS') {
 
                     $filtro_paginacao = $_GET['status'];
-                    $result_pg = "SELECT COUNT(ID_ORDEM) AS num_result FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON historico_ordem.FK_ORDEM = ordem.ID_ORDEM  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO WHERE STATUS = '$filtro_paginacao'";
+                    $result_pg = "SELECT COUNT(ID_ORDEM) AS num_result FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON rel.FK_HISTORICO = historico_ordem.ID_HISTORICO  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO WHERE STATUS = '$filtro_paginacao'";
    
 
                 } else if ((isset($_GET['status']) && !empty($_GET['status'])) and (isset($_GET['funcionario']) && !empty($_GET['funcionario']))) {
@@ -456,11 +456,11 @@ include_once('../../conection.php');
 
                     if ($filtro_paginacao2 == 'TODOS') {
 
-                        $result_pg = "SELECT COUNT(ID_ORDEM) AS num_result FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON historico_ordem.FK_ORDEM = ordem.ID_ORDEM  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO";
+                        $result_pg = "SELECT COUNT(ID_ORDEM) AS num_result FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON rel.FK_HISTORICO = historico_ordem.ID_HISTORICO  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO";
 
                     } else {
 
-                        $result_pg = "SELECT COUNT(ID_ORDEM) AS num_result FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON historico_ordem.FK_ORDEM = ordem.ID_ORDEM  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO WHERE STATUS = '$filtro_paginacao' AND NOME_FUNCIONARIO = '$filtro_paginacao2'";
+                        $result_pg = "SELECT COUNT(ID_ORDEM) AS num_result FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON rel.FK_HISTORICO = historico_ordem.ID_HISTORICO  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO WHERE STATUS = '$filtro_paginacao' AND NOME_FUNCIONARIO = '$filtro_paginacao2'";
      
                     }
                 }
@@ -485,11 +485,11 @@ include_once('../../conection.php');
 
                 if ($filtro_paginacao == 'TODOS') {
 
-                    $result_pg = "SELECT COUNT(ID_ORDEM) AS num_result FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON historico_ordem.FK_ORDEM = ordem.ID_ORDEM  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO";
+                    $result_pg = "SELECT COUNT(ID_ORDEM) AS num_result FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON rel.FK_HISTORICO = historico_ordem.ID_HISTORICO  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO";
                     
                 } else {
 
-                    $result_pg = "SELECT COUNT(ID_ORDEM) AS num_result FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON historico_ordem.FK_ORDEM = ordem.ID_ORDEM  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO WHERE NOME_FUNCIONARIO = '$filtro_paginacao'";
+                    $result_pg = "SELECT COUNT(ID_ORDEM) AS num_result FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON rel.FK_HISTORICO = historico_ordem.ID_HISTORICO  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO WHERE NOME_FUNCIONARIO = '$filtro_paginacao'";
                     
                 }
             } else {

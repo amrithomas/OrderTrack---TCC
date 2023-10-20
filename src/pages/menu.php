@@ -20,7 +20,7 @@
 
 <div class="container">
 
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="./menu.php">
 
       <img src="../../assets/images/logo.png" id="logo" alt="Logo" width="30" height="30">
 
@@ -70,51 +70,59 @@
 </div>
    <main>
     <div class="card" href="../">
-        <div class="imgBX">
-            <img src="../../assets/images/menu/abrirChamado.png" alt="Abertura de Lista de Serviço">
-        </div>
-        <div class="content">
-            <div class="details">
-                <h2>Abertura de Lista de Serviço</h2>
+        <a href="./abrir_chamado.php">
+            <div class="imgBX">
+                <img src="../../assets/images/menu/abrirChamado.png" alt="Abertura de Lista de Serviço">
             </div>
-        </div>
+            <div class="content">
+                <div class="details">
+                    <h2>Abertura Serviço</h2>
+                </div>
+            </div>
+        </a>
     </div>
 
     <div class="card">
-        <div class="imgBX">
-            <img src="../../assets/images/menu/lista_chamados.png" alt="Lista de Serviço">
-        </div>
-        <div class="content">
-            <div class="details">
-                <h2>Lista de Serviço</h2>
+        <a href="./lista_chamados.php">
+            <div class="imgBX">
+                <img src="../../assets/images/menu/lista_chamados.png" alt="Lista de Serviço">
             </div>
-        </div>
+            <div class="content">
+                <div class="details">
+                    <h2>Lista de Serviço</h2>
+                </div>
+            </div>
+        </a>
     </div>
 
     <div class="card">
-        <div class="imgBX">
-            <img src="../../assets/images/menu/adicionar_funcionarios.png" alt="Adicionar Funcionários">
-        </div>
-        <div class="content">
-            <div class="details">
-                <h2>Adicionar Funcionários</h2>
+        <a href="./cadastro_funcionario.php">
+            <div class="imgBX">
+                <img src="../../assets/images/menu/adicionar_funcionarios.png" alt="Adicionar Funcionários">
             </div>
-        </div>
+            <div class="content">
+                <div class="details">
+                    <h2>Adicionar Funcionários</h2>
+                </div>
+            </div>
+        </a>
     </div>
 
     <div class="card" >
-        <div class="imgBX">
-            <img src="../../assets/images/menu/equipe.png" alt="Lista de Funcionários">
-        </div>
-        <div class="content">
-            <div class="details">
-                <h2>Lista de Funcionários</h2>
+        <a href="./lista_funcionarios.php">
+            <div class="imgBX">
+                <img src="../../assets/images/menu/equipe.png" alt="Lista de Funcionários">
             </div>
-        </div>
+            <div class="content">
+                <div class="details">
+                    <h2>Lista de Funcionários</h2>
+                </div>
+            </div>
+        </a>
     </div>
 
     <div class="card">
-    <a href="relatorios.php">
+    <a href="./relatorios.php">
         <div class="imgBX">
             <img src="../../assets/images/menu/relatorios.png" alt="Relatórios">
         </div>

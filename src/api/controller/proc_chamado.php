@@ -18,7 +18,7 @@ $local = filter_input(INPUT_POST, 'local', FILTER_SANITIZE_STRING);
 
 $funcionario = filter_input(INPUT_POST, 'funcionarios', FILTER_SANITIZE_STRING);
 
-$descricao_tarefa = filter_input(INPUT_POST, 'descricao_tarefa', FILTER_SANITIZE_STRING);
+$descricao_tarefa = filter_input(INPUT_POST, 'item', FILTER_SANITIZE_STRING);
 
 $data_atual = date("Y-m-d H:i:s");
 
@@ -152,24 +152,6 @@ if (isset($_FILES["img"]) && $_FILES["img"]["error"] === UPLOAD_ERR_OK) {
 
         $ultimoIDInserido = $stmt->insert_id;
 
-   
-
-        $cadastro = mysqli_query($conn, "INSERT INTO rel (FK_ORDEM, FK_FUNCIONARIO) values ('$ultimoIDInserido', '$funcionario')");
-
-   
-
-        if ($cadastro) {
-
-            echo "Registro inserido na tabela rel com sucesso.<br>";
-
-        } else {
-
-            echo "Erro ao inserir registro na tabela rel: " . mysqli_error($conn) . "<br>";
-
-        }
-
-   
-
         $historico_ordem =  mysqli_query($conn, "INSERT INTO historico_ordem (ID_HISTORICO) VALUES ('$ultimoIDInserido')");
 
    
@@ -189,6 +171,26 @@ if (isset($_FILES["img"]) && $_FILES["img"]["error"] === UPLOAD_ERR_OK) {
         echo "Erro ao executar a consulta na tabela ordem: " . mysqli_error($conn) . "<br>";
 
     }
+
+   
+
+        $cadastro = mysqli_query($conn, "INSERT INTO rel (FK_ORDEM, FK_FUNCIONARIO, FK_HISTORICO) values ('$ultimoIDInserido', '$funcionario', '$ultimoIDInserido')");
+
+   
+
+        if ($cadastro) {
+
+            echo "Registro inserido na tabela rel com sucesso.<br>";
+
+        } else {
+
+            echo "Erro ao inserir registro na tabela rel: " . mysqli_error($conn) . "<br>";
+
+        }
+
+   
+
+ 
 
     if($cadastro AND $historico_ordem == TRUE){
         

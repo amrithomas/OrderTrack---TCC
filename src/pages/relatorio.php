@@ -34,7 +34,7 @@
 
 <div class="container">
 
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="./menu.php">
 
       <img src="../../assets/images/logo.png" id="logo" alt="Logo" width="30" height="30">
 

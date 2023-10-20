@@ -43,7 +43,7 @@
                             echo '<img src="../../assets/images/telaPrincipal/funcionario.png" alt="' . $row_usuario['NOME_FUNCIONARIO'] . '" class="funcionario-img">';
                         }
                         
-                        echo '<h3>' . $row_usuario['NOME_FUNCIONARIO'] . '</h3>';
+                        echo '<h3>' . $row_usuario['NOME_FUNCIONARIO'] ." ". $row_usuario['SOBRENOME_FUNCIONARIO'] .'</h3>';
                         echo '<a href="#"><img src="../../assets/images/telaPrincipal/messagem.png" alt="Ícone de Mensagem" class="mensagem-img" ></a>';
                         echo '<div class="subcard-overlay">';
                         echo '<h3>Detalhes do ' . $row_usuario['NOME_FUNCIONARIO'] . '</h3>';
