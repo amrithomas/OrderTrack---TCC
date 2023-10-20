@@ -19,6 +19,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 modal.classList.add("show");
             }
 
+            if (conteudoOriginal) {
+                modal.innerHTML = conteudoOriginal;
+            }
+
             // Faz uma solicitação AJAX para buscar os dados do funcionário
             $.ajax({
                 url: '/sistema_os/churras/MeatGolden/sistema_OS/src/api/controller/getFuncionario.php',
@@ -38,14 +42,15 @@ document.addEventListener('DOMContentLoaded', (event) => {
                         ordens.forEach(ordem => {
                             const statusClass = getStatusClass(ordem.STATUS); 
                             const statusColor = getStatusColor(ordem.STATUS);
+                            console.log(ordem.ID_ORDEM);
             
                             // Criação de novas linhas na tabela para cada ordem
                             const row = $(`
-                                <tr class="${statusClass}">
+                                <tr data-chamado-id="${ordem.ID_ORDEM}" class="${statusClass}" onclick="substituirLayout(this.dataset.chamadoId)">
                                     <td>
                                         <p>Título do chamado: ${ordem.SERVICO}</p>
                                         <p>Urgência: ${ordem.PRIORIDADE}</p>
-                                        <div class="nivel" style="background-color: ${statusColor};"></div>
+                                        <div class="nivel"></div>
                                     </td>
                                     <td>
                                         <p>Status: ${ordem.STATUS}</p>
@@ -60,6 +65,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
             
                         // Atualiza o nome do funcionário na modal
                         $('#nome').text(response.funcionario);
+
+                        // Adicionado: Inicializa os chamados
+                        inicializarChamados();
                     } else {
                         console.error(response.error);
                     }
@@ -77,6 +85,11 @@ function fecharModal() {
     if (modal && modal.classList.contains("show")) {
         modal.classList.remove("show");
         modal.classList.add("sumiu");
+
+        // Restaurar o conteúdo original da modal
+        if (conteudoOriginal) {
+            modal.innerHTML = conteudoOriginal;
+        }
     } else if (modal) {
         modal.classList.remove("sumiu");
         modal.classList.add("show");
@@ -85,9 +98,10 @@ function fecharModal() {
     }
 }
 
+
 function getStatusClass(status) {
     switch (status) {
-        case 'ABERTO':
+        case 'PENDENTE':
             return 'abertos';
         case 'EM ANDAMENTO':
             return 'aguardando';
@@ -100,7 +114,7 @@ function getStatusClass(status) {
 
 function getStatusColor(status) {
     switch (status) {
-        case 'ABERTO':
+        case 'PENDENTE':
             return '#86cefb';
         case 'EM ANDAMENTO':
             return '#c286fb';
@@ -109,4 +123,44 @@ function getStatusColor(status) {
         default:
             return '#000';
     }
+}
+
+function inicializarChamados() {
+    // Aqui tem a lógica para esconder/mostrar chamados baseado no status
+    $('.abertos').show();
+    $('.aguardando').hide();
+    $('.fechados').hide();
+}
+
+$(document).ready(function() {
+
+    $('#lista').click(function() {
+        mostrarPendentes();
+    });
+
+    $('#aguardando').click(function() {
+        mostrarEmAndamento();
+    });
+
+    $('#concluido').click(function() {
+        mostrarConcluidos();
+    });
+});
+
+function mostrarPendentes() {
+    $('.abertos').show();
+    $('.aguardando').hide();
+    $('.fechados').hide();
+}
+
+function mostrarEmAndamento() {
+    $('.abertos').hide();
+    $('.aguardando').show();
+    $('.fechados').hide();
+}
+
+function mostrarConcluidos() {
+    $('.abertos').hide();
+    $('.aguardando').hide();
+    $('.fechados').show();
 }
