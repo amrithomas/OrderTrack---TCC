@@ -18,59 +18,22 @@
 
 <nav class="navbar navbar-expand-lg ">
 
-<div class="container">
+  <div class="container">
 
-    <a class="navbar-brand" href="./menu.php">
+      <a class="navbar-brand" href="./menu.php">
+        <img src="../../assets/images/logo.png" id="logo" alt="Logo" width="30" height="30">
+      </a>
 
-      <img src="../../assets/images/logo.png" id="logo" alt="Logo" width="30" height="30">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    
-    </a>
+  </div>     
+</nav>
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-       <div class="collapse navbar-collapse justify-content-end header" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link linkss" href="./tela_inicial.php">Home</a>
-        </li>
-
-        <li class="nav-item dropdown linkss">
-          <a class="nav-link dropdown-toggle links" href="#" id="chamadosDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Chamados <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
-              </svg>
-          </a>
-
-
-          <div class="dropdown-menu" aria-labelledby="chamadosDropdown">
-            <a class="dropdown-item" href="./lista_chamados.php">Lista de Chamados</a>
-            <a class="dropdown-item" href="./abrir_chamado.php">Abrir Chamado</a>
-          </div>
-        </li>
-
-        <li class="nav-item dropdown ">
-          <a class="nav-link dropdown-toggle linkss" href="#" id="funcionariosDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Funcionários <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
-              </svg>
-          </a>
-
-          <div class="dropdown-menu" aria-labelledby="funcionariosDropdown">
-            <a class="dropdown-item" href="./lista_funcionarios.php">Lista de Funcionários</a>
-            <a class="dropdown-item" href="./cadastro_funcionario.php">Cadastrar Funcionário</a>
-
-          </div>
-        </li>
-      </ul>
-    </div>
-  </nav>
-</div>
 <main>
     <div class="card">
-    <a href="login.php">
+    <a href="tela_principal.php">
         <div class="imgBX">
             <img src="../../assets/images/telaInicial/funcionario.png" alt="Funcionário">
         </div>
