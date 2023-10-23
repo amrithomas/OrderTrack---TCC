@@ -74,7 +74,7 @@
             </div>
             <div class="content">
                 <div class="details">
-                    <h2>Abertura Serviço</h2>
+                    <h2>Abertura de Ordem de Serviço</h2>
                 </div>
             </div>
         </a>
@@ -87,7 +87,7 @@
             </div>
             <div class="content">
                 <div class="details">
-                    <h2>Lista de Serviço</h2>
+                    <h2>Lista de Ordens de Serviço</h2>
                 </div>
             </div>
         </a>
@@ -100,7 +100,7 @@
             </div>
             <div class="content">
                 <div class="details">
-                    <h2>Adicionar Funcionários</h2>
+                    <h2>Adicionar Funcionário</h2>
                 </div>
             </div>
         </a>
