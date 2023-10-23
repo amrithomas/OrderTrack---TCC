@@ -26,7 +26,7 @@ function substituirLayout(idChamado) {
           modal.innerHTML = `
             <!-- Seu novo layout aqui -->
             
-            <link rel="stylesheet" href="/sistema_os/churras/src/styles/modal/styleDescricao.css">
+            <link rel="stylesheet" href="/sistema_os/src/styles/modal/styleDescricao.css">
             
         
               <div class="modal-dialog modal-lg" role="document">
