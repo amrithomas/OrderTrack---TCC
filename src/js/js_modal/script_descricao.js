@@ -9,7 +9,7 @@ function substituirLayout(idChamado) {
     }
     // Fazendo uma requisição AJAX para buscar os detalhes do chamado
     $.ajax({
-      url: '/sistema_os/churras/MeatGolden/sistema_OS/src/api/controller/getChamado.php',
+      url: '/sistema_os/src/api/controller/getChamado.php',
       type: 'GET',
       data: { chamadoID: idChamado },  // Modificado para passar o ID do chamado
       success: function(response) {
@@ -26,7 +26,7 @@ function substituirLayout(idChamado) {
           modal.innerHTML = `
             <!-- Seu novo layout aqui -->
             
-            <link rel="stylesheet" href="/sistema_os/churras/MeatGolden/sistema_OS/src/styles/modal/styleDescricao.css">
+            <link rel="stylesheet" href="/sistema_os/churras/src/styles/modal/styleDescricao.css">
             
         
               <div class="modal-dialog modal-lg" role="document">
