@@ -113,7 +113,7 @@ function getStatusClass(status) {
 }
 
 function getStatusColor(status) {
-    switch (status) {
+    switch (status) { 
         case 'PENDENTE':
             return '#86cefb';
         case 'EM ANDAMENTO':
