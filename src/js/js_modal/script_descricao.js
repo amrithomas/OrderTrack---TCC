@@ -1,5 +1,7 @@
 let conteudoOriginal = '';
 
+
+
 function substituirLayout(idChamado) {
     const modal = document.querySelector("#myModal");
 
@@ -39,9 +41,7 @@ function substituirLayout(idChamado) {
         }
   
           // Novo layout desejado 
-          modal.innerHTML = `
-            <!-- Seu novo layout aqui -->
-            
+          modal.innerHTML = `            
             <link rel="stylesheet" href="/sistema_os/src/styles/modal/styleDescricao.css">
             
         
@@ -81,7 +81,7 @@ function substituirLayout(idChamado) {
                       <div class="row div_assunto ">
 
                         <div style="" class="col descricao_esquerda">
-                          <textarea readonly class="textarea_assunto" name="" cols="70" rows="5"></textarea>
+                          <textarea readonly class="textarea_assunto" name="" cols="70" rows="5">${ordem.ITEM}</textarea>
                             <br><br><hr style="border: 1px solid  #999999; margin-bottom: 10px;">
 
                             
@@ -148,17 +148,15 @@ function substituirLayout(idChamado) {
                   });
             
               });
-            }
+          }
           
-
+          
           // Adicione um evento de clique ao botão "back"
           const back = modal.querySelector("#back");
           back.addEventListener('click', function () {
-              // Restaura o conteúdo original do modal quando o botão "back" for clicado
-              modal.querySelector(".modal-lg").innerHTML = conteudoOriginal;
-          
-            }
-          );
+            modal.innerHTML = conteudoOriginal;
+             
+          });
 }
 });
 }
