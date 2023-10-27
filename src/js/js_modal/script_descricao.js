@@ -92,11 +92,11 @@ function substituirLayout(idChamado) {
                         </div> 
                                 
                       </div>
-                    </div>
+                    </div> 
 
                     <div class="row infos" style="margin-left: 10px">
                               <p style="font-size: 24px;">Urgência: </p>
-                              <div class="urgencia_button" style="background-color: ${ordem.PRIORIDADE === 'ALTA' ? '#ffab4b' : '#86cefb'};"></div>
+                              <div class="urgencia_button" style="color: ${ordem.PRIORIDADE === 'ALTA' ? '#ffab4b' : '#86cefb'};"></div>
                               <p style="font-size: 24px;">Status: <span style="font-size: 24px; margin-left: 10px;">${ordem.STATUS}</span> </p>
                               </div>
                         

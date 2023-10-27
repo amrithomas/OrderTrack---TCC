@@ -157,7 +157,7 @@ function echoModal(){
                         <!-- segunda coluna -->
                         <td id="seg_col">
                           <p id="status">Status:</p>
-                          <p>Data:</p>
+                          <p>Data:</p> 
                         </td>
                       </td>
                     </tr>

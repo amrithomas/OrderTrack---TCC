@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
             // Faz uma solicitação AJAX para buscar os dados do funcionário
             $.ajax({
-                url: '/sistema_os/src/api/controller/getFuncionario.php',
+                url: '/Franciele/github/sistema_os/src/api/controller/getFuncionario.php',
                 type: 'GET',
                 data: { funcionarioID: funcionarioId },
                 success: function(data) {
@@ -108,7 +108,7 @@ function getStatusClass(status) {
         case 'CONCLUIDO':
             return 'fechados';
         default:
-            return '';
+            return ''; 
     }
 }
 
