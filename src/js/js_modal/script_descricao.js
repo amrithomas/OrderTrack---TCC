@@ -40,15 +40,15 @@ function substituirLayout(idChamado) {
             `;
         }
   
-          // Novo layout desejado 
+          // Novo layout desejado (DESCRIÇÃO DO CHAMADO)
           modal.innerHTML = `            
-            <link rel="stylesheet" href="/sistema_os/src/styles/modal/styleDescricao.css">
+            <link rel="stylesheet" href="/Franciele/github/sistema_OS/src/styles/modal/styleDescricao.css">
             
         
               <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content modal-lg">
                   <div class="header_descricao">
-                  <p id="titulo_chamado">${ordem.SERVICO}</p>
+                  <p id="titulo_chamado" style=" font-weight: 700; font-size: 25px; color: white; padding: 10px; ">DESCRIÇÃO</p>
                     <div class="fechar">
                       <button
                         type="button"
@@ -73,7 +73,7 @@ function substituirLayout(idChamado) {
                 
                     <div>
                       <img src="../../assets/images/modal/voltar.png" id="back" alt="" style="width: 50px; padding: 5px" > 
-                      <p style="font-weight: 700; margin-left: 80px; margin-top: -46px;" id="titulo_chamado">Novo Modal</p>
+                      <p style="font-weight: 700; margin-left: 80px; margin-top: -46px; font-size: 25px;" id="titulo_chamado">${ordem.SERVICO}</p>
                     </div>
                     <br>
                     
@@ -95,8 +95,8 @@ function substituirLayout(idChamado) {
                     </div> 
 
                     <div class="row infos" style="margin-left: 10px">
-                              <p style="font-size: 24px;">Urgência: </p>
-                              <div class="urgencia_button" style="color: ${ordem.PRIORIDADE === 'ALTA' ? '#ffab4b' : '#86cefb'};"></div>
+                              <p style="font-size: 24px;">Urgência: <span style="color: ${ordem.PRIORIDADE === 'BAIXA' ? '#7dc73b' : (ordem.PRIORIDADE === 'MÉDIA' ? '#ffa632' : (ordem.PRIORIDADE === 'ALTA' ? '#ff5555' : '#008efb'))}
+                              ; font-weight: 700; font-size: 20px;"> ${ordem.PRIORIDADE} </p>
                               <p style="font-size: 24px;">Status: <span style="font-size: 24px; margin-left: 10px;">${ordem.STATUS}</span> </p>
                               </div>
                         
@@ -132,7 +132,7 @@ function substituirLayout(idChamado) {
           
                   // Faz uma requisição AJAX para atualizar o status no servidor
                   $.ajax({
-                      url: '/sistema_os/src/api/controller/atualizar_status.php',  // Substitua com a URL do seu servidor
+                      url: '/sistema_OS/src/api/controller/atualizar_status.php',  // Substitua com a URL do seu servidor
                       type: 'POST',
                       data: {
                           chamadoID: idChamado, // Supondo que você tenha o ID do chamado disponível

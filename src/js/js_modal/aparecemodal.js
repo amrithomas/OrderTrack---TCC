@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
             // Faz uma solicitação AJAX para buscar os dados do funcionário
             $.ajax({
-                url: '/Franciele/github/sistema_os/src/api/controller/getFuncionario.php',
+                url: '/sistema_OS/src/api/controller/getFuncionario.php',
                 type: 'GET',
                 data: { funcionarioID: funcionarioId },
                 success: function(data) {
@@ -49,7 +49,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
                                 <tr data-chamado-id="${ordem.ID_ORDEM}" class="${statusClass}" onclick="substituirLayout(this.dataset.chamadoId)">
                                     <td>
                                         <p>Título do chamado: ${ordem.SERVICO}</p>
-                                        <p>Urgência: <span> ${ordem.PRIORIDADE}</span></p>
+                                        <p>Urgência: <span style="color:${ordem.PRIORIDADE === 'BAIXA' ? '#7dc73b' : (ordem.PRIORIDADE === 'MÉDIA' ? '#ffa632' : (ordem.PRIORIDADE === 'ALTA' ? '#ff5555' : '#008efb'))}
+                                        ; font-weight: 700; font-size: 23px;">&nbsp ${ordem.PRIORIDADE}</p>
                                         <div class="nivel"></div>
                                     </td>
                                     <td>

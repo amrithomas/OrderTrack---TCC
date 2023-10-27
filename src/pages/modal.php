@@ -91,7 +91,7 @@ function echoModal(){
                     <tr id="listaPadrao" class="abertos" id="abertos1" onclick="substituirLayout()">
                       <td>
                         <p>Título do chamado:  <span id="titulo_chamado">aaaa</span></p> 
-                        <p id="urgencia">Urgência</p>
+                        <p id="urgencia">Urgência </p>
                         <div class="nivel" style="background-color: #86cefb;"></div>
   
                          <!-- segunda coluna -->
