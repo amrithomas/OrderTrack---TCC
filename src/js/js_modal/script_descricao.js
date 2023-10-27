@@ -20,7 +20,23 @@ function substituirLayout(idChamado) {
             return;
         }
 
+        
+
         const ordem = dados.chamado; 
+        let botaoAceitarHtml = '';
+        if (ordem.STATUS === 'PENDENTE') {
+            botaoAceitarHtml = `
+                <div class="botao">
+                    <input type="button" id="botao_aceitar" value="aceitar">
+                </div>
+            `;
+        } else if (ordem.STATUS === 'EM ANDAMENTO') {
+            botaoAceitarHtml = `
+                <div class="botao">
+                    <input type="button" id="botao_aceitar" value="concluir">
+                </div>
+            `;
+        }
   
           // Novo layout desejado 
           modal.innerHTML = `
@@ -92,7 +108,7 @@ function substituirLayout(idChamado) {
                       <p class="datas" style="font-size: 24px;">Data inicial: <span style="font-size: 24px; margin-left: 10px;">${ordem.PRAZO}</span> </p>
                     
                       <div class="botao">
-                        <input type="button" id="botao_aceitar" value="aceitar">
+                        ${botaoAceitarHtml}
                       </div>
                     
                     </div>
@@ -102,12 +118,47 @@ function substituirLayout(idChamado) {
               
           `;
 
+          const botaoAceitar = document.getElementById('botao_aceitar');
+          if (botaoAceitar) {
+              botaoAceitar.addEventListener('click', function() {
+                let statusAtual = ordem.STATUS;// Supondo que 'ordem.STATUS' contém o status atual
+          
+                  // Atualiza o status
+                  if (statusAtual === 'PENDENTE') {
+                      statusAtual = 'EM ANDAMENTO';
+                  } else if (statusAtual === 'EM ANDAMENTO') {
+                      statusAtual = 'CONCLUIDO';
+                  }
+          
+                  // Faz uma requisição AJAX para atualizar o status no servidor
+                  $.ajax({
+                      url: '/sistema_os/src/api/controller/atualizar_status.php',  // Substitua com a URL do seu servidor
+                      type: 'POST',
+                      data: {
+                          chamadoID: idChamado, // Supondo que você tenha o ID do chamado disponível
+                          novoStatus: statusAtual
+                      },
+                      success: function(response) {
+                          console.log('Status atualizado com sucesso.');
+                          // Você pode querer atualizar a interface do usuário aqui
+                      },
+                      error: function(jqXHR, textStatus, errorThrown) {
+                        console.error('Erro ao atualizar o status: ', textStatus, errorThrown);
+                      }
+                  });
+            
+              });
+            }
+          
+
           // Adicione um evento de clique ao botão "back"
           const back = modal.querySelector("#back");
           back.addEventListener('click', function () {
               // Restaura o conteúdo original do modal quando o botão "back" for clicado
               modal.querySelector(".modal-lg").innerHTML = conteudoOriginal;
-  });
+          
+            }
+          );
 }
 });
 }
