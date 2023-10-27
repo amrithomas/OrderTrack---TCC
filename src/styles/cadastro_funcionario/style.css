@@ -235,7 +235,7 @@ footer {
     color: #8CB2B0;
 }
 
-.tempo_error .progress:before{
+.notificacao .tempo_error:before{
     content: '';
     position: absolute;
     bottom: 0;

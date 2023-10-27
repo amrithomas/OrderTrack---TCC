@@ -47,7 +47,7 @@ if (isset($_FILES["img"]) && $_FILES["img"]["error"] === UPLOAD_ERR_OK) {
                                         </div>
                                     </div>
                                     <i class="bi bi-x close" style="color: red;"></i>
-                                    <div class="tempo" style="color: red; background-color: red;"></div>
+                                    <div class="tempo tempo_error" style="background-color: #ddd;"></div>
                                 </div>';
             header('Location: ../../pages/menu.php');
             exit; // Encerra o script após redirecionar para evitar processamento adicional
@@ -60,7 +60,7 @@ if (isset($_FILES["img"]) && $_FILES["img"]["error"] === UPLOAD_ERR_OK) {
                                         </div>
                                     </div>
                                     <i class="bi bi-x close" style="color: red;"></i>
-                                    <div class="tempo" style="color: red; background-color: red"></div>
+                                    <div class="tempo tempo_error" style="background-color: #ddd;"></div>
                                 </div>';
             header('Location: ../../pages/cadastro_funcionario.php');
             exit; // Encerra o script após redirecionar para evitar processamento adicional
@@ -101,7 +101,7 @@ if (isset($_FILES["img"]) && $_FILES["img"]["error"] === UPLOAD_ERR_OK) {
                                         </div>
                                     </div>
                                     <i class="bi bi-x close" style="color: red;"></i>
-                                    <div class="tempo tempo_error" style="color: red; background-color: #ddd;"></div>
+                                    <div class="tempo tempo_error" style="background-color: #ddd;"></div>
                                 </div>';
             header('Location: ../../pages/cadastro_funcionario.php');
         }
@@ -140,7 +140,7 @@ if (isset($_FILES["img"]) && $_FILES["img"]["error"] === UPLOAD_ERR_OK) {
                                     </div>
                                 </div>
                                 <i class="bi bi-x close" style="color: red;"></i>
-                                <div class="tempo" style="color: red; background-color: red;"></div>
+                                <div class="tempo tempo_error" style="background-color: #ddd;"></div>
                             </div>';
         header('Location: ../../pages/cadastro_funcionario.php');
     }
