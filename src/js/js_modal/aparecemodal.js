@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
                                 <tr data-chamado-id="${ordem.ID_ORDEM}" class="${statusClass}" onclick="substituirLayout(this.dataset.chamadoId)">
                                     <td>
                                         <p>Título do chamado: ${ordem.SERVICO}</p>
-                                        <p>Urgência: ${ordem.PRIORIDADE}</p>
+                                        <p>Urgência: <span> ${ordem.PRIORIDADE}</span></p>
                                         <div class="nivel"></div>
                                     </td>
                                     <td>
