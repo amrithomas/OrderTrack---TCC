@@ -39,11 +39,29 @@ if (isset($_FILES["img"]) && $_FILES["img"]["error"] === UPLOAD_ERR_OK) {
     }else {
 
         if ($image['size'] > 2097152) { 
-            $_SESSION['msg'] = "<center><span style='color:red;'>Perfil não cadastrado. Tamanho de imagem não aceita. Máx 2MB.</span></center>";
-            header('Location: ../../pages/cadastro_funcionario.php');
+            $_SESSION['msg'] = '<div class="notificacao" style="border-left: 6px solid red;">
+                                    <div class="notificacao-div">
+                                        <i class="bi bi-x-circle-fill" style="color: red;"></i>
+                                        <div class="mensagem">
+                                            <span class="text text-1" style="color: red;">Funcionario não cadastrado. Tamanho de imagem não aceita. Máx 2MB.</span>
+                                        </div>
+                                    </div>
+                                    <i class="bi bi-x close" style="color: red;"></i>
+                                    <div class="tempo" style="color: red; background-color: red;"></div>
+                                </div>';
+            header('Location: ../../pages/menu.php');
             exit; // Encerra o script após redirecionar para evitar processamento adicional
         } else {
-            $_SESSION['msg'] = "<center><span style='color:red;'>Perfil não cadastrado. Apenas arquivos JPG, PNG e JPEG são permitidos.</span></center>";
+            $_SESSION['msg'] = '<div class="notificacao" style="border-left: 6px solid red;">
+                                    <div class="notificacao-div" >
+                                        <i class="bi bi-x-circle-fill" style="color: red;"></i>
+                                        <div class="mensagem">
+                                            <span class="text text-1" style="color: red;">Funcionario não cadastrado. Apenas arquivos JPG, PNG e JPEG são permitidos.</span>
+                                        </div>
+                                    </div>
+                                    <i class="bi bi-x close" style="color: red;"></i>
+                                    <div class="tempo" style="color: red; background-color: red"></div>
+                                </div>';
             header('Location: ../../pages/cadastro_funcionario.php');
             exit; // Encerra o script após redirecionar para evitar processamento adicional
         }
@@ -61,12 +79,30 @@ if (isset($_FILES["img"]) && $_FILES["img"]["error"] === UPLOAD_ERR_OK) {
         mysqli_stmt_bind_param($stmt, "sssss", $nome, $sobrenome, $imagem_binaria, $usuario, $criptosenha);
         if (mysqli_stmt_execute($stmt)) {
             $id = mysqli_insert_id($conn);
-            $_SESSION['msg'] = "<center><span style='color:blue;'>Perfil Criado com sucesso!</span></center>";
+            $_SESSION['msg'] = '<div class="notificacao">
+                                    <div class="notificacao-div">
+                                        <i class="bi bi-check-lg"></i>
+                                        <div class="mensagem">
+                                            <span class="text text-1">Funcionario Cadastrado com Sucesso!</span>
+                                        </div>
+                                    </div>
+                                    <i class="bi bi-x close"></i>
+                                    <div class="tempo"></div>
+                                </div>';
             $_SESSION['id'] = $id;
             header('Location: ../../pages/menu.php');
             
         } else {
-            $_SESSION['msg'] = "<center><span style='color:red;'>Erro ao inserir perfil no banco de dados.</span></center>";
+            $_SESSION['msg'] = '<div class="notificacao" style="border-left: 6px solid red;">
+                                    <div class="notificacao-div">
+                                        <i class="bi bi-x-circle-fill" style="color: red;"></i>
+                                        <div class="mensagem">
+                                            <span class="text text-1" style="color: red;">Erro! Funcionario não Cadastrado!</span>
+                                        </div>
+                                    </div>
+                                    <i class="bi bi-x close" style="color: red;"></i>
+                                    <div class="tempo tempo_error" style="color: red; background-color: #ddd;"></div>
+                                </div>';
             header('Location: ../../pages/cadastro_funcionario.php');
         }
         // Feche a declaração preparada
@@ -83,11 +119,29 @@ if (isset($_FILES["img"]) && $_FILES["img"]["error"] === UPLOAD_ERR_OK) {
     mysqli_stmt_bind_param($stmt, "ssss", $nome, $sobrenome, $usuario, $criptosenha);
     if (mysqli_stmt_execute($stmt)) {
         $id = mysqli_insert_id($conn);
-        $_SESSION['msg'] = "<center><span style='color:blue;'>Perfil Criado com sucesso!</span></center>";
+        $_SESSION['msg'] = '<div class="notificacao">
+                                <div class="notificacao-div">
+                                    <i class="bi bi-check-lg"></i>
+                                    <div class="mensagem">
+                                        <span class="text text-1">Funcionario Cadastrado com Sucesso!</span>
+                                    </div>
+                                </div>
+                                <i class="bi bi-x close"></i>
+                                <div class="tempo"></div>
+                            </div>';
         $_SESSION['id'] = $id;
         header('Location: ../../pages/menu.php');
     } else {
-        $_SESSION['msg'] = "<center><span style='color:red;'>Erro ao inserir perfil no banco de dados.</span></center>";
+        $_SESSION['msg'] = '<div class="notificacao" style="border-left: 6px solid red;">
+                                <div class="notificacao-div">
+                                    <i class="bi bi-x-circle-fill" style="color: red;"></i>
+                                    <div class="mensagem">
+                                        <span class="text text-1" style="color: red;">Erro! Funcionario não Cadastrado!</span>
+                                    </div>
+                                </div>
+                                <i class="bi bi-x close" style="color: red;"></i>
+                                <div class="tempo" style="color: red; background-color: red;"></div>
+                            </div>';
         header('Location: ../../pages/cadastro_funcionario.php');
     }
     // Feche a declaração preparada

@@ -126,27 +126,3 @@ canvas {
     width: 326px;
 }
 
-
-#logo_equipe{
-    width: 70px;
-    height: 60px;
-}
-
- 
-footer {
-    color: #A9A3A3;
-    font-weight: 500;
-    background-color: #fff;
-  
-    bottom: 0;
-    left:0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-   
-    width: 100%;
-    height: 70px;
-
-  
-}

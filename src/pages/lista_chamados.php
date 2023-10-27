@@ -13,6 +13,7 @@ include_once('../../conection.php');
     <title>Tabela</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../styles/lista_chamados/style.css">
 </head>
 
@@ -64,16 +65,44 @@ include_once('../../conection.php');
             </div>
         </div>
     </nav>
+    <?php
+    if (isset($_SESSION['msg'])) {
+        echo $_SESSION['msg'];
+    echo '<script>
+        const notificacao = document.querySelector(".notificacao");
+        const tempo = document.querySelector(".tempo");
+        let timer1;
+
+        if (notificacao) {
+            notificacao.classList.add("active");
+            tempo.classList.add("active");
+            timer1 = setTimeout(() => {
+                notificacao.classList.remove("active");
+                tempo.classList.remove("active");
+                notificacao.style.display = "none";
+            }, 5000); // 1s = 1000 milliseconds
+        }
+
+        const closeIcon = document.querySelector(".close");
+
+        if (closeIcon) {
+            closeIcon.addEventListener("click", () => {
+                notificacao.classList.remove("active");
+                tempo.classList.remove("active");
+                notificacao.style.display = "none";
+                clearTimeout(timer1);
+            });
+        }
+
+        
+    </script>';
+    unset($_SESSION['msg']);
+    }
+    ?>
 
     <!-- Titulo -->
     <div class="titulo container">
         <h1>Lista de Chamados</h1>
-        <?php
-        if(isset($_SESSION['msg'])){//serve para dar a mensagem de cadastrado ou não//isset = basicamente verifica a existência de uma variável
-          echo $_SESSION['msg'];
-          unset($_SESSION['msg']);//unset tira o valor da variavel ou finalizar
-      }
-      ?>
     </div>
 
 
@@ -363,7 +392,7 @@ include_once('../../conection.php');
                                     <path d='M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z'/>
                                     </svg>
                                   </button>
-                                  <ul class='dropdown-menu' style=''>
+                                  <ul class='dropdown-menu'>
                                     <li>
                                       <a class='dropdown-item' href='editar_chamado.php?id=$id'> 
                                         <svg id='svg-drop1' xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-pencil-square' viewBox='0 0 16 16'>
@@ -526,8 +555,11 @@ include_once('../../conection.php');
                 $status_get = $_GET['status'];
                 $funcionario_get = $_GET['funcionario'];
                 
-
-                $paginacao .= "<li class='page-item'><a class='page-link' href='lista_chamados.php?pagina=1&status=$status_get&funcionario=$funcionario_get&ordem=$ordem_get'>Primeira</a></li>";
+                if($quantidade_pg > 1){
+                    $paginacao .= "<li class='page-item'><a class='page-link' href='lista_chamados.php?pagina=1&status=$status_get&funcionario=$funcionario_get&ordem=$ordem_get'>Primeira</a></li>";
+                }else {
+                    $paginacao .= "<li class='page-item page-link pag_disable_primeira'>Primeira</li>";
+                }
 
                 for ($pag_ant = $pagina - $max_links; $pag_ant <= $pagina - 1; $pag_ant++) {
                     if ($pag_ant >= 1) {
@@ -536,13 +568,19 @@ include_once('../../conection.php');
                 }
 
                 $paginacao .= "<li class='page-item page-link' style='background-color: #8CB2B0; color: #fff'>$pagina</li>";
+
                 for ($pag_dep = $pagina + 1; $pag_dep <= $pagina + $max_links; $pag_dep++) {
                     if ($pag_dep <= $quantidade_pg) {
                         $paginacao .= "<li class='page-item'><a  class='page-link' href='lista_chamados.php?pagina=$pag_dep&status=$status_get&funcionario=$funcionario_get&ordem=$ordem_get'> $pag_dep </a></li>";
                     }
                 }
 
-                $paginacao .= "<li class='page-item'><a class='page-link' href= 'lista_chamados.php?pagina=$quantidade_pg&status=$status_get&funcionario=$funcionario_get&ordem=$ordem_get'>  Ultima</a></li>";
+                if($quantidade_pg > 1){
+                    $paginacao .= "<li class='page-item'><a class='page-link' href= 'lista_chamados.php?pagina=$quantidade_pg&status=$status_get&funcionario=$funcionario_get&ordem=$ordem_get'>  Ultima</a></li>";
+                }else {
+                    $paginacao .= "<li class='page-item page-link pag_disable_ultima'>Ultima</li>";
+                }
+
                 $paginacao .= "</ul></nav></div>";
 
             } else if ((isset($_GET['status']) && !empty($_GET['status'])) and (isset($_GET['funcionario']) && !empty($_GET['funcionario']))) {
@@ -550,7 +588,12 @@ include_once('../../conection.php');
                 $status_get = $_GET['status'];
                 $funcionario_get = $_GET['funcionario'];
 
-                $paginacao .= "<li class='page-item'><a class='page-link' href='lista_chamados.php?pagina=1&status=$status_get&funcionario=$funcionario_get&ordem=$ordem_get'>Primeira</a></li>";
+                if($quantidade_pg > 1){
+                    $paginacao .= "<li class='page-item'><a class='page-link' href='lista_chamados.php?pagina=1&status=$status_get&funcionario=$funcionario_get&ordem=$ordem_get'>Primeira</a></li>";
+                }else {
+                    $paginacao .= "<li class='page-item page-link pag_disable_primeira'>Primeira</li>";
+                }
+
 
                 for ($pag_ant = $pagina - $max_links; $pag_ant <= $pagina - 1; $pag_ant++) {
                     if ($pag_ant >= 1) {
@@ -565,14 +608,23 @@ include_once('../../conection.php');
                     }
                 }
 
-                $paginacao .= "<li class='page-item'><a class='page-link' href= 'lista_chamados.php?pagina=$quantidade_pg&status=$status_get&funcionario=$funcionario_get&ordem=$ordem_get'>  Ultima</a></li>";
+                if($quantidade_pg > 1){
+                    $paginacao .= "<li class='page-item'><a class='page-link' href= 'lista_chamados.php?pagina=$quantidade_pg&status=$status_get&funcionario=$funcionario_get&ordem=$ordem_get'>  Ultima</a></li>";
+                }else{
+                    $paginacao .= "<li class='page-item page-link pag_disable_ultima'>Ultima</li>";
+                }
+
                 $paginacao .= "</ul></nav></div>";
 
             } else if (isset($_GET['status']) && !empty($_GET['status'])) {
             
                 $status_get = $_GET['status'];
 
-                $paginacao .= "<li class='page-item'><a class='page-link' href='lista_chamados.php?pagina=1&status=$status_get&ordem=$ordem_get'>Primeira</a></li>";
+                if($quantidade_pg > 1){
+                    $paginacao .= "<li class='page-item'><a class='page-link' href='lista_chamados.php?pagina=1&status=$status_get&ordem=$ordem_get'>Primeira</a></li>";
+                }else{
+                    $paginacao .= "<li class='page-item page-link pag_disable_primeira'>Primeira</li>";
+                }
 
                 for ($pag_ant = $pagina - $max_links; $pag_ant <= $pagina - 1; $pag_ant++) {
                     if ($pag_ant >= 1) {
@@ -587,18 +639,27 @@ include_once('../../conection.php');
                     }
                 }
 
-                $paginacao .= "<li class='page-item'><a class='page-link' href= 'lista_chamados.php?pagina=$quantidade_pg&status=$status_get&ordem=$ordem_get'>  Ultima</a></li>";
+                if($quantidade_pg > 1){
+                    $paginacao .= "<li class='page-item'><a class='page-link' href= 'lista_chamados.php?pagina=$quantidade_pg&status=$status_get&ordem=$ordem_get'>  Ultima</a></li>";
+                }else{
+                    $paginacao .= "<li class='page-item page-link pag_disable_ultima'>Ultima</li>";
+                }
+
                 $paginacao .= "</ul></nav></div>";
 
             } else if (isset($_GET['funcionario']) && !empty($_GET['funcionario'])) {
                 
                 $status_get = $_GET['funcionario'];
 
-                $paginacao .= "<li class='page-item'><a class='page-link' href='lista_chamados.php?pagina=1&funcionario=$status_get&ordem=$ordem_get'>Primeira</a></li>";
+                if($quantidade_pg > 1){
+                    $paginacao .= "<li class='page-item'><a class='page-link' href='lista_chamados.php?pagina=1&funcionario=$status_get&ordem=$ordem_get'>Primeira</a></li>";
+                }else{
+                    $paginacao .= "<li class='page-item page-link pag_disable_primeira'>Primeira</li>";
+                }
 
                 for ($pag_ant = $pagina - $max_links; $pag_ant <= $pagina - 1; $pag_ant++) {
                     if ($pag_ant >= 1) {
-                        $paginacao .= "<li class='page-item'><a class='page-link' href='lista_chamados.php?pagina=$pag_ant&funcionario=$status_get&ordem=$ordem_get'> $pag_ant </a></li>";
+                        $paginacao .= "<li class='page-item '><a class='page-link' href='lista_chamados.php?pagina=$pag_ant&funcionario=$status_get&ordem=$ordem_get'> $pag_ant </a></li>";
                     }
                 }
 
@@ -609,11 +670,20 @@ include_once('../../conection.php');
                     }
                 }
 
-                $paginacao .= "<li class='page-item'><a class='page-link' href= 'lista_chamados.php?pagina=$quantidade_pg&funcionario=$status_get&ordem=$ordem_get'>  Ultima</a></li>";
+                if($quantidade_pg > 1){
+                    $paginacao .= "<li class='page-item'><a class='page-link' href= 'lista_chamados.php?pagina=$quantidade_pg&funcionario=$status_get&ordem=$ordem_get'>  Ultima</a></li>";
+                }else{
+                    $paginacao .= "<li class='page-item page-link pag_disable_ultima'>Ultima</li>";
+                }
+
                 $paginacao .= "</ul></nav></div>";
             } else { // Se não existir nenhum value no $_GET 
 
-                $paginacao .= "<li class='page-item'><a class='page-link' href='lista_chamados.php?pagina=1&ordem=$ordem_get'>Primeira</a></li>";
+                if($quantidade_pg > 1){
+                    $paginacao .= "<li class='page-item'><a class='page-link' href='lista_chamados.php?pagina=1&ordem=$ordem_get'>Primeira</a></li>";
+                }else{
+                    $paginacao .= "<li class='page-item page-link pag_disable_primeira'>Primeira</li>";
+                }
                 for ($pag_ant = $pagina - $max_links; $pag_ant <= $pagina - 1; $pag_ant++) {
                     if ($pag_ant >= 1) {
                         $paginacao .= "<li class='page-item'><a class='page-link' href='lista_chamados.php?pagina=$pag_ant&ordem=$ordem_get'> $pag_ant </a></li>";
@@ -627,7 +697,12 @@ include_once('../../conection.php');
                     }
                 }
 
-                $paginacao .= "<li class='page-item'><a class='page-link' href= 'lista_chamados.php?pagina=$quantidade_pg&ordem=$ordem_get'>  Ultima</a></li>";
+                if($quantidade_pg > 1){
+                    $paginacao .= "<li class='page-item'><a class='page-link' href= 'lista_chamados.php?pagina=$quantidade_pg&ordem=$ordem_get'>  Ultima</a></li>";
+                }else{
+                    $paginacao .= "<li class='page-item page-link pag_disable_ultima'>Ultima</li>";
+                }
+
                 $paginacao .= "</ul></nav></div></div>";
             }
 

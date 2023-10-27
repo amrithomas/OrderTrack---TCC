@@ -23,11 +23,29 @@ if (isset($_FILES["imagem"]) && $_FILES["imagem"]["error"] === UPLOAD_ERR_OK) {
         $imagem_binaria = file_get_contents($tmp_name);
     } else {
         if ($image['size'] > 2097152) {
-            $_SESSION['msg'] = "<center><span style='color:red;'>Perfil não cadastrado. Tamanho de imagem não aceita. Máx 2MB.</span></center>";
+            $_SESSION['msg'] = '<div class="notificacao" style="border-left: 6px solid red;">
+                                    <div class="notificacao-div">
+                                        <i class="bi bi-x-circle-fill" style="color: red;"></i>
+                                        <div class="mensagem">
+                                            <span class="text text-1" style="color: red;">Chamado não cadastrado. Tamanho de imagem não aceita. Máx 2MB.</span>
+                                        </div>
+                                    </div>
+                                    <i class="bi bi-x close" style="color: red;"></i>
+                                    <div class="tempo tempo_error" style="background-color: #ddd;"></div>
+                                </div>';
             header('Location: ../../pages/editar_funcionario.php');
             exit();
         } else {
-            $_SESSION['msg'] = "<center><span style='color:red;'>Perfil não cadastrado. Apenas arquivos JPG, PNG e JPEG são permitidos.</span></center>";
+            $_SESSION['msg'] = '<div class="notificacao" style="border-left: 6px solid red;">
+                                    <div class="notificacao-div">
+                                        <i class="bi bi-x-circle-fill" style="color: red;"></i>
+                                        <div class="mensagem">
+                                            <span class="text text-1" style="color: red;">Chamado não cadastrado. Apenas arquivos JPG, PNG e JPEG são permitidos.</span>
+                                        </div>
+                                    </div>
+                                    <i class="bi bi-x close" style="color: red;"></i>
+                                    <<div class="tempo tempo_error" style="background-color: #ddd;"></div>
+                                </div>';
             header('Location: ../../pages/editar_funcionario.php?id='.$id.'');
             exit();
         }
@@ -36,31 +54,67 @@ if (isset($_FILES["imagem"]) && $_FILES["imagem"]["error"] === UPLOAD_ERR_OK) {
     if (!empty($imagem_binaria)) {
         $update_query = "UPDATE funcionarios SET NOME_FUNCIONARIO=?, SOBRENOME_FUNCIONARIO=?, IMAGEM_FUNCIONARIO=?, STATUS_FUNCIONARIO=? WHERE ID_FUNCIONARIO = ?";
         $stmt = mysqli_prepare($conn, $update_query);
-        mysqli_stmt_bind_param($stmt, 'ssssi', $nome, $sobrenome, $imagem_binaria, $status, $id);
+        mysqli_stmt_bind_param($stmt, 'ssssi', $nome, $nome_sobrenome[1], $imagem_binaria, $status, $id);
     } else {
         $update_query = "UPDATE funcionarios SET NOME_FUNCIONARIO=?, SOBRENOME_FUNCIONARIO=?, STATUS_FUNCIONARIO=? WHERE ID_FUNCIONARIO = ?";
         $stmt = mysqli_prepare($conn, $update_query);
-        mysqli_stmt_bind_param($stmt, 'sssi', $nome, $sobrenome, $status, $id);
+        mysqli_stmt_bind_param($stmt, 'sssi', $nome, $nome_sobrenome[1], $status, $id);
     }
 
     if (mysqli_stmt_execute($stmt)) {
-        $_SESSION['msg'] = "<p style='color:green;'>FUNCIONÁRIO EDITADO COM SUCESSO</p>";
+        $_SESSION['msg'] = '<div class="notificacao">
+        <div class="notificacao-div">
+            <i class="bi bi-check-lg"></i>
+            <div class="mensagem">
+                <span class="text text-1">Funcionário Editado com Sucesso!</span>
+            </div>
+        </div>
+        <i class="bi bi-x close"></i>
+        <div class="tempo"></div>
+    </div>';
         header("Location: ../../pages/lista_funcionarios.php");
     } else {
-        $_SESSION['msg'] = "<p style='color:red;'>FUNCIONÁRIO NÃO FOI EDITADO</p>";
+        $_SESSION['msg'] = '<div class="notificacao" style="border-left: 6px solid red;">
+                                        <div class="notificacao-div">
+                                            <i class="bi bi-x-circle-fill" style="color: red;"></i>
+                                            <div class="mensagem">
+                                                <span class="text text-1" style="color: red;">Funcionario não foi Editado!</span>
+                                            </div>
+                                        </div>
+                                        <i class="bi bi-x close" style="color: red;"></i>
+                                        <div class="tempo tempo_error" style="background-color: #ddd;"></div>
+                                    </div>';
         header('Location: ../../pages/editar_funcionario.php?id='.$id.'');
         exit();
     }
 } else {
     $update_query = "UPDATE funcionarios SET NOME_FUNCIONARIO=?, SOBRENOME_FUNCIONARIO=?, STATUS_FUNCIONARIO=? WHERE ID_FUNCIONARIO = ?";
     $stmt = mysqli_prepare($conn, $update_query);
-    mysqli_stmt_bind_param($stmt, 'sssi', $nome, $sobrenome, $status, $id);
+    mysqli_stmt_bind_param($stmt, 'sssi', $nome, $nome_sobrenome[1], $status, $id);
 
     if (mysqli_stmt_execute($stmt)) {
-        $_SESSION['msg'] = "<p style='color:green;'>FUNCIONÁRIO EDITADO COM SUCESSO</p>";
+        $_SESSION['msg'] = '<div class="notificacao">
+                                <div class="notificacao-div">
+                                    <i class="bi bi-check-lg"></i>
+                                    <div class="mensagem">
+                                        <span class="text text-1">Funcionário Editado com Sucesso!</span>
+                                    </div>
+                                </div>
+                                <i class="bi bi-x close"></i>
+                                <div class="tempo"></div>
+                            </div>';
         header("Location: ../../pages/lista_funcionarios.php");
     } else {
-        $_SESSION['msg'] = "<p style='color:red;'>FUNCIONÁRIO NÃO FOI EDITADO</p>";
+        $_SESSION['msg'] = '<div class="notificacao" style="border-left: 6px solid red;">
+                                        <div class="notificacao-div">
+                                            <i class="bi bi-x-circle-fill" style="color: red;"></i>
+                                            <div class="mensagem">
+                                                <span class="text text-1" style="color: red;">Funcionario não foi Editado!</span>
+                                            </div>
+                                        </div>
+                                        <i class="bi bi-x close" style="color: red;"></i>
+                                        <div class="tempo tempo_error" style="background-color: #ddd;"></div>
+                                    </div>';
         header('Location: ../../pages/editar_funcionario.php?id='.$id.'');
         exit();
     }

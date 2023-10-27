@@ -10,6 +10,7 @@
     <title>Abrir Chamado</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../styles/abrir_chamado/styles.css">
 </head>
 <body>
@@ -52,7 +53,7 @@
 
                   <div class="dropdown-menu" aria-labelledby="funcionariosDropdown">
                     <a class="dropdown-item" href="./lista_funcionarios.php">Lista de Funcionários</a>
-                    <a class="dropdown-item" href="./cadastrar_funcionario.php">Cadastrar Funcionário</a>
+                    <a class="dropdown-item" href="./cadastro_funcionario.php">Cadastrar Funcionário</a>
                   </div>
                 </li>
               </ul>
@@ -61,12 +62,40 @@
         </div>
       
     <div class="container">
-      <?php
-        if(isset($_SESSION['msg'])){//serve para dar a mensagem de cadastrado ou não//isset = basicamente verifica a existência de uma variável
-          echo $_SESSION['msg'];
-          unset($_SESSION['msg']);//unset tira o valor da variavel ou finalizar
-      }
-      ?>
+    <?php
+    if (isset($_SESSION['msg'])) {
+        echo $_SESSION['msg'];
+    echo '<script>
+        const notificacao = document.querySelector(".notificacao");
+        const tempo = document.querySelector(".tempo");
+        let timer1;
+
+        if (notificacao) {
+            notificacao.classList.add("active");
+            tempo.classList.add("active");
+            timer1 = setTimeout(() => {
+                notificacao.classList.remove("active");
+                tempo.classList.remove("active");
+                notificacao.style.display = "none";
+            }, 5000); // 1s = 1000 milliseconds
+        }
+
+        const closeIcon = document.querySelector(".close");
+
+        if (closeIcon) {
+            closeIcon.addEventListener("click", () => {
+                notificacao.classList.remove("active");
+                tempo.classList.remove("active");
+                notificacao.style.display = "none";
+                clearTimeout(timer1);
+            });
+        }
+
+        
+    </script>';
+    unset($_SESSION['msg']);
+    }
+    ?>
             <div class="container container-form">
                 <div class="text-start">
                     <h2 class="d-flex justify-content-center align-items-center titulo">Abrir Chamado</h2>

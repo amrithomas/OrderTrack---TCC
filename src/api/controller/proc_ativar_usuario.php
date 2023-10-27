@@ -11,15 +11,42 @@
 
         $resultado_usuario=mysqli_query($conn,$result_usuario); //variavel (conn) verifica se tem conexao do banco, query significa executar
         if(mysqli_affected_rows($conn)){//se eu encontar a conexao e realmente for modificado o registro 
-            $_SESSION['msg'] = "<p style='color:green;'>USUARIO DESATIVADO COM SUCESSO</p>";
+            $_SESSION['msg'] = '<div class="notificacao">
+            <div class="notificacao-div">
+                <i class="bi bi-check-lg"></i>
+                <div class="mensagem">
+                    <span class="text text-1">Funcionario Ativado com Sucesso!</span>
+                </div>
+            </div>
+            <i class="bi bi-x close"></i>
+            <div class="tempo"></div>
+        </div>';
             header("location: ../../pages/lista_funcionarios.php");//no casso aonde eu quero que apareça a mensagem de usuario deletado com sucesso
         }else{
-            $_SESSION['msg'] = "<p style='color:red;'>Erro: o usuário não foi DESATIVADO </p>";
+            $_SESSION['msg'] = '<div class="notificacao">
+            <div class="notificacao-div">
+                <i class="bi bi-x-circle-fill" style="color: red;"></i>
+                <div class="mensagem">
+                    <span class="text text-1" style="color: red;">Erro: o usuário não foi DESATIVADO.</span>
+                </div>
+            </div>
+            <i class="bi bi-x close" style="color: red;"></i>
+            <div class="tempo tempo_error" style="background-color: #ddd;"></div>
+        </div>';
             header("location: ../../pages/lista_funcionarios.php");
         }
 
     }else{
-        $_SESSION['msg'] = "<p style='color:red;'>Selecione um usuário</p>";
+        $_SESSION['msg'] = '<div class="notificacao">
+            <div class="notificacao-div">
+                <i class="bi bi-x-circle-fill" style="color: red;"></i>
+                <div class="mensagem">
+                    <span class="text text-1" style="color: red;">Erro: Selecione um Usuario</span>
+                </div>
+            </div>
+            <i class="bi bi-x close" style="color: red;"></i>
+            <div class="tempo tempo_error" style="background-color: #ddd;"></div>
+        </div>';
         header("location: ../../pages/lista_funcionarios.php");
     }
 

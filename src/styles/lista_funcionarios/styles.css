@@ -1,11 +1,16 @@
-
 * {
     margin: 0;
     padding: 0;
 }
 
+html, body {
+    height: 100%;
+}
+
+
 .navbar {
     background-color: #fff;
+
 }
 
 #logo {
@@ -16,7 +21,21 @@
 
 .dropdown-toggle::after {
     content: none !important;
-  }
+}
+
+
+
+
+#svg-drop {
+    color: red;
+    margin-bottom: 2px;
+}
+
+#svg-drop1 {
+    margin-bottom: 2px;
+}
+
+
 
 
 
@@ -36,60 +55,80 @@ body {
     background-color: #E9F5EE;
 }
 
-.container-form {
-    margin-top: 50px;
-    background-color: #fff;
+.titulo h1{
+    font-size: 25px;
+    color: #8CB2B0;
+}
+
+
+.cont_table {
+    margin-top: 20px;
+    min-height:100%; 
+    position:relative; 
+    
+}
+
+.tabela {
+    min-height: 100%;
+    position: relative; 
+    
+}
+
+.table-responsive {
+    margin-top: 20px;
     border-radius: 20px;
     
 }
 
-.cont-form {
-    padding: 0px 40px 80px 40px;
-    font-weight: 500;
-    color: #000;
-}
-
-.titulo {
-    padding: 20px 0px 20px 0px;
-    color: #8CB2B0;
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-#asterisco {
-    color: red;
-}
-
-#inputDate {
-    padding: 8px; 
-      border: 1px solid #ced4da; 
-      border-radius: 10px;
-      height: 40px;
-}
-
-.btn {
-    width: 200px;
-    color: #fff;
+.table-head{
     background-color: #8CB2B0;
-    font-weight: 500;
-    margin-top: 50px;
 }
 
-.btn:hover{
-    border: 2px solid #8CB2B0;
-    background-color: #fff;
+td {
+    font-weight: 500;
+    color: black;
+}
+
+.page-item a{
     color: #8CB2B0;
+    font-weight: 500;
+}
+
+
+.container-fluid {
+    padding: 20px; 
+    background-color: #f8f9fa; 
     
 }
+
+.drop {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    color: #8CB2B0;
+
+}
+
+.btn-check:checked+.btn, .btn.active, .btn.show, .btn:first-child:active, :not(.btn-check)+.btn:active {
+    color: var(--bs-btn-active-color);
+    background-color: var(--bs-btn-active-bg);
+    border-color: #fff;
+}
+
+.drop a{
+    color: #8CB2B0;
+    font-size: 18px;
+    font-weight: 500;
+}
+
 
 #logo_equipe{
     width: 70px;
     height: 60px;
 }
-
-footer {
+  
+  footer {
     color: #A9A3A3;
     font-weight: 500;
     background-color: #fff;
@@ -99,14 +138,20 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 100px;
+    
    
     width: 100%;
     height: 70px;
+
+    
+    
   }
 
-  
+  .dropdown-menu{
+    margin-right: -50px;
+}
 
+  
 .notificacao{
     position: absolute;
     top: 25px;
@@ -194,16 +239,18 @@ footer {
 
 .bi-check-lg {
     font-size: 30px;
-}
-
-.bi-x-circle-fill {
     color: #8CB2B0;
 }
 
 .close {
     font-size: 20px;
+    color: #8CB2B0;
 }
 
+.bi-x-circle-fill {
+    color: #8CB2B0;
+}
+  
 
 .notificacao .tempo_error:before{
     content: '';

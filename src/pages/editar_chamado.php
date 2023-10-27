@@ -25,7 +25,8 @@ $row_usuario = mysqli_fetch_assoc($resultado_usuario);// é usada para retornar 
     <title>Editar Chamado</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../styles/editar_chamado/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../styles/editar_chamado/styles.css">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg ">
@@ -75,6 +76,42 @@ $row_usuario = mysqli_fetch_assoc($resultado_usuario);// é usada para retornar 
           </nav>
         </div>
 
+        <?php
+    if (isset($_SESSION['msg'])) {
+        echo $_SESSION['msg'];
+    echo '<script>
+        const notificacao = document.querySelector(".notificacao");
+        const tempo = document.querySelector(".tempo");
+        let timer1;
+
+        if (notificacao) {
+            notificacao.classList.add("active");
+            tempo.classList.add("active");
+            timer1 = setTimeout(() => {
+                notificacao.classList.remove("active");
+                tempo.classList.remove("active");
+                notificacao.style.display = "none";
+            }, 5000); // 1s = 1000 milliseconds
+        }
+
+        const closeIcon = document.querySelector(".close");
+
+        if (closeIcon) {
+            closeIcon.addEventListener("click", () => {
+                notificacao.classList.remove("active");
+                tempo.classList.remove("active");
+                notificacao.style.display = "none";
+                clearTimeout(timer1);
+            });
+        }
+
+        
+    </script>';
+    unset($_SESSION['msg']);
+    }
+    ?>
+
+
       
     <div class="container">
       <div class="container container-form">
@@ -105,7 +142,7 @@ $row_usuario = mysqli_fetch_assoc($resultado_usuario);// é usada para retornar 
             </div>
             <div class="form-group ">
               <label for="">Data Final: <span id="asterisco">*</span></label><br>
-              <input type="date" name='prazo' id="inputDate" value="<?php echo $row_usuario['PRAZO']; ?>" required>
+              <input type="date" name='prazo' id="inputDate" value="<?php echo $row_usuario['PRAZO']; ?>" min="<?php echo date("Y-m-d");?>" required>
             </div>
             <div class="form-group">
                 <label for="selectOption" class="form-label">Funcionario: </label>
@@ -144,34 +181,11 @@ $row_usuario = mysqli_fetch_assoc($resultado_usuario);// é usada para retornar 
                           <div class="form-group">
                               <label for="selectOption" class="form-label">Status Ordem: </label>
                               <select class="form-select " name='status' style="width: 200px;" id="selectOption" required>
-                          
-                                  <?php
-                                  $statusUsuario = $row_usuario['STATUS'];
-
-                                  if ($statusUsuario == 'PENDENTE') {
-                                    echo '<option value="PENDENTE">PENDENTE</option>';
-                                    echo '<option value="EM ANDAMENTO">EM ANDAMENTO</option>';
-                                    echo '<option value="CONCLUIDO">CONCLUÍDO</option>';
-                                    echo '<option value="CANCELADO">CANCELADO</option>';
-                                  } elseif ($statusUsuario == 'EM ANDAMENTO') {
-                                    echo '<option value="EM ANDAMENTO">EM ANDAMENTO</option>';
-                                    echo '<option value="CONCLUIDO">CONCLUÍDO</option>';
-                                    echo '<option value="CANCELADO">CANCELADO</option>';
-                                    echo '<option value="PENDENTE">PENDENTE</option>';
-                                  } elseif ($statusUsuario == 'CONCLUIDO') {
-                                    echo '<option value="CONCLUIDO">CONCLUÍDO</option>';
-                                    echo '<option value="CANCELADO">CANCELADO</option>';
-                                    echo '<option value="PENDENTE">PENDENTE</option>';
-                                    echo '<option value="EM ANDAMENTO">EM ANDAMENTO</option>';
-                                  } elseif ($statusUsuario == 'CANCELADO') {
-                                    echo '<option value="CANCELADO">CANCELADO</option>';
-                                    echo '<option value="CONCLUIDO">CONCLUÍDO</option>';
-                                    echo '<option value="PENDENTE">PENDENTE</option>';
-                                    echo '<option value="EM ANDAMENTO">EM ANDAMENTO</option>';
-                                  }
-                                  ?>
-                              
-
+                                <option value="<?php echo $row_usuario['STATUS']; ?>"><?php echo $row_usuario['STATUS']; ?></option>
+                                <option value='PENDENTE'>PENDENTE</option>
+                                <option value='EM ANDAMENTO'>EM ANDAMENTO</option>
+                                <option value='CONCLUIDO'>CONCLUIDO</option>
+                                <option value='CANCELADO'>CANCELADO</option>
                               </select>
                           </div>
 

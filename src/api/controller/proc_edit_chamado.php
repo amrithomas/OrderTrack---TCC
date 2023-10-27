@@ -6,7 +6,7 @@ $id = $_SESSION['id'];
 $id_rel = $_SESSION['id_rel'];
 
 $titulo = filter_input(INPUT_POST, 'titulo', FILTER_SANITIZE_STRING);
-$assunto = filter_input(INPUT_POST, 'assunto', FILTER_SANITIZE_STRING);
+$assunto = filter_input(INPUT_POST, 'item', FILTER_SANITIZE_STRING);
 $local = filter_input(INPUT_POST, 'local', FILTER_SANITIZE_STRING);
 
 
@@ -34,11 +34,31 @@ $resultado_update = mysqli_query($conn, $update_query);
 
 
 if (mysqli_affected_rows($conn)) {
-    $_SESSION['msg'] = "<p style='color:green;'>CHAMADO EDITADO COM SUCESSO</p>";
+    $_SESSION['msg'] = '<div class="notificacao">
+                                    <div class="notificacao-div">
+                                        <i class="bi bi-check-lg"></i>
+                                        <div class="mensagem">
+                                            <span class="text text-1">Chamado Editado com Sucesso</span>
+                                        </div>
+                                    </div>
+                                    <i class="bi bi-x close"></i>
+                                    <div class="tempo"></div>
+                                </div>';
+            
     header("Location: ../../pages/lista_chamados.php");
+    exit;
 } else {
-    $_SESSION['msg'] = "<p style='color:red;'>CHAMADO NÃO FOI EDITADO</p>";
-    header("Location: ../../pages/lista_chamados.php");
+    $_SESSION['msg'] = '<div class="notificacao" style="border-left: 6px solid red;">
+            <div class="notificacao-div">
+                <i class="bi bi-x-circle-fill" style="color: red;"></i>
+                <div class="mensagem">
+                    <span class="text text-1" style="color: red;">Chamado não Editado!</span>
+                </div>
+            </div>
+            <i class="bi bi-x close" style="color: red;"></i>
+            <div class="tempo tempo_error" style="background-color: #ddd;"></div>
+        </div>';
+    header("Location: ../../pages/editar_chamado.php?id=".$id);
 }
 
 if(isset($nome_completo) && !empty($nome_completo) && $nome_completo != " "){
@@ -52,7 +72,19 @@ if(isset($nome_completo) && !empty($nome_completo) && $nome_completo != " "){
     $query_update_funcionario = mysqli_query($conn, $update_query_funcionario);
     
     if (mysqli_affected_rows($conn)) {
-        $_SESSION['msg'] = "<p style='color:green;'>CHAMADO EDITADO COM SUCESSO</p>";
+        $_SESSION['msg'] = '<div class="notificacao">
+                            <div class="notificacao-div">
+                                <i class="bi bi-check-lg"></i>
+                                <div class="mensagem">
+                                    <span class="text text-1">Chamado Editado com Sucesso</span>
+                                </div>
+                            </div>
+                            <i class="bi bi-x close"></i>
+                            <div class="tempo"></div>
+                        </div>';
+
+                    header("Location: ../../pages/lista_chamados.php");
+                    exit;
         header("Location: ../../pages/lista_chamados.php");
     } 
 } 
