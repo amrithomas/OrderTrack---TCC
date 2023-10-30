@@ -16,10 +16,17 @@ $(document).ready(function() {
         console.error('Um ou mais elementos <canvas> não foram encontrados.');
         return;
     }
+
+    
 });
 
 // Função para criar ou atualizar o gráfico de relatório semanal
 function criarOuAtualizarGraficoSemanal(dados) {
+    var canvas = document.getElementById('graficoSemanal');
+    var mensagemSemDados = document.getElementById('mensagemSemDados');
+
+
+
     if (graficoSemanal) {
         graficoSemanal.destroy();
     }
@@ -40,25 +47,55 @@ function criarOuAtualizarGraficoSemanal(dados) {
         type: 'bar',
         data: {
             labels: ['Total de Ordens', 'Pendentes', 'Em Andamento', 'Concluídas', 'Canceladas'],
-            datasets: [{
-                label: 'Estatísticas Semanais',
-                data: dados,
-                backgroundColor: [
-                    'rgba(0, 0, 255, 0.5)',  // Azul para "Total de Ordens"
-                    'rgba(255, 0, 0, 0.2)',  // Vermelho para "Pendentes"
-                    'rgba(255, 206, 86, 1)',  // Amarelo para "Em Andamento"
-                    'rgba(0, 128, 0, 0.2)',  // Verde para "Concluídas"
-                    'rgba(0, 128, 0, 0.2)'  // Verde para "Canceladas"
-                ],
-                borderColor: [
-                    'rgba(0, 0, 255, 1)',  // Azul para "Total de Ordens"
+            datasets: [
+                {
+                    label: 'Estatísticas Semanal',
+                    data: dados,
+                    backgroundColor: [
+                        'rgba(0, 0, 255, 0.5)',  // Azul para "Total de Ordens"
+                        'rgba(255, 0, 0, 0.2)',  // Vermelho para "Pendentes"
+                        'rgba(255, 206, 86, 0.2)',  // Amarelo para "Em Andamento"
+                        'rgba(0, 128, 0, 0.2)',  // Verde para "Concluídas"
+                        'rgba(128, 128, 128, 0.2)',  // Cinza para "Canceladas"
+                    ],
+                    borderColor: [
+                        'rgba(0, 0, 255, 1)',  // Azul para "Total de Ordens"
                         'rgba(255, 0, 0, 1)',  // Vermelho para "Pendentes"
                         'rgba(255, 206, 86, 1)',  // Amarelo para "Em Andamento"
                         'rgba(0, 128, 0, 1)',  // Verde para "Concluídas"
-                        'rgba(0, 128, 0, 1)'  // Verde para "Canceladas"
-                ],
-                borderWidth: 1
-            }]
+                        'rgba(128, 128, 128, 1)',  // Cinza para "Canceladas"
+                    ],
+                    borderWidth: 1
+                },
+                {
+                    label: 'Pendentes',
+               
+                    backgroundColor: 'rgba(255, 0, 0, 0.2)',  // Vermelho para "Pendentes"
+                    borderColor: 'rgba(255, 0, 0, 1)',  // Vermelho para "Pendentes"
+                    borderWidth: 1
+                },
+                {
+                    label: 'Em Andamento',
+                    
+                    backgroundColor: 'rgba(255, 206, 86, 0.2)',  // Amarelo para "Em Andamento"
+                    borderColor: 'rgba(255, 206, 86, 1)',  // Amarelo para "Em Andamento"
+                    borderWidth: 1
+                },
+                {
+                    label: 'Concluídas',
+                  
+                    backgroundColor: 'rgba(0, 128, 0, 0.2)',  // Verde para "Concluídas"
+                    borderColor: 'rgba(0, 128, 0, 1)',  // Verde para "Concluídas"
+                    borderWidth: 1
+                },
+                {
+                    label: 'Canceladas',
+                   
+                    backgroundColor: 'rgba(128, 128, 128, 0.2)',  // Cinza para "Canceladas"
+                    borderColor: 'rgba(128, 128, 128, 1)',  // Cinza para "Canceladas"
+                    borderWidth: 1
+                }
+            ]
         },
         options: {
             responsive: true,
@@ -93,29 +130,60 @@ function criarOuAtualizarGraficoMensal(dados) {
         return;
     }
 
-    graficoMensal = new Chart(ctx, {
+    
+     graficoMensal = new Chart(ctx, {
         type: 'bar',
         data: {
             labels: ['Total de Ordens', 'Pendentes', 'Em Andamento', 'Concluídas', 'Canceladas'],
-            datasets: [{
-                label: 'Estatísticas Mensais',
-                data: dados,
-                backgroundColor: [
-                    'rgba(0, 0, 255, 0.5)',  // Azul para "Total de Ordens"
+            datasets: [
+                {
+                    label: 'Estatísticas Mensais',
+                    data: dados,
+                    backgroundColor: [
+                        'rgba(0, 0, 255, 0.5)',  // Azul para "Total de Ordens"
                         'rgba(255, 0, 0, 0.2)',  // Vermelho para "Pendentes"
                         'rgba(255, 206, 86, 0.2)',  // Amarelo para "Em Andamento"
                         'rgba(0, 128, 0, 0.2)',  // Verde para "Concluídas"
-                        'rgba(0, 128, 0, 0.2)'  // Verde para "Canceladas"
-                ],
-                borderColor: [
-                    'rgba(0, 0, 255, 1)',  // Azul para "Total de Ordens"
-                    'rgba(255, 0, 0, 1)',  // Vermelho para "Pendentes"
-                    'rgba(255, 206, 86, 1)',  // Amarelo para "Em Andamento"
-                    'rgba(0, 128, 0, 1)',  // Verde para "Concluídas"
-                    'rgba(0, 128, 0, 1)'  // Verde para "Canceladas"
-                ],
-                borderWidth: 1
-            }]
+                        'rgba(128, 128, 128, 0.2)',  // Cinza para "Canceladas"
+                    ],
+                    borderColor: [
+                        'rgba(0, 0, 255, 1)',  // Azul para "Total de Ordens"
+                        'rgba(255, 0, 0, 1)',  // Vermelho para "Pendentes"
+                        'rgba(255, 206, 86, 1)',  // Amarelo para "Em Andamento"
+                        'rgba(0, 128, 0, 1)',  // Verde para "Concluídas"
+                        'rgba(128, 128, 128, 1)',  // Cinza para "Canceladas"
+                    ],
+                    borderWidth: 1
+                },
+                {
+                    label: 'Pendentes',
+               
+                    backgroundColor: 'rgba(255, 0, 0, 0.2)',  // Vermelho para "Pendentes"
+                    borderColor: 'rgba(255, 0, 0, 1)',  // Vermelho para "Pendentes"
+                    borderWidth: 1
+                },
+                {
+                    label: 'Em Andamento',
+                    
+                    backgroundColor: 'rgba(255, 206, 86, 0.2)',  // Amarelo para "Em Andamento"
+                    borderColor: 'rgba(255, 206, 86, 1)',  // Amarelo para "Em Andamento"
+                    borderWidth: 1
+                },
+                {
+                    label: 'Concluídas',
+                  
+                    backgroundColor: 'rgba(0, 128, 0, 0.2)',  // Verde para "Concluídas"
+                    borderColor: 'rgba(0, 128, 0, 1)',  // Verde para "Concluídas"
+                    borderWidth: 1
+                },
+                {
+                    label: 'Canceladas',
+                   
+                    backgroundColor: 'rgba(128, 128, 128, 0.2)',  // Cinza para "Canceladas"
+                    borderColor: 'rgba(128, 128, 128, 1)',  // Cinza para "Canceladas"
+                    borderWidth: 1
+                }
+            ]
         },
         options: {
             responsive: true,
@@ -154,25 +222,55 @@ function criarOuAtualizarGraficoDiario(dados) {
         type: 'bar',
         data: {
             labels: ['Total de Ordens', 'Pendentes', 'Em Andamento', 'Concluídas', 'Canceladas'],
-            datasets: [{
-                label: 'Estatísticas Diárias',
-                data: dados,
-                backgroundColor: [
-                    'rgba(0, 0, 255, 0.5)',  // Azul para "Total de Ordens"
-                    'rgba(255, 0, 0, 0.2)',  // Vermelho para "Pendentes"
-                    'rgba(255, 206, 86, 0.2)',  // Amarelo para "Em Andamento"
-                    'rgba(0, 128, 0, 0.2)',  // Verde para "Concluídas"
-                    'rgba(0, 128, 0, 0.2)'  // Verde para "Canceladas"
-                ],
-                borderColor: [
-                    'rgba(0, 0, 255, 1)',  // Azul para "Total de Ordens"
+            datasets: [
+                {
+                    label: 'Estatísticas Díarias',
+                    data: dados,
+                    backgroundColor: [
+                        'rgba(0, 0, 255, 0.5)',  // Azul para "Total de Ordens"
+                        'rgba(255, 0, 0, 0.2)',  // Vermelho para "Pendentes"
+                        'rgba(255, 206, 86, 0.2)',  // Amarelo para "Em Andamento"
+                        'rgba(0, 128, 0, 0.2)',  // Verde para "Concluídas"
+                        'rgba(128, 128, 128, 0.2)',  // Cinza para "Canceladas"
+                    ],
+                    borderColor: [
+                        'rgba(0, 0, 255, 1)',  // Azul para "Total de Ordens"
                         'rgba(255, 0, 0, 1)',  // Vermelho para "Pendentes"
                         'rgba(255, 206, 86, 1)',  // Amarelo para "Em Andamento"
                         'rgba(0, 128, 0, 1)',  // Verde para "Concluídas"
-                        'rgba(0, 128, 0, 1)'  // Verde para "Canceladas"
-                ],
-                borderWidth: 1
-            }]
+                        'rgba(128, 128, 128, 1)',  // Cinza para "Canceladas"
+                    ],
+                    borderWidth: 1
+                },
+                {
+                    label: 'Pendentes',
+               
+                    backgroundColor: 'rgba(255, 0, 0, 0.2)',  // Vermelho para "Pendentes"
+                    borderColor: 'rgba(255, 0, 0, 1)',  // Vermelho para "Pendentes"
+                    borderWidth: 1
+                },
+                {
+                    label: 'Em Andamento',
+                    
+                    backgroundColor: 'rgba(255, 206, 86, 0.2)',  // Amarelo para "Em Andamento"
+                    borderColor: 'rgba(255, 206, 86, 1)',  // Amarelo para "Em Andamento"
+                    borderWidth: 1
+                },
+                {
+                    label: 'Concluídas',
+                  
+                    backgroundColor: 'rgba(0, 128, 0, 0.2)',  // Verde para "Concluídas"
+                    borderColor: 'rgba(0, 128, 0, 1)',  // Verde para "Concluídas"
+                    borderWidth: 1
+                },
+                {
+                    label: 'Canceladas',
+                   
+                    backgroundColor: 'rgba(128, 128, 128, 0.2)',  // Cinza para "Canceladas"
+                    borderColor: 'rgba(128, 128, 128, 1)',  // Cinza para "Canceladas"
+                    borderWidth: 1
+                }
+            ]
         },
         options: {
             responsive: true,
@@ -211,25 +309,55 @@ function criarOuAtualizarGraficoAnual(dados) {
         type: 'bar',
         data: {
             labels: ['Total de Ordens', 'Pendentes', 'Em Andamento', 'Concluídas', 'Canceladas'],
-            datasets: [{
-                label: 'Estatísticas Anuais',
-                data: dados,
-                backgroundColor: [
-                    'rgba(0, 0, 255, 0.5)',  // Azul para "Total de Ordens"
-                    'rgba(255, 0, 0, 0.2)',  // Vermelho para "Pendentes"
-                    'rgba(255, 206, 86, 0.2)',  // Amarelo para "Em Andamento"
-                    'rgba(0, 128, 0, 0.2)',  // Verde para "Concluídas"
-                    'rgba(0, 128, 0, 0.2)'  // Verde para "Canceladas"
-                ],
-                borderColor: [
-                    'rgba(0, 0, 255, 1)',  // Azul para "Total de Ordens"
-                    'rgba(255, 0, 0, 1)',  // Vermelho para "Pendentes"
-                    'rgba(255, 206, 86, 1)',// Amarelo para "Em Andamento"
-                    'rgba(0, 128, 0, 1)',  // Verde para "Concluídas"
-                    'rgba(0, 128, 0, 1)'  // Verde para "Canceladas"
-                ],
-                borderWidth: 1
-            }]
+            datasets: [
+                {
+                    label: 'Estatísticas Anuais',
+                    data: dados,
+                    backgroundColor: [
+                        'rgba(0, 0, 255, 0.5)',  // Azul para "Total de Ordens"
+                        'rgba(255, 0, 0, 0.2)',  // Vermelho para "Pendentes"
+                        'rgba(255, 206, 86, 0.2)',  // Amarelo para "Em Andamento"
+                        'rgba(0, 128, 0, 0.2)',  // Verde para "Concluídas"
+                        'rgba(128, 128, 128, 0.2)',  // Cinza para "Canceladas"
+                    ],
+                    borderColor: [
+                        'rgba(0, 0, 255, 1)',  // Azul para "Total de Ordens"
+                        'rgba(255, 0, 0, 1)',  // Vermelho para "Pendentes"
+                        'rgba(255, 206, 86, 1)',  // Amarelo para "Em Andamento"
+                        'rgba(0, 128, 0, 1)',  // Verde para "Concluídas"
+                        'rgba(128, 128, 128, 1)',  // Cinza para "Canceladas"
+                    ],
+                    borderWidth: 1
+                },
+                {
+                    label: 'Pendentes',
+               
+                    backgroundColor: 'rgba(255, 0, 0, 0.2)',  // Vermelho para "Pendentes"
+                    borderColor: 'rgba(255, 0, 0, 1)',  // Vermelho para "Pendentes"
+                    borderWidth: 1
+                },
+                {
+                    label: 'Em Andamento',
+                    
+                    backgroundColor: 'rgba(255, 206, 86, 0.2)',  // Amarelo para "Em Andamento"
+                    borderColor: 'rgba(255, 206, 86, 1)',  // Amarelo para "Em Andamento"
+                    borderWidth: 1
+                },
+                {
+                    label: 'Concluídas',
+                  
+                    backgroundColor: 'rgba(0, 128, 0, 0.2)',  // Verde para "Concluídas"
+                    borderColor: 'rgba(0, 128, 0, 1)',  // Verde para "Concluídas"
+                    borderWidth: 1
+                },
+                {
+                    label: 'Canceladas',
+                   
+                    backgroundColor: 'rgba(128, 128, 128, 0.2)',  // Cinza para "Canceladas"
+                    borderColor: 'rgba(128, 128, 128, 1)',  // Cinza para "Canceladas"
+                    borderWidth: 1
+                }
+            ]
         },
         options: {
             responsive: true,
@@ -240,7 +368,6 @@ function criarOuAtualizarGraficoAnual(dados) {
                 y: {
                     beginAtZero: true,
                     stepSize: 1  // Define o intervalo de incremento para 1
-                  
                 }
             }
         }
