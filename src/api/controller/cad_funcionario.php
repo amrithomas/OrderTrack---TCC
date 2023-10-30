@@ -17,6 +17,25 @@ $usuario = filter_input(INPUT_POST, 'usuario', FILTER_SANITIZE_STRING);
 $senha_funcionario = filter_input(INPUT_POST, 'senha', FILTER_SANITIZE_STRING);
 $sobrenome = filter_input(INPUT_POST, 'sobrenome', FILTER_SANITIZE_STRING);; // ENQUANTO NÃO FAZ PARA NÃO FICAR SEM NADA NO CAMPO DO SOBRENOME
 
+var_dump($nome);
+$nome = trim($nome);
+var_dump($nome);
+
+if (empty($nome)){
+        $_SESSION['msg'] = '<div class="notificacao" style="border-left: 6px solid red;">
+        <div class="notificacao-div">
+            <i class="bi bi-x-circle-fill" style="color: red;"></i>
+            <div class="mensagem">
+                <span class="text text-1" style="color: red;">Erro! Funcionario não Cadastrado! Nome em Branco!</span>
+            </div>
+        </div>
+        <i class="bi bi-x close" style="color: red;"></i>
+        <div class="tempo tempo_error" style="background-color: #ddd;"></div>
+    </div>';
+    header('Location: ../../pages/cadastro_funcionario.php');
+    exit();
+}
+
 // Criptografia da senha (MÉTODO UTILIZADO MEU FILHO >>>>> password_hash($variavel, PASSWORD_DEFAULT))
 $criptosenha = password_hash($senha_funcionario, PASSWORD_DEFAULT);
 

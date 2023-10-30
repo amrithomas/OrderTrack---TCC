@@ -11,6 +11,26 @@ $descricao_tarefa = filter_input(INPUT_POST, 'item', FILTER_SANITIZE_STRING);
 $data_atual = date("Y-m-d H:i:s");
 $status = "PENDENTE";
 
+//verificação para ver se não está vazio
+$titulo_chamado = trim($titulo_chamado);
+$local = trim($local);
+$descricao_tarefa = trim($descricao_tarefa);
+
+if(empty($titulo_chamado ) or empty($local) or empty($descricao_tarefa)){
+        $_SESSION['msg'] = '<div class="notificacao" style="border-left: 6px solid red;">
+        <div class="notificacao-div">
+            <i class="bi bi-x-circle-fill" style="color: red;"></i>
+            <div class="mensagem">
+                <span class="text text-1" style="color: red;">Chamado não cadastrado.Envio em branco!</span>
+            </div>
+        </div>
+        <i class="bi bi-x close" style="color: red;"></i>
+        <div class="tempo tempo_error" style="background-color: #ddd;"></div>
+    </div>';
+    header('Location: ../../pages/abrir_chamado.php');
+    exit; // Encerra o script após redirecionar para evitar processamento adicional
+}
+
 // Verifique se um arquivo de imagem foi enviado
 if (isset($_FILES["img"]) && $_FILES["img"]["error"] === UPLOAD_ERR_OK) {
     // Obtenha os dados da imagem (nome, nome temporário, tipo do arquivo)
