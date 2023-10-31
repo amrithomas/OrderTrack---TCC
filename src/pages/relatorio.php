@@ -84,7 +84,8 @@
 </div>
     
     <main>
-        <div>
+        <div id="formEstilo">
+          <div class="container">
             <h1>Controle de Rendimento dos Funcionários</h1>
             <label for="relatorio">Relatórios:</label>
             <select name="relatorio" id="relatorio" onchange="mostrarFormulario()">
@@ -93,6 +94,7 @@
               <option value="diario">Diário</option>
               <option value="anual">Anual</option>
             </select>
+          </div>
             
                       
           <?php
@@ -130,21 +132,27 @@
             echo "</form>";
             ?>
 
-
-            <!-- Local onde o gráfico será renderizado -->
-            <canvas id="graficoSemanal"></canvas>
-            <canvas id="graficoMensal"></canvas>
-            <canvas id="graficoDiario"></canvas>
-            <canvas id="graficoAnual"></canvas>
+        </div>
+        <div id="graficoEstilo"><!-- Local onde o gráfico será renderizado -->
+            <canvas id="graficoSemanal" style="display:none"></canvas>
+            <canvas id="graficoMensal" style="display:none"></canvas>
+            <canvas id="graficoDiario" style="display:none"></canvas>
+            <canvas id="graficoAnual" style="display:none"></canvas>
+        </div>    
 
             <div id="resultado"></div>
-        </div>
+        
         <script src="../js/relatorios/script.js"></script>
         
     </main>
     
-    <footer>
-        <p>&copy; ProTask . Todos os direitos reservados.</p>
+    <footer class="footer">
+        <div>
+            <img id="logo_equipe" src="../../assets/images/logo_equipe.png" alt="">
+        </div>
+        <div class="container">
+            <p class="d-flex justify-content-center align-items-center">© ProTask. Todos os direitos reservados.</p>
+        </div>
     </footer>
     <!-- Incluindo os arquivos JavaScript do Bootstrap (opcional) -->
 

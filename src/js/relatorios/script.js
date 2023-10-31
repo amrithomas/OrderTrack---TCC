@@ -431,24 +431,41 @@ function mostrarFormulario() {
     var formSemanal = document.getElementById("formSemanal");
     var formDiario = document.getElementById("formDiario");
 
+    var canvasMensal = document.getElementById("graficoMensal");
+    var canvasAnual = document.getElementById("graficoAnual");
+    var canvasSemanal = document.getElementById("graficoSemanal");
+    var canvasDiario = document.getElementById("graficoDiario");
+
+    
+
     // Destrói os gráficos existentes antes de ocultar os formulários
     if (graficoSemanal) {
         graficoSemanal.destroy();
         graficoSemanal = null;
+       
     }
     if (graficoMensal) {
         graficoMensal.destroy();
         graficoMensal = null;
+
     }
     if (graficoDiario) {
         graficoDiario.destroy();
         graficoDiario = null;
+        
     }
     if (graficoAnual) {
         graficoAnual.destroy();
         graficoAnual = null;
+        
     }
+   
 
+    canvasAnual.style.display = (relatorioSelecionado === "anual") ? "block" : "none";
+    canvasDiario.style.display = (relatorioSelecionado === "diario") ? "block" : "none";
+    canvasMensal.style.display = (relatorioSelecionado === "mensal") ? "block" : "none";
+    canvasSemanal.style.display = (relatorioSelecionado === "semanal") ? "block" : "none";
+    
     formMensal.style.display = (relatorioSelecionado === "mensal") ? "block" : "none";
     formAnual.style.display = (relatorioSelecionado === "anual") ? "block" : "none";
     formSemanal.style.display = (relatorioSelecionado === "semanal") ? "block" : "none";
