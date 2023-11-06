@@ -203,7 +203,11 @@ thead th[scope="col"]{
 #pessoa{
     margin-left: 19px;
     margin-top: 5px;
-    width: 100px;
+    width: 100px; /* Largura fixa */
+    height: 100px; /* Altura fixa para criar um círculo */
+    border-radius: 50%; /* Isso vai arredondar a imagem para formar um círculo */
+    object-fit: cover; /* Isso vai cortar a imagem para que ela preencha o espaço definido */
+    overflow: hidden; 
 }
 
 #nome{
