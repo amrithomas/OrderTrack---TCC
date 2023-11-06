@@ -25,14 +25,14 @@
                     echo $_SESSION['msg'];
                     unset($_SESSION['msg']);
                 }
-                
+               
                 $result_usuario = "SELECT * FROM funcionarios ";
                 $resultado_usuario = mysqli_query($conn,$result_usuario);
-        
+       
                 while($row_usuario = mysqli_fetch_assoc($resultado_usuario)){
                     if($row_usuario['STATUS_FUNCIONARIO'] == 'ATIVO'){
                         echo '<div class="sub-card">';
-                        
+                       
                         // Verifique se a imagem não está vazia
                         if (!empty($row_usuario['IMAGEM_FUNCIONARIO'])) {
                             $tipo_mime = 'image/png'; // Defin4 o tipo MIME correto aqui (exemplo: image/png)
@@ -42,14 +42,14 @@
                             // Caso a imagem esteja vazia, você pode exibir uma imagem padrão ou uma mensagem de erro.
                             echo '<img src="../../assets/images/telaPrincipal/funcionario.png" alt="' . $row_usuario['NOME_FUNCIONARIO'] . '" class="funcionario-img">';
                         }
-                        
-                        echo '<h3>' . $row_usuario['NOME_FUNCIONARIO'] ." ". $row_usuario['SOBRENOME_FUNCIONARIO'] .'</h3>';
-                        echo '<a href="#"><img src="../../assets/images/telaPrincipal/messagem.png" alt="Ícone de Mensagem" class="mensagem-img" ></a>';
+                       
+                        echo '<h3>' . $row_usuario['NOME_FUNCIONARIO'] . '</h3>';
+                        echo '<a onclick="aparecemodal(' . $row_usuario['ID_FUNCIONARIO'] . ')"><img src="../../assets/images/telaPrincipal/messagem.png" alt="Ícone de Mensagem" class="mensagem-img"></a>';
                         echo '<div class="subcard-overlay">';
                         echo '<h3>Detalhes do ' . $row_usuario['NOME_FUNCIONARIO'] . '</h3>';
                         // Coloque aqui mais detalhes sobre o funcionário
                         echo '</div>';
-                        echo '</div>';
+                        echo '</div>';                        
                     }
                 }
             ?>
