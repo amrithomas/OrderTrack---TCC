@@ -42,7 +42,7 @@ function substituirLayout(idChamado) {
   
           // Novo layout desejado (DESCRIÇÃO DO CHAMADO)
           modal.innerHTML = `            
-            <link rel="stylesheet" href="/Franciele/github/sistema_OS/src/styles/modal/styleDescricao.css">
+            <link rel="stylesheet" href="/sistema_OS/src/styles/modal/styleDescricao.css">
             
         
               <div class="modal-dialog modal-lg" role="document">

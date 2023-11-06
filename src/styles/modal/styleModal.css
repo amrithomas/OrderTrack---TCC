@@ -40,11 +40,7 @@
     overflow: auto;
 } */
 
-#titulo_chamado{
-    font-weight: 400;
-    font-size: 24px;
-    
-}
+
 
 .header_modal{
 background-color: #8CB2B0;
@@ -219,7 +215,8 @@ thead th[scope="col"]{
 
 p{
     font-weight: 700;
-    margin-bottom: 16px
+    margin-bottom: 16px;
+    font-size: 22px;
 }
 
 #urgencia{
