@@ -104,7 +104,7 @@ function substituirLayout(idChamado) {
                     <div>
                       <hr style="border: 1px solid #999999; width: 98%; ">         
                       
-                      <p class="datas" style="font-size: 24px;">Data inicial: <span style="font-size: 24px; margin-left: 10px;">dti</span> </p>
+                      <p class="datas" style="font-size: 24px;">Local: <span style="font-size: 24px; margin-left: 10px;">${ordem.LOCALIZACAO}</span> </p>
                       <p class="datas" style="font-size: 24px;">Data inicial: <span style="font-size: 24px; margin-left: 10px;">${ordem.PRAZO}</span> </p>
                     
                       <div class="botao">
