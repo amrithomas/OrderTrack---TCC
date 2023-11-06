@@ -150,18 +150,13 @@ $(document).ready(function() {
 
 function mostrarPendentes() {
     $('.abertos').show();
-    $('.aguardando').hide();
-    $('.fechados').hide();
 }
 
 function mostrarEmAndamento() {
-    $('.abertos').hide();
     $('.aguardando').show();
-    $('.fechados').hide();
+   
 }
 
 function mostrarConcluidos() {
-    $('.abertos').hide();
-    $('.aguardando').hide();
     $('.fechados').show();
 }
