@@ -36,6 +36,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
                         // Limpa a tabela antes de inserir novos dados
                         const tableBody = $('.modal-body tbody');
                         tableBody.empty();
+
+                        if (response.imagemBase64) {
+                            const imagemSrc = `data:${response.tipoMime};base64,${response.imagemBase64}`;
+                            $('#pessoa').attr('src', imagemSrc);
+                        } else {
+                            // Defina aqui o caminho para a imagem padrão se a imagem do funcionário não estiver disponível
+                            $('#pessoa').attr('src', '../../assets/images/telaPrincipal/funcionario.png');
+                        }
             
                         const ordens = response.ordens;
             
@@ -43,7 +51,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
                             const statusClass = getStatusClass(ordem.STATUS); 
                             const statusColor = getStatusColor(ordem.STATUS);
                             console.log(ordem.ID_ORDEM);
-            
+                            
                             // Criação de novas linhas na tabela para cada ordem
                             const row = $(`
                                 <tr data-chamado-id="${ordem.ID_ORDEM}" class="${statusClass}" onclick="substituirLayout(this.dataset.chamadoId)">

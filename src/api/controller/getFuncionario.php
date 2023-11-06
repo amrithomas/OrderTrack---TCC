@@ -22,6 +22,18 @@ if (isset($_GET['funcionarioID'])) {
     }
 
     $response['funcionario'] = $funcionario['NOME_FUNCIONARIO']; // Ajuste conforme necessário
+      // Agora, inclua a imagem do funcionário na resposta
+      if (!empty($funcionario['IMAGEM_FUNCIONARIO'])) {
+        $tipo_mime = 'image/png'; // Altere conforme necessário para corresponder ao tipo MIME da sua imagem
+        $imagem_base64 = base64_encode($funcionario['IMAGEM_FUNCIONARIO']);
+        // Adicione a imagem em base64 e o tipo mime à resposta
+        $response['imagemBase64'] = $imagem_base64;
+        $response['tipoMime'] = $tipo_mime;
+    } else {
+        // Se não houver imagem, defina como nulo ou defina um caminho para uma imagem padrão
+        $response['imagemBase64'] = null; // ou o caminho para uma imagem padrão
+        $response['tipoMime'] = 'image/png'; // ou o tipo MIME da imagem padrão
+    }
 
     // Consulta para obter informações das ordens relacionadas ao funcionário
     $query = "SELECT o.*, h.* 
