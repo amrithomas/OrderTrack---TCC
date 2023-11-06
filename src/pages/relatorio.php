@@ -20,7 +20,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
     
-    <link rel="stylesheet" href="../../src/styles/relatorios/estilos.css">
+    <link rel="stylesheet" href="../../src/styles/relatorios/styles.css">
 
     <title>Relatórios</title>
 
@@ -102,12 +102,15 @@
             session_start();
 
             // Formulário Mensal
+            echo "<div class='container'>";
             echo "<form id='formMensal' action='../api/controller/proc_relatorios.php' method='post' style='display:none;'>";
             echo "<input type='month' name='mes' id='mes' max='" . date('Y-m') . "' required>";
-            echo "<input type='button' value='Gerar Relatório' onclick='enviarFormulario(\"formMensal\");' />";
+            echo "<input type='button' value='Gerar Relatório' id='gerar-button' onclick='enviarFormulario(\"formMensal\");' />";
             echo "</form>";
+            echo "</div>";
 
             // Formulário Anual
+            echo "<div class='container'>";
             echo "<form id='formAnual' action='../api/controller/proc_relatorio_anual.php' method='POST' style='display:none;'>";
             echo "<label for='ano'>Selecione o ano:</label>";
             echo "<select name='ano' id='ano' required>";
@@ -116,28 +119,33 @@
                 echo "<option value='$ano'>$ano</option>";
             }
             echo "</select>";
-            echo "<input type='button' value='Gerar Relatório' onclick='enviarFormulario(\"formAnual\");' />";
+            echo "<input type='button' value='Gerar Relatório' id='gerar-button' onclick='enviarFormulario(\"formAnual\");' />";
             echo "</form>";
+            echo "</div>";
 
             // Formulário Semanal
+            echo "<div class='container'>";
             echo "<form id='formSemanal' action='../api/controller/proc_semanal.php' method='post' style='display:none;'>";
             echo "<input type='week' name='semana' id='semana' max='" . date('Y-\WW') . "' required>";
-            echo "<input type='button' value='Gerar Relatório' onclick='enviarFormulario(\"formSemanal\");' />";
+            echo "<input type='button' value='Gerar Relatório' id='gerar-button' onclick='enviarFormulario(\"formSemanal\");' />";
             echo "</form>";
+            echo "</div>";
 
             // Formulário Diário
+            echo "<div class='container'>";
             echo "<form id='formDiario' action='../api/controller/proc_relatorio_dia.php' method='post' style='display:none;'>";
             echo "<input type='date' name='dia' id='dia' max='" . date("Y-m-d") . "' required>";
-            echo "<input type='button' value='Gerar Relatório' onclick='enviarFormulario(\"formDiario\");' />";
+            echo "<input type='button' value='Gerar Relatório' id='gerar-button' onclick='enviarFormulario(\"formDiario\");' />";
             echo "</form>";
+            echo "</div>";
             ?>
 
         </div>
         <div class="graficoEstilo"><!-- Local onde o gráfico será renderizado -->
-            <canvas id="graficoSemanal" style="display:none max-height: 70vh; margin: 0px 50px 0px 50px"></canvas>
+            <canvas id="graficoSemanal" style="display:none; max-height: 70vh; margin: 0px 50px 0px 50px"></canvas>
             <canvas id="graficoMensal" style="display:none; max-height: 70vh; margin: 0px 50px 0px 50px"></canvas>
-            <canvas id="graficoDiario" style="display:none max-height: 70vh; margin: 0px 50px 0px 50px"></canvas>
-            <canvas id="graficoAnual" style="display:none max-height: 70vh; margin: 0px 50px 0px 50px"></canvas>
+            <canvas id="graficoDiario" style="display:none; max-height: 70vh; margin: 0px 50px 0px 50px"></canvas>
+            <canvas id="graficoAnual" style="display:none; max-height: 70vh; margin: 0px 50px 0px 50px"></canvas>
         </div>    
 
             <div id="resultado"></div>

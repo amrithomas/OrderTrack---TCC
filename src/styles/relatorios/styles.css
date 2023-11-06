@@ -61,10 +61,10 @@ header {
 
 main {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     /* align-items: center; */
     flex-direction: column;
-    /* min-height: calc(100vh - 112px); */
+    min-height: 100vh;
 
     
 }
@@ -115,14 +115,43 @@ main {
     height: 60px;
 }
 
+label{
+    font-weight: bold;
+}
 
+input{
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    padding: 3px 15px 3px 15px;
+    margin: 10px 20px 10px 0px;
+}
 
+#gerar-button {
+    background-color: #8CB2B0;
+    color: white;
+    transition: transform 0.3s;
+    border: 1px solid #8CB2B0;
+}
+
+#gerar-button:hover {
+    transform: scale(1.1);
+    
+}
+
+select {
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 2px 5px;
+    margin: 0px 10px 0px 10px;
+}
   
 footer {
     color: red;
     font-weight: 500;
     background-color: #fff;
-    margin-top: 150px;
+    
     bottom: 0;
     left:0;
     display: flex;
