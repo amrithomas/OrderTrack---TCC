@@ -83,8 +83,7 @@ function substituirLayout(idChamado) {
                         <div style="" class="col descricao_esquerda">
                           <textarea readonly class="textarea_assunto" name="" cols="70" rows="5">${ordem.ITEM}</textarea>
                             <br><br><hr style="border: 1px solid  #999999; margin-bottom: 10px;">
-
-                            
+                      
                         </div>
                       
                         <div class="col box-foto" >
@@ -95,6 +94,7 @@ function substituirLayout(idChamado) {
                     </div> 
 
                     <div class="row infos" style="margin-left: 10px">
+                              <p style="font-size: 24px;">Local: <span style="font-size: 24px; margin-left: 10px;">${ordem.LOCAL}</span> </p>
                               <p style="font-size: 24px;">Urgência: <span style="color: ${ordem.PRIORIDADE === 'BAIXA' ? '#7dc73b' : (ordem.PRIORIDADE === 'MÉDIA' ? '#ffa632' : (ordem.PRIORIDADE === 'ALTA' ? '#ff5555' : '#008efb'))}
                               ; font-weight: 700; font-size: 20px;"> ${ordem.PRIORIDADE} </p>
                               <p style="font-size: 24px;">Status: <span style="font-size: 24px; margin-left: 10px;">${ordem.STATUS}</span> </p>
@@ -105,7 +105,7 @@ function substituirLayout(idChamado) {
                       <hr style="border: 1px solid #999999; width: 98%; ">         
                       
                       <p class="datas" style="font-size: 24px;">Data inicial: <span style="font-size: 24px; margin-left: 10px;">dti</span> </p>
-                      <p class="datas" style="font-size: 24px;">Data inicial: <span style="font-size: 24px; margin-left: 10px;">${ordem.PRAZO}</span> </p>
+                      <p class="datas" style="font-size: 24px;">Data Final: <span style="font-size: 24px; margin-left: 10px;">${ordem.PRAZO}</span> </p>
                     
                       <div class="botao">
                         ${botaoAceitarHtml}

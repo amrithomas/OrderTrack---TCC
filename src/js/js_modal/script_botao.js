@@ -1,5 +1,4 @@
 
- 
  const abertos = document.getElementsByClassName("abertos");
  const aguardando = document.getElementsByClassName("aguardando");
  const fechados = document.getElementsByClassName("fechados");

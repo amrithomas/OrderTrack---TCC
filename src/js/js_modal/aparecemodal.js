@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             
                             // Criação de novas linhas na tabela para cada ordem
                             const row = $(`
-                                <tr data-chamado-id="${ordem.ID_ORDEM}" class="${statusClass}" onclick="substituirLayout(this.dataset.chamadoId)">
+                                <tr data-chamado-id="${ordem.ID_ORDEM}" class="${statusClass}" onclick="substituirLayout(this.dataset.chamadoId) ">
                                     <td>
                                         <p>Título do chamado: ${ordem.SERVICO}</p>
                                         <p>Urgência: <span style="color:${ordem.PRIORIDADE === 'BAIXA' ? '#7dc73b' : (ordem.PRIORIDADE === 'MÉDIA' ? '#ffa632' : (ordem.PRIORIDADE === 'ALTA' ? '#ff5555' : '#008efb'))}
@@ -113,16 +113,19 @@ function getStatusClass(status) {
     }
 }
 
+
+
+//verificar
 function getStatusColor(status) {
     switch (status) { 
         case 'PENDENTE':
-            return '#86cefb';
+            
         case 'EM ANDAMENTO':
-            return '#c286fb';
+            
         case 'CONCLUIDO':
-            return '#86fba3';
+           
         default:
-            return '#000';
+            
     }
 }
 
