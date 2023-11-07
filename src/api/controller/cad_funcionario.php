@@ -23,13 +23,13 @@ $nome = trim($nome);
 var_dump($nome);
 
 var_dump($sobrenome);
-$nome = trim($sobrenome);
+$sobrenome = trim($sobrenome);
 var_dump($sobrenome);
 
 
 
 
-if (empty($nome)){
+if (empty($nome AND $sobrenome)){
         $_SESSION['msg'] = '<div class="notificacao" style="border-left: 6px solid red;">
         <div class="notificacao-div">
             <i class="bi bi-x-circle-fill" style="color: red;"></i>

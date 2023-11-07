@@ -20,6 +20,34 @@ $nome_sobrenome = explode(" ", $nome_completo);
 $nome = $nome_sobrenome[0];
 $sobrenome = $nome_sobrenome[1];
 
+var_dump($titulo);
+var_dump($assunto);
+var_dump($local);
+
+$titulo=trim($titulo);
+$assunto=trim($assunto);
+$local=trim($local);
+
+var_dump($titulo);
+var_dump($assunto);
+var_dump($local);
+
+if(empty($titulo AND $assunto AND $local)){
+    $_SESSION['msg'] = '<div class="notificacao" style="border-left: 6px solid red;">
+    <div class="notificacao-div">
+        <i class="bi bi-x-circle-fill" style="color: red;"></i>
+        <div class="mensagem">
+            <span class="text text-1" style="color: red;">Erro! campos em branco</span>
+        </div>
+    </div>
+    <i class="bi bi-x close" style="color: red;"></i>
+    <div class="tempo tempo_error" style="background-color: #ddd;"></div>
+</div>';
+header('Location: ../../pages/editar_chamado.php?id='.$id);
+exit();
+}
+
+
 
 // Obtendo os valores originais do chamado
 $result_usuario = "SELECT * FROM ordem WHERE ID_ORDEM = '$id'";
@@ -34,6 +62,47 @@ $resultado_update = mysqli_query($conn, $update_query);
 
 
 if (mysqli_affected_rows($conn)) {
+
+    $alteracao_descricao = "Ordem atualizada: 
+    Título: $titulo,
+    Assunto: $assunto,
+    Localização: $local,
+    Urgência: $urgencia,
+    Prazo: $prazo,
+    Status: $status";
+
+    $alteracao_query = "INSERT INTO alteracao_ordem (DATA_ALTERACAO, ALTERACAO, FK_ORDEM) VALUES (NOW(), '$alteracao_descricao', '$id')";
+    $resultado_insercao = mysqli_query($conn, $alteracao_query);
+
+
+    if ($resultado_insercao) {
+        $_SESSION['msg'] = '<div class="notificacao">
+                            <div class="notificacao-div">
+                                <i class="bi bi-check-lg"></i>
+                                <div class="mensagem">
+                                    <span class="text text-1">Chamado Editado com Sucesso</span>
+                                </div>
+                            </div>
+                            <i class="bi bi-x close"></i>
+                            <div class="tempo"></div>
+                        </div>';
+        header("Location: ../../pages/lista_chamados.php");
+        exit;
+    }else{
+         $_SESSION['msg'] = '<div class="notificacao" style="border-left: 6px solid red;">
+        <div class="notificacao-div">
+            <i class="bi bi-x-circle-fill" style="color: red;"></i>
+            <div class="mensagem">
+                <span class="text text-1" style="color: red;">Chamado não Editado!</span>
+            </div>
+        </div>
+        <i class="bi bi-x close" style="color: red;"></i>
+        <div class="tempo tempo_error" style="background-color: #ddd;"></div>
+    </div>';
+    header("Location: ../../pages/editar_chamado.php?id=".$id);
+    }
+
+    
     $_SESSION['msg'] = '<div class="notificacao">
                                     <div class="notificacao-div">
                                         <i class="bi bi-check-lg"></i>
