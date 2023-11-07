@@ -11,6 +11,33 @@ $nome_sobrenome = explode(" ", $nome_completo);
 $nome = $nome_sobrenome[0];
 $sobrenome = $nome_sobrenome[1];
 
+//verificação para não deixar enviar campo nulo
+var_dump($nome);
+$nome = trim($nome);
+var_dump($nome);
+
+var_dump($sobrenome);
+$sobrenome = trim($sobrenome);
+var_dump($sobrenome);
+
+
+
+
+if (empty($nome)){
+        $_SESSION['msg'] = '<div class="notificacao" style="border-left: 6px solid red;">
+        <div class="notificacao-div">
+            <i class="bi bi-x-circle-fill" style="color: red;"></i>
+            <div class="mensagem">
+                <span class="text text-1" style="color: red;">Erro! Funcionario não Cadastrado! Nome em Branco!</span>
+            </div>
+        </div>
+        <i class="bi bi-x close" style="color: red;"></i>
+        <div class="tempo tempo_error" style="background-color: #ddd;"></div>
+    </div>';
+    header('Location: ../../pages/editar_funcionario.php?id='.$id);
+    exit();
+}
+
 // Verifique se um arquivo de imagem foi enviado
 if (isset($_FILES["imagem"]) && $_FILES["imagem"]["error"] === UPLOAD_ERR_OK) {
     $image = $_FILES["imagem"];

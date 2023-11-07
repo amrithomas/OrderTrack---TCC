@@ -4,6 +4,7 @@ let conteudoOriginal = '';
 
 function substituirLayout(idChamado) {
     const modal = document.querySelector("#myModal");
+    console.log(idChamado, 'aa')
 
     // Se o conteúdo original não foi definido, defina-o agora
     if (!conteudoOriginal) { 
