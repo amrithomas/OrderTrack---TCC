@@ -75,8 +75,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
                         // Atualiza o nome do funcionário na modal
                         $('#nome').text(response.funcionario);
 
-                        // Adicionado: Inicializa os chamados
-                        inicializarChamados();
+                        // // Adicionado: Inicializa os chamados
+                        // inicializarChamados();
                     } else {
                         console.error(response.error);
                     }
@@ -134,37 +134,37 @@ function getStatusColor(status) {
     }
 }
 
-function inicializarChamados() {
-    // Aqui tem a lógica para esconder/mostrar chamados baseado no status
-    $('.abertos').show();
-    $('.aguardando').hide();
-    $('.fechados').hide();
-}
+// function inicializarChamados() {
+//     // Aqui tem a lógica para esconder/mostrar chamados baseado no status
+//     $('.abertos').show();
+//     $('.aguardando').hide();
+//     $('.fechados').hide();
+// }
 
-$(document).ready(function() {
+// $(document).ready(function() {
 
-    $('#lista').click(function() {
-        mostrarPendentes();
-    });
+//     $('#abertos').click(function() {
+//         mostrarPendentes();
+//     });
 
-    $('#aguardando').click(function() {
-        mostrarEmAndamento();
-    });
+//     $('#aguardando').click(function() {
+//         mostrarEmAndamento();
+//     });
 
-    $('#concluido').click(function() {
-        mostrarConcluidos();
-    });
-});
+//     $('#concluido').click(function() {
+//         mostrarConcluidos();
+//     });
+// });
 
-function mostrarPendentes() {
-    $('.abertos').show();
-}
+// function mostrarPendentes() {
+//     $('.abertos').show();
+// }
 
-function mostrarEmAndamento() {
-    $('.aguardando').show();
+// function mostrarEmAndamento() {
+//     $('.aguardando').show();
    
-}
+// }
 
-function mostrarConcluidos() {
-    $('.fechados').show();
-}
+// function mostrarConcluidos() {
+//     $('.concluido').show();
+// }
