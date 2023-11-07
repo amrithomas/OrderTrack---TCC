@@ -46,7 +46,7 @@
                 }
               ?>
               <form action="../api/controller/proc_recuperar_senha.php" method="post">
-                  <input type="password" name="senha" placeholder="Digite sua nova senha" required>
+                  <input type="mail" name="email" placeholder="Digite o seu email" required>
                   <button type="submit">Enviar</button>
               </form>
           </div>
