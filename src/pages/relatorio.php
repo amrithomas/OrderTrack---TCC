@@ -20,7 +20,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
     
-    <link rel="stylesheet" href="../../src/styles/relatorios/styles.css">
+    <link rel="stylesheet" href="../../src/styles/relatorios/style.css">
 
     <title>Relatórios</title>
 
@@ -86,7 +86,7 @@
     <main>
         <div class="formEstilo">
           <div class="container">
-            <h1>Controle de Rendimento dos Funcionários</h1>
+            <h1 id="titulo">Controle de Rendimento dos Funcionários</h1>
             <label for="relatorio">Relatórios:</label>
             <select name="relatorio" id="relatorio" onchange="mostrarFormulario()">
               <option value="mensal">Mensal</option>
@@ -141,13 +141,13 @@
             ?>
 
         </div>
-        <div class="graficoEstilo"><!-- Local onde o gráfico será renderizado -->
-            <canvas id="graficoSemanal" style="display:none; max-height: 70vh; margin: 0px 50px 0px 50px"></canvas>
-            <canvas id="graficoMensal" style="display:none; max-height: 70vh; margin: 0px 50px 0px 50px"></canvas>
-            <canvas id="graficoDiario" style="display:none; max-height: 70vh; margin: 0px 50px 0px 50px"></canvas>
-            <canvas id="graficoAnual" style="display:none; max-height: 70vh; margin: 0px 50px 0px 50px"></canvas>
-        </div>    
 
+        <div class="graficoEstilo"><!-- Local onde o gráfico será renderizado -->
+            <canvas id="graficoSemanal" class="canvas" style="display:none;"></canvas>
+            <canvas id="graficoMensal" class="canvas" style="display:none;"></canvas>
+            <canvas id="graficoDiario" class="canvas" style="display:none;"></canvas>
+            <canvas id="graficoAnual" class="canvas" style="display:none;"></canvas>
+        </div> 
             <div id="resultado"></div>
         
         <script src="../js/relatorios/script.js"></script>

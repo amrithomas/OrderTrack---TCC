@@ -58,6 +58,10 @@ header {
     margin-left: 20px;
 }
 
+#titulo{
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
 
 main {
     display: flex;
@@ -117,6 +121,7 @@ main {
 
 label{
     font-weight: bold;
+    font-size: 20px;
 }
 
 input{
@@ -172,9 +177,53 @@ footer {
 }
 
 .graficoEstilo{
-
+    margin-top: 30px;
+    margin-bottom: 100px;
 }
 
-.graficoMensal{
-    
+#graficoMensal{
+    height: 600px;
+    margin: 0px 50px 0px 50px
 }
+#graficoSemanal{
+    max-height: 70vh;
+    margin: 0px 50px 0px 50px
+}
+#graficoDiario{
+    max-height: 70vh;
+    margin: 0px 50px 0px 50px
+}
+#graficoAnual{
+    max-height: 70vh;
+    margin: 0px 50px 0px 50px
+}
+
+@media(max-width: 900px){
+    #graficoSemanal{
+        margin: 0;
+    }
+    #graficoMensal{
+        margin: 0;
+    }
+    #graficoDiario{
+        margin: 0;
+    }
+    #graficoAnual{
+        margin: 0;
+    }
+}
+@media(max-width: 600px){
+    #graficoSemanal{
+        max-height: 700px;
+    }
+    #graficoMensal{
+        max-height: 700px;
+    }
+    #graficoDiario{
+        max-height: 700px;
+    }
+    #graficoAnual{
+        max-height: 700px;
+    }
+}
+

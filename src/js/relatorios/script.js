@@ -125,6 +125,7 @@ function criarOuAtualizarGraficoSemanal(dados) {
             }
         }
     });
+    window.scrollBy(0, 200);
 }
 
 // Função para criar ou atualizar o gráfico de relatório mensal
@@ -134,6 +135,8 @@ function criarOuAtualizarGraficoMensal(dados) {
     }
 
     var canvas = document.getElementById('graficoMensal');
+
+
     if (!canvas) {
         console.error('Elemento de gráfico mensal não encontrado.');
         return;
@@ -145,6 +148,7 @@ function criarOuAtualizarGraficoMensal(dados) {
         return;
     }
 
+    
     
      graficoMensal = new Chart(ctx, {
         type: 'bar',
@@ -202,6 +206,8 @@ function criarOuAtualizarGraficoMensal(dados) {
         },
         options: {
             responsive: true,
+            maintainAspectRatio: false,
+            
             scales: {
                 x: {
                     stacked: true
@@ -226,6 +232,7 @@ function criarOuAtualizarGraficoMensal(dados) {
             }
         }
     });
+    window.scrollBy(0, 200);
 }
 
 // Função para criar ou atualizar o gráfico de relatório diário
@@ -324,6 +331,7 @@ function criarOuAtualizarGraficoDiario(dados) {
             }
         }
     });
+    window.scrollBy(0, 200);
 }
 
 // Função para criar ou atualizar o gráfico de relatório anual
@@ -424,6 +432,7 @@ function criarOuAtualizarGraficoAnual(dados) {
             }
         }
     });
+    window.scrollBy(0, 200);
 }
 
 // Função para enviar o formulário via AJAX
@@ -528,3 +537,6 @@ function mostrarFormulario() {
 $(document).ready(function() {
     mostrarFormulario();
 });
+
+
+
