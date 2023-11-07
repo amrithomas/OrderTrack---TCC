@@ -22,6 +22,7 @@ $(document).ready(function() {
 
 // Função para criar ou atualizar o gráfico de relatório semanal
 function criarOuAtualizarGraficoSemanal(dados) {
+    
     var canvas = document.getElementById('graficoSemanal');
     var mensagemSemDados = document.getElementById('mensagemSemDados');
 
@@ -49,7 +50,7 @@ function criarOuAtualizarGraficoSemanal(dados) {
             labels: ['Total de Ordens', 'Pendentes', 'Em Andamento', 'Concluídas', 'Canceladas'],
             datasets: [
                 {
-                    label: 'Estatísticas Semanal',
+                    label: 'Total de Ordens',
                     data: dados,
                     backgroundColor: [
                         'rgba(0, 0, 255, 0.5)',  // Azul para "Total de Ordens"
@@ -66,6 +67,7 @@ function criarOuAtualizarGraficoSemanal(dados) {
                         'rgba(128, 128, 128, 1)',  // Cinza para "Canceladas"
                     ],
                     borderWidth: 1
+                    
                 },
                 {
                     label: 'Pendentes',
@@ -106,6 +108,19 @@ function criarOuAtualizarGraficoSemanal(dados) {
                 y: {
                     beginAtZero: true,
                     stepSize: 1  // Define o intervalo de incremento para 1
+                }
+            },
+            plugins: {
+                legend: {
+                    labels: {
+                        // Aqui você pode definir o tamanho da fonte do rótulo
+                        font: {
+                            size: 18, // Tamanho da fonte desejado
+                            
+
+                        },
+                        
+                    }
                 }
             }
         }
@@ -137,7 +152,7 @@ function criarOuAtualizarGraficoMensal(dados) {
             labels: ['Total de Ordens', 'Pendentes', 'Em Andamento', 'Concluídas', 'Canceladas'],
             datasets: [
                 {
-                    label: 'Estatísticas Mensais',
+                    label: 'Total de Ordens ',
                     data: dados,
                     backgroundColor: [
                         'rgba(0, 0, 255, 0.5)',  // Azul para "Total de Ordens"
@@ -194,6 +209,19 @@ function criarOuAtualizarGraficoMensal(dados) {
                 y: {
                     beginAtZero: true,
                     stepSize: 1  // Define o intervalo de incremento para 1
+                }
+            },
+            plugins: {
+                legend: {
+                    labels: {
+                        // Aqui você pode definir o tamanho da fonte do rótulo
+                        font: {
+                            size: 18, // Tamanho da fonte desejado
+                            
+
+                        },
+                        
+                    }
                 }
             }
         }
@@ -224,7 +252,7 @@ function criarOuAtualizarGraficoDiario(dados) {
             labels: ['Total de Ordens', 'Pendentes', 'Em Andamento', 'Concluídas', 'Canceladas'],
             datasets: [
                 {
-                    label: 'Estatísticas Díarias',
+                    label: 'Total de Ordens',
                     data: dados,
                     backgroundColor: [
                         'rgba(0, 0, 255, 0.5)',  // Azul para "Total de Ordens"
@@ -281,6 +309,17 @@ function criarOuAtualizarGraficoDiario(dados) {
                 y: {
                     beginAtZero: true,
                     stepSize: 1  // Define o intervalo de incremento para 1
+                }
+            },
+            plugins: {
+                legend: {
+                    labels: {
+                        // Aqui você pode definir o tamanho da fonte do rótulo
+                        font: {
+                            size: 18, // Tamanho da fonte desejado
+                        },
+                        
+                    }
                 }
             }
         }
@@ -311,7 +350,7 @@ function criarOuAtualizarGraficoAnual(dados) {
             labels: ['Total de Ordens', 'Pendentes', 'Em Andamento', 'Concluídas', 'Canceladas'],
             datasets: [
                 {
-                    label: 'Estatísticas Anuais',
+                    label: 'Total de Ordens',
                     data: dados,
                     backgroundColor: [
                         'rgba(0, 0, 255, 0.5)',  // Azul para "Total de Ordens"
@@ -368,6 +407,19 @@ function criarOuAtualizarGraficoAnual(dados) {
                 y: {
                     beginAtZero: true,
                     stepSize: 1  // Define o intervalo de incremento para 1
+                }
+            },
+            plugins: {
+                legend: {
+                    labels: {
+                        
+                        font: {
+                            size: 18, // Tamanho da fonte desejado
+                            
+
+                        },
+                        
+                    }
                 }
             }
         }

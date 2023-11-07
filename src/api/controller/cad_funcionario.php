@@ -17,9 +17,17 @@ $usuario = filter_input(INPUT_POST, 'usuario', FILTER_SANITIZE_STRING);
 $senha_funcionario = filter_input(INPUT_POST, 'senha', FILTER_SANITIZE_STRING);
 $sobrenome = filter_input(INPUT_POST, 'sobrenome', FILTER_SANITIZE_STRING);; // ENQUANTO NÃO FAZ PARA NÃO FICAR SEM NADA NO CAMPO DO SOBRENOME
 
+//verificação para não deixar enviar campo nulo
 var_dump($nome);
 $nome = trim($nome);
 var_dump($nome);
+
+var_dump($sobrenome);
+$nome = trim($sobrenome);
+var_dump($sobrenome);
+
+
+
 
 if (empty($nome)){
         $_SESSION['msg'] = '<div class="notificacao" style="border-left: 6px solid red;">
