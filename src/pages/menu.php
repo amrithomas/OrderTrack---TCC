@@ -108,7 +108,7 @@
     <div class="card" href="../">
         <a href="./abrir_chamado.php">
             <div class="imgBX">
-                <img src="../../assets/images/menu/abrirChamado.png" alt="Abertura de Lista de Serviço">
+                <img src="../../assets/images/menu/notificacao.png" style="top: 35px; width: 77%;" alt="Abertura de Lista de Serviço">
             </div>
             <div class="content">
                 <div class="details">
@@ -134,7 +134,7 @@
     <div class="card">
         <a href="./cadastro_funcionario.php">
             <div class="imgBX">
-                <img src="../../assets/images/menu/adicionar_funcionarios.png" alt="Adicionar Funcionários">
+                <img src="../../assets/images/menu/adicionar-usuario.png" alt="Adicionar Funcionários">
             </div>
             <div class="content">
                 <div class="details">
@@ -147,7 +147,7 @@
     <div class="card" >
         <a href="./lista_funcionarios.php">
             <div class="imgBX">
-                <img src="../../assets/images/menu/equipe.png" alt="Lista de Funcionários">
+                <img src="../../assets/images/menu/groupe.png" alt="Lista de Funcionários">
             </div>
             <div class="content">
                 <div class="details">
@@ -160,7 +160,7 @@
     <div class="card">
     <a href="./relatorio.php">
         <div class="imgBX">
-            <img src="../../assets/images/menu/relatorios.png" alt="Relatórios">
+            <img src="../../assets/images/menu/grafico.png" alt="Relatórios">
         </div>
         <div class="content">
             <div class="details">

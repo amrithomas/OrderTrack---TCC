@@ -154,8 +154,8 @@ footer {
 
 .card {
     position: relative;
-    width: 350px;
-    height: 250px;
+    width: 250px;
+    height: 200px;
     background: #8cac99;
     font-size: 20px;
     border-radius: 20px;
@@ -165,7 +165,7 @@ footer {
 }
 
 .card:hover {
-    height: 450px;
+    height: 210px;
 }
 
 
@@ -186,8 +186,8 @@ footer {
 }
 
 .card:hover .imgBX{
-    width: 250px;
-    height: 250px;
+    width: 150px;
+    height: 150px;
 }
 
 .imgBX img{
@@ -206,12 +206,12 @@ footer {
     justify-content: center;
     align-items: flex-end;
     overflow: hidden;
-    transition: .35s;
+    transition: .45s;
     cursor: pointer;
 }
 
 .card .content details{
-    padding: 40%;
+    padding: 20%;
     text-align: center;
     width: 100%;
     transition: 0.5s;
