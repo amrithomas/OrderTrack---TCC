@@ -156,7 +156,7 @@ include_once('../../conection.php');
                     </select>
                 </div>
                 <div class='filtro3 col'>
-                    <label class='filtroLabelOrdem'>Ordem: Crescente ou Decresente:</label>
+                    <label class='filtroLabelOrdem'>Ordem: Crescente ou Decrescente:</label>
                     <select id='statusFilter3' name='ordem' onchange='applyStatusFilter()'>
                         <option id='selecionado_option3'></option>
                         <option value='Decrescente'>Decrescente</option>
@@ -283,7 +283,7 @@ include_once('../../conection.php');
                                         <th style='background-color: #8CB2B0; color: #fff;'  scope='col'>Serviço</th>
                                         <th style='background-color: #8CB2B0; color: #fff;'  scope='col'>Descrição</th>
                                         <th style='background-color: #8CB2B0; color: #fff;'  scope='col'>Localização</th>
-                                        <th style='background-color: #8CB2B0; color: #fff;'  scope='col'>Funcionario</th>
+                                        <th style='background-color: #8CB2B0; color: #fff;'  scope='col'>Funcionário</th>
                                         <th style='background-color: #8CB2B0; color: #fff;'  scope='col'>Data de Criação</th>
                                         <th style='background-color: #8CB2B0; color: #fff;'  scope='col'>Prazo</th>
                                         <th style='background-color: #8CB2B0; color: #fff;'  scope='col'>Data de Conclusão</th>
@@ -576,9 +576,9 @@ include_once('../../conection.php');
                 }
 
                 if($quantidade_pg > 1){
-                    $paginacao .= "<li class='page-item'><a class='page-link' href= 'lista_chamados.php?pagina=$quantidade_pg&status=$status_get&funcionario=$funcionario_get&ordem=$ordem_get'>  Ultima</a></li>";
+                    $paginacao .= "<li class='page-item'><a class='page-link' href= 'lista_chamados.php?pagina=$quantidade_pg&status=$status_get&funcionario=$funcionario_get&ordem=$ordem_get'>  Última</a></li>";
                 }else {
-                    $paginacao .= "<li class='page-item page-link pag_disable_ultima'>Ultima</li>";
+                    $paginacao .= "<li class='page-item page-link pag_disable_ultima'>Última</li>";
                 }
 
                 $paginacao .= "</ul></nav></div>";
@@ -609,9 +609,9 @@ include_once('../../conection.php');
                 }
 
                 if($quantidade_pg > 1){
-                    $paginacao .= "<li class='page-item'><a class='page-link' href= 'lista_chamados.php?pagina=$quantidade_pg&status=$status_get&funcionario=$funcionario_get&ordem=$ordem_get'>  Ultima</a></li>";
+                    $paginacao .= "<li class='page-item'><a class='page-link' href= 'lista_chamados.php?pagina=$quantidade_pg&status=$status_get&funcionario=$funcionario_get&ordem=$ordem_get'>  Última</a></li>";
                 }else{
-                    $paginacao .= "<li class='page-item page-link pag_disable_ultima'>Ultima</li>";
+                    $paginacao .= "<li class='page-item page-link pag_disable_ultima'>Última</li>";
                 }
 
                 $paginacao .= "</ul></nav></div>";
@@ -640,9 +640,9 @@ include_once('../../conection.php');
                 }
 
                 if($quantidade_pg > 1){
-                    $paginacao .= "<li class='page-item'><a class='page-link' href= 'lista_chamados.php?pagina=$quantidade_pg&status=$status_get&ordem=$ordem_get'>  Ultima</a></li>";
+                    $paginacao .= "<li class='page-item'><a class='page-link' href= 'lista_chamados.php?pagina=$quantidade_pg&status=$status_get&ordem=$ordem_get'>  Última</a></li>";
                 }else{
-                    $paginacao .= "<li class='page-item page-link pag_disable_ultima'>Ultima</li>";
+                    $paginacao .= "<li class='page-item page-link pag_disable_ultima'>Última</li>";
                 }
 
                 $paginacao .= "</ul></nav></div>";
@@ -671,9 +671,9 @@ include_once('../../conection.php');
                 }
 
                 if($quantidade_pg > 1){
-                    $paginacao .= "<li class='page-item'><a class='page-link' href= 'lista_chamados.php?pagina=$quantidade_pg&funcionario=$status_get&ordem=$ordem_get'>  Ultima</a></li>";
+                    $paginacao .= "<li class='page-item'><a class='page-link' href= 'lista_chamados.php?pagina=$quantidade_pg&funcionario=$status_get&ordem=$ordem_get'>  Última</a></li>";
                 }else{
-                    $paginacao .= "<li class='page-item page-link pag_disable_ultima'>Ultima</li>";
+                    $paginacao .= "<li class='page-item page-link pag_disable_ultima'>Última</li>";
                 }
 
                 $paginacao .= "</ul></nav></div>";
@@ -698,9 +698,9 @@ include_once('../../conection.php');
                 }
 
                 if($quantidade_pg > 1){
-                    $paginacao .= "<li class='page-item'><a class='page-link' href= 'lista_chamados.php?pagina=$quantidade_pg&ordem=$ordem_get'>  Ultima</a></li>";
+                    $paginacao .= "<li class='page-item'><a class='page-link' href= 'lista_chamados.php?pagina=$quantidade_pg&ordem=$ordem_get'>  Última</a></li>";
                 }else{
-                    $paginacao .= "<li class='page-item page-link pag_disable_ultima'>Ultima</li>";
+                    $paginacao .= "<li class='page-item page-link pag_disable_ultima'>Última</li>";
                 }
 
                 $paginacao .= "</ul></nav></div></div>";
