@@ -366,7 +366,7 @@ function echoModal(){
           </div>
         </div>
       </div>
-      `;
+      
 
       
       
