@@ -1,4 +1,6 @@
 let conteudoOriginal = '';
+let categoriaAtual = ''; // Armazena a categoria atual
+
 
 
 
@@ -156,6 +158,14 @@ function substituirLayout(idChamado) {
           const back = modal.querySelector("#back");
           back.addEventListener('click', function () {
             modal.innerHTML = conteudoOriginal;
+                 // Restaura a visualização da categoria selecionada
+            if (categoriaAtual === 'abertos') {
+                pendente();
+            } else if (categoriaAtual === 'aguardando') {
+                andamento();
+            } else if (categoriaAtual === 'fechados') {
+                finalizado();
+            }
              
           });
 }

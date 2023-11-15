@@ -30,6 +30,7 @@
        document.getElementById("aguardando").style.opacity = "0.4";
        document.getElementById("concluido").style.opacity = "0.4";
        document.getElementById("contador").innerText = "x" + " Chamados Abertos";
+       categoriaAtual = 'abertos';
 
      
    }
@@ -59,6 +60,7 @@
       document.getElementById("aguardando").style.opacity = "1.0";
       document.getElementById("concluido").style.opacity = "0.4";
       document.getElementById("contador").innerText = "x" + " Chamados Aguardando";
+      categoriaAtual = 'aguardando';
     
   }
 
@@ -84,6 +86,7 @@
     document.getElementById("aguardando").style.opacity = "0.4";
     document.getElementById("concluido").style.opacity = "1.0";
     document.getElementById("contador").innerText = "x" + " Chamados Concluídos";
+    categoriaAtual = 'fechados';
   }
 
 
