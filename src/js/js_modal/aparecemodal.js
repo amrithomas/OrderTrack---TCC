@@ -22,7 +22,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
             if (conteudoOriginal) {
                 modal.innerHTML = conteudoOriginal;
             }
-
             // Faz uma solicitação AJAX para buscar os dados do funcionário
             $.ajax({
                 url: '/sistema_OS/src/api/controller/getFuncionario.php',
@@ -74,6 +73,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             
                         // Atualiza o nome do funcionário na modal
                         $('#nome').text(response.funcionario);
+                        pendente();
 
                         // // Adicionado: Inicializa os chamados
                         // inicializarChamados();
@@ -101,6 +101,7 @@ function fecharModal() {
         if (conteudoOriginal) {
             modal.innerHTML = conteudoOriginal;
         }
+        pendente();
 
         // Resetar a variável 'conteudoOriginal' para o estado inicial
         conteudoOriginal = '';
