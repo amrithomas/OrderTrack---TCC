@@ -46,10 +46,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
                         }
             
                         const ordens = response.ordens;
+                        
             
                         ordens.forEach(ordem => {
                             const statusClass = getStatusClass(ordem.STATUS); 
-                            const statusColor = getStatusColor(ordem.STATUS);
                             console.log(ordem.ID_ORDEM);
                             
                             // Criação de novas linhas na tabela para cada ordem
@@ -90,22 +90,30 @@ document.addEventListener('DOMContentLoaded', (event) => {
 });
 
 function fecharModal() {
-    // Verifica se 'modal' é não-nulo e se contém a classe 'show'
+    // Verifica se a modal 'myModal' está aberta e se possui a classe 'show'
     if (modal && modal.classList.contains("show")) {
+        // Fecha a modal
         modal.classList.remove("show");
         modal.classList.add("sumiu");
 
-        // Restaurar o conteúdo original da modal
+        // Limpa os dados carregados na modal principal (aparecemodal.js)
+        $('.modal-body tbody').empty(); // Limpa a tabela de ordens
         if (conteudoOriginal) {
             modal.innerHTML = conteudoOriginal;
         }
-    } else if (modal) {
-        modal.classList.remove("sumiu");
-        modal.classList.add("show");
+
+        // Resetar a variável 'conteudoOriginal' para o estado inicial
+        conteudoOriginal = '';
+
+        // Limpar outros elementos específicos da descrição das ordens (script_descricao.js)
+        // Por exemplo, limpar campos de texto, imagens, etc.
+        // Adicione aqui a lógica específica para limpar os detalhes das ordens
+
     } else {
-        console.error('O elemento modal não foi encontrado');
+        console.error('O elemento modal não foi encontrado ou não está aberto');
     }
 }
+
 
 
 function getStatusClass(status) {
