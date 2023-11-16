@@ -22,6 +22,15 @@ $(document).ready(function() {
 
 // Função para criar ou atualizar o gráfico de relatório semanal
 function criarOuAtualizarGraficoSemanal(dados) {
+    const todosZeros = dados.every(valor => valor === '0');
+
+    if (todosZeros) {
+        alert('oiiii');
+        return; // Retorna sem criar o gráfico
+    }
+
+   
+
     
     var canvas = document.getElementById('graficoSemanal');
     var mensagemSemDados = document.getElementById('mensagemSemDados');
