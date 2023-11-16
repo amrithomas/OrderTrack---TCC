@@ -36,16 +36,24 @@ include ('./modal.php');
                 while($row_usuario = mysqli_fetch_assoc($resultado_usuario)){
                     if($row_usuario['STATUS_FUNCIONARIO'] == 'ATIVO'){
                         echo '<div class="sub-card">';
-                       
-                        // Verifique se a imagem não está vazia
-                        if (!empty($row_usuario['IMAGEM_FUNCIONARIO'])) {
-                            $tipo_mime = 'image/png'; // Defin4 o tipo MIME correto aqui (exemplo: image/png)
-                            $imagem_base64 = base64_encode($row_usuario['IMAGEM_FUNCIONARIO']);//Codifica a imagem do funcionário em uma representação em base64.
-                            echo '<img src="data:' . $tipo_mime . ';base64,' . $imagem_base64 . '" alt="' . $row_usuario['NOME_FUNCIONARIO'] . '" class="funcionario-img">';
-                        } else {
-                            // Caso a imagem esteja vazia, você pode exibir uma imagem padrão ou uma mensagem de erro.
-                            echo '<img src="../../assets/images/telaPrincipal/funcionario.png" alt="' . $row_usuario['NOME_FUNCIONARIO'] . '" class="funcionario-img">';
-                        }
+                      // Verifique se a imagem não está vazia
+                if (!empty($row_usuario['IMAGEM_FUNCIONARIO'])) {
+                    $tipo_mime = 'image/png'; // Substitua pelo tipo MIME correto (exemplo: image/png)
+                    $imagem_base64 = base64_encode($row_usuario['IMAGEM_FUNCIONARIO']); // Codifica a imagem do funcionário em uma representação em base64.
+
+                    // Adiciona a imagem apenas se atender aos critérios de tamanho
+                    list($largura, $altura) = getimagesizefromstring($row_usuario['IMAGEM_FUNCIONARIO']);
+                    if ($largura >= 200 && $altura >= 200) {
+                        echo '<img src="data:' . $tipo_mime . ';base64,' . $imagem_base64 . '" alt="' . $row_usuario['NOME_FUNCIONARIO'] . '" class="funcionario-img">';
+                    } else {
+                        // Caso a imagem não atenda aos critérios de tamanho, exiba uma imagem padrão ou uma mensagem de erro.
+                        echo '<img src="../../assets/images/telaPrincipal/funcionario.png" alt="' . $row_usuario['NOME_FUNCIONARIO'] . '" class="funcionario-img">';
+                    }
+                } else {
+                    // Caso a imagem esteja vazia, exiba uma imagem padrão ou uma mensagem de erro.
+                    echo '<img src="../../assets/images/telaPrincipal/funcionario.png" alt="' . $row_usuario['NOME_FUNCIONARIO'] . '" class="funcionario-img">';
+                }
+
                        
                         echo '<h3>' . $row_usuario['NOME_FUNCIONARIO'] . '</h3>';
                         echo '<a onclick="aparecemodal(' . $row_usuario['ID_FUNCIONARIO'] . ')"><img src="../../assets/images/telaPrincipal/messagem.png" alt="Ícone de Mensagem" class="mensagem-img"></a>';

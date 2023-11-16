@@ -70,7 +70,7 @@
 </div>
 <main>
     <div class="card">
-    <a href="login.php">
+    <a href="tela_principal.php">
         <div class="imgBX">
             <img src="../../assets/images/telaInicial/funcionario.png" alt="Funcionário">
         </div>
