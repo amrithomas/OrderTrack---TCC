@@ -20,12 +20,34 @@ $(document).ready(function() {
     
 });
 
+function alertPersonalizado(){
+    let notificacao = document.createElement('div');
+    let divNotificacao = document.getElementsByClassName('div-notificacao');
+    notificacao.className = 'notificacao';
+    notificacao.style.borderLeft = '6px solid red';
+
+    notificacao.innerHTML = `
+    <div class="notificacao-div">
+            <i class="bi bi-x-circle-fill" style="color: red;"></i>
+            <div class="mensagem">
+                <span class="text text-1" style="color: red;">Chamado não cadastrado.Envio em branco!</span>
+            </div>
+        </div>
+        <i class="bi bi-x close" style="color: red;"></i>
+        <div class="tempo tempo_error" style="background-color: #ddd;"></div>
+    `;
+
+        
+
+    document.body.appendChild(notificacao);
+}
+
 // Função para criar ou atualizar o gráfico de relatório semanal
 function criarOuAtualizarGraficoSemanal(dados) {
     const todosZeros = dados.every(valor => valor === '0');
 
     if (todosZeros) {
-        alert('oiiii');
+        alertPersonalizado();
         return; // Retorna sem criar o gráfico
     }
 

@@ -1,3 +1,7 @@
+<?php 
+include_once('../../conection.php');
+session_start();
+?>
 <!DOCTYPE html>
 
 <html lang="pt-BR">
@@ -19,7 +23,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../../src/styles/relatorios/style.css">
 
     <title>Relatórios</title>
@@ -82,6 +86,12 @@
     </div>
   </nav>
 </div>
+
+<div class="div-notificacao">
+
+</div>
+
+
     
     <main>
         <div class="formEstilo">
@@ -98,8 +108,7 @@
             
                       
           <?php
-            include_once('../../conection.php');
-            session_start();
+
 
             // Formulário Mensal
             echo "<div class='container'>";
@@ -162,10 +171,46 @@
             <p class="d-flex justify-content-center align-items-center">© ProTask. Todos os direitos reservados.</p>
         </div>
     </footer>
+
+    
     <!-- Incluindo os arquivos JavaScript do Bootstrap (opcional) -->
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        
+          const notificacao = document.querySelector(".notificacao");
+          const tempo = document.querySelector(".tempo");
+          let timer1;
+  
+          if (notificacao) {
+              notificacao.classList.add("active");
+              tempo.classList.add("active");
+              timer1 = setTimeout(() => {
+                  notificacao.classList.remove("active");
+                  tempo.classList.remove("active");
+                  notificacao.style.display = "none";
+              }, 5000); // 1s = 1000 milliseconds
+          }
+  
+          const closeIcon = document.querySelector(".close");
+  
+          if (closeIcon) {
+              closeIcon.addEventListener("click", () => {
+                  notificacao.classList.remove("active");
+                  tempo.classList.remove("active");
+                  notificacao.style.display = "none";
+                  clearTimeout(timer1);
+              });
+          }
+
+        
+
+        
+    </script>
+  
+
 </body>
 </html>
 
