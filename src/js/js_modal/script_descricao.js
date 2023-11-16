@@ -1,6 +1,22 @@
 let conteudoOriginal = '';
 let categoriaAtual = ''; // Armazena a categoria atual
-
+function carregarImagem(idChamado) {
+  $.ajax({
+      url: '/sistema_os/src/api/controller/getChamado.php',
+      type: 'GET',
+      data: { chamadoID: idChamado, tipo: 'imagem' },  // Solicitar a imagem
+      success: function(response) {
+          const dadosImagem = JSON.parse(response);
+          if (dadosImagem.imagemBase64) {
+              const imagem = document.getElementById('foto');
+              imagem.src = 'data:' + dadosImagem.tipoMime + ';base64,' + dadosImagem.imagemBase64;
+          }
+      },
+      error: function() {
+          console.error('Erro ao carregar a imagem');
+      }
+  });
+}
 
 
 
@@ -152,6 +168,7 @@ function substituirLayout(idChamado) {
             
               });
           }
+          carregarImagem(idChamado);
           
           
           // Adicione um evento de clique ao botão "back"
