@@ -23,13 +23,25 @@ if (isset($_GET['chamadoID'])) {
 
     if (!$chamado) {
         echo json_encode(["error" => "Chamado não encontrado"]);
-        exit;
+        exit;   
     }
-
-    echo json_encode(["success" => true, "chamado" => $chamado]);
+    
+    if (isset($_GET['tipo']) && $_GET['tipo'] === 'imagem') {
+        // Enviar somente a imagem
+        if (!empty($chamado['FOTO'])) {
+            $tipo_mime = 'image/png'; // Altere conforme necessário
+            $imagem_base64 = base64_encode($chamado['FOTO']);
+            echo json_encode(["imagemBase64" => $imagem_base64, "tipoMime" => $tipo_mime]);
+        } else {
+            echo json_encode(["error" => "Imagem não encontrada"]);
+        }
+    } else {
+        // Enviar os detalhes do chamado sem a imagem
+        unset($chamado['FOTO']); // Remover a imagem do array
+        echo json_encode(["success" => true, "chamado" => $chamado]);
+    }
     exit;
 }
 
-
-echo json_encode($response);
+echo json_encode(["error" => "ID do chamado não fornecido"]);
 ?>
