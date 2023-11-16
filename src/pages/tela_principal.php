@@ -20,7 +20,7 @@ include ('./modal.php');
 
 <body id="original">
     <nav class="navbar navbar-expand-lg">
-        <div class="container">
+        <div class="container"> 
             <a class="navbar-brand" href="#">
                 <img src="../../assets/images/logo.png" id="logo" alt="Logo" width="30" height="30">
             </a>

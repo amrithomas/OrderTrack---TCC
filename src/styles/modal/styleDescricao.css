@@ -127,3 +127,9 @@
     
 }
 
+
+#selectOption:focus {
+    box-shadow: 0 0 15px 0 #83b8b5;
+    
+}
+
