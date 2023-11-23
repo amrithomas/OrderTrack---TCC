@@ -44,20 +44,27 @@ function substituirLayout(idChamado) {
         
 
         const ordem = dados.chamado; 
-        let botaoAceitarHtml = '';
-        if (ordem.STATUS === 'PENDENTE') {
-            botaoAceitarHtml = `
-                <div class="botao">
-                    <input type="button" id="botao_aceitar" value="aceitar">
-                </div>
-            `;
-        } else if (ordem.STATUS === 'EM ANDAMENTO') {
-            botaoAceitarHtml = `
-                <div class="botao">
-                    <input type="button" id="botao_aceitar" value="concluir">
-                </div>
-            `;
-        }
+        // Criando o elemento select para o status
+           // Criando o elemento select para o status
+    let selectStatusHtml = `<select id="select_status" ${ordem.STATUS === 'CONCLUIDO' ? 'disabled' : ''}>`;
+
+    // Adicionando a opção atual como a primeira opção
+    selectStatusHtml += `<option value="${ordem.STATUS}">${ordem.STATUS}</option>`;
+
+    // Adicionando outras opções com base no status atual
+    if (ordem.STATUS === 'PENDENTE') {
+        selectStatusHtml += `
+            <option value="EM ANDAMENTO">EM ANDAMENTO</option>
+            <option value="CONCLUIDO">CONCLUIDO</option>
+        `;
+    } else if (ordem.STATUS === 'EM ANDAMENTO') {
+        selectStatusHtml += `
+            <option value="PENDENTE">PENDENTE</option>
+            <option value="CONCLUIDO">CONCLUIDO</option>
+        `;
+    }
+
+    selectStatusHtml += `</select>`;
   
           // Novo layout desejado (DESCRIÇÃO DO CHAMADO)
           modal.innerHTML = `            
@@ -116,7 +123,7 @@ function substituirLayout(idChamado) {
                     <div class="row infos" style="margin-left: 10px">
                               <p style="font-size: 24px;">Urgência: <span style="color: ${ordem.PRIORIDADE === 'BAIXA' ? '#7dc73b' : (ordem.PRIORIDADE === 'MÉDIA' ? '#ffa632' : (ordem.PRIORIDADE === 'ALTA' ? '#ff5555' : '#008efb'))}
                               ; font-weight: 700; font-size: 20px;"> ${ordem.PRIORIDADE} </p>
-                              <p style="font-size: 24px;">Status: <span style="font-size: 24px; margin-left: 10px;">${ordem.STATUS}</span> </p>
+                              <p style="font-size: 24px;">Status: <span style="font-size: 24px; margin-left: 10px;">${selectStatusHtml}</span> </p>
                               </div>
                         
 
@@ -126,10 +133,6 @@ function substituirLayout(idChamado) {
                       <p class="datas" style="font-size: 24px;">Local: <span style="font-size: 24px; margin-left: 10px;">${ordem.LOCALIZACAO}</span> </p>
                       <p class="datas" style="font-size: 24px;">Data inicial: <span style="font-size: 24px; margin-left: 10px;">${ordem.PRAZO}</span> </p>
                     
-                      <div class="botao">
-                        ${botaoAceitarHtml}
-                      </div>
-                    
                     </div>
                     </div>
                 </div>
@@ -137,37 +140,26 @@ function substituirLayout(idChamado) {
               
           `;
 
-          const botaoAceitar = document.getElementById('botao_aceitar');
-          if (botaoAceitar) {
-              botaoAceitar.addEventListener('click', function() {
-                let statusAtual = ordem.STATUS;// Supondo que 'ordem.STATUS' contém o status atual
-          
-                  // Atualiza o status
-                  if (statusAtual === 'PENDENTE') {
-                      statusAtual = 'EM ANDAMENTO';
-                  } else if (statusAtual === 'EM ANDAMENTO') {
-                      statusAtual = 'CONCLUIDO';
+          const selectStatus = document.getElementById('select_status');
+          selectStatus.addEventListener('change', function() {
+              let statusSelecionado = selectStatus.value;
+              // Faz uma requisição AJAX para atualizar o status no servidor
+              $.ajax({
+                  url: '/sistema_OS/src/api/controller/atualizar_status.php',  // Substitua com a URL do seu servidor
+                  type: 'POST',
+                  data: {
+                      chamadoID: idChamado, // Supondo que você tenha o ID do chamado disponível
+                      novoStatus: statusSelecionado
+                  },
+                  success: function(response) {
+                      console.log('Status atualizado com sucesso.');
+                      // Você pode querer atualizar a interface do usuário aqui
+                  },
+                  error: function(jqXHR, textStatus, errorThrown) {
+                      console.error('Erro ao atualizar o status: ', textStatus, errorThrown);
                   }
-          
-                  // Faz uma requisição AJAX para atualizar o status no servidor
-                  $.ajax({
-                      url: '/sistema_OS/src/api/controller/atualizar_status.php',  // Substitua com a URL do seu servidor
-                      type: 'POST',
-                      data: {
-                          chamadoID: idChamado, // Supondo que você tenha o ID do chamado disponível
-                          novoStatus: statusAtual
-                      },
-                      success: function(response) {
-                          console.log('Status atualizado com sucesso.');
-                          // Você pode querer atualizar a interface do usuário aqui
-                      },
-                      error: function(jqXHR, textStatus, errorThrown) {
-                        console.error('Erro ao atualizar o status: ', textStatus, errorThrown);
-                      }
-                  });
-            
               });
-          }
+          });
           carregarImagem(idChamado);
           
           
