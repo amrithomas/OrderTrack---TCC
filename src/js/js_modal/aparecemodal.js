@@ -144,38 +144,3 @@ function getStatusColor(status) {
             return '#000';
     }
 }
-
-// function inicializarChamados() {
-//     // Aqui tem a lógica para esconder/mostrar chamados baseado no status
-//     $('.abertos').show();
-//     $('.aguardando').hide();
-//     $('.fechados').hide();
-// }
-
-// $(document).ready(function() {
-
-//     $('#abertos').click(function() {
-//         mostrarPendentes();
-//     });
-
-//     $('#aguardando').click(function() {
-//         mostrarEmAndamento();
-//     });
-
-//     $('#concluido').click(function() {
-//         mostrarConcluidos();
-//     });
-// });
-
-// function mostrarPendentes() {
-//     $('.abertos').show();
-// }
-
-// function mostrarEmAndamento() {
-//     $('.aguardando').show();
-   
-// }
-
-// function mostrarConcluidos() {
-//     $('.concluido').show();
-// }

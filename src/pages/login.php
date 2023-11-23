@@ -1,5 +1,12 @@
-<!DOCTYPE html>
 
+<?php
+  session_start();
+  if($_SESSION['login'] == 1){
+    header('Location: ./menu.php');
+  }
+
+?>
+<!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
@@ -39,7 +46,6 @@
           <div class="login-form">
               <h2>Login</h2>
               <?php
-                session_start();
                 if (isset($_SESSION['msg'])) {
                     echo($_SESSION['msg'] . "<br>");
                     unset($_SESSION['msg']);
@@ -60,8 +66,8 @@
     <footer>
         <p>&copy; ProTask . Todos os direitos reservados.</p>
     </footer>
-    <!-- Incluindo os arquivos JavaScript do Bootstrap (opcional) -->
 
+    <!-- Incluindo os arquivos JavaScript do Bootstrap (opcional) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
