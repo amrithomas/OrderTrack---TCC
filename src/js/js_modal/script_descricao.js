@@ -1,10 +1,12 @@
-let conteudoOriginal = '';
+let conteudoOriginal = ''; //Reset da modal
 let categoriaAtual = ''; // Armazena a categoria atual
+
 function carregarImagem(idChamado) {
+  //função para carregar a imagem do chamado
   $.ajax({
       url: '/sistema_os/src/api/controller/getChamado.php',
       type: 'GET',
-      data: { chamadoID: idChamado, tipo: 'imagem' },  // Solicitar a imagem
+      data: { chamadoID: idChamado, tipo: 'imagem' },  
       success: function(response) {
           const dadosImagem = JSON.parse(response);
           if (dadosImagem.imagemBase64) {
@@ -18,9 +20,27 @@ function carregarImagem(idChamado) {
   });
 }
 
+function restaurarCategoria() {
+  //Restaura a categoria a anteriormente selecionada ao voltar na modal
+  switch (categoriaAtual) {
+      case 'abertos':
+          pendente();
+          break;
+      case 'aguardando':
+          andamento();
+          break;
+      case 'fechados':
+          finalizado();
+          break;
+      default:
+          console.error('Categoria desconhecida:', categoriaAtual);
+  }
+}
+
 
 
 function substituirLayout(idChamado) {
+    //Função que tras os dados da descrição
     const modal = document.querySelector("#myModal");
     console.log(idChamado, 'aa')
 
@@ -35,36 +55,33 @@ function substituirLayout(idChamado) {
       data: { chamadoID: idChamado },  // Modificado para passar o ID do chamado
       success: function(response) {
         const dados = JSON.parse(response);
-
         if (!dados.chamado) {
             console.error('Chamado não encontrado');
             return;
         }
 
-        
-
         const ordem = dados.chamado; 
+      
         // Criando o elemento select para o status
-           // Criando o elemento select para o status
-    let selectStatusHtml = `<select id="select_status" ${ordem.STATUS === 'CONCLUIDO' ? 'disabled' : ''}>`;
+        let selectStatusHtml = `<select id="select_status" ${ordem.STATUS === 'CONCLUIDO' ? 'disabled' : ''}>`;
 
-    // Adicionando a opção atual como a primeira opção
-    selectStatusHtml += `<option value="${ordem.STATUS}">${ordem.STATUS}</option>`;
+        // Adicionando a opção atual como a primeira opção
+        selectStatusHtml += `<option value="${ordem.STATUS}">${ordem.STATUS}</option>`;
 
-    // Adicionando outras opções com base no status atual
-    if (ordem.STATUS === 'PENDENTE') {
-        selectStatusHtml += `
-            <option value="EM ANDAMENTO">EM ANDAMENTO</option>
-            <option value="CONCLUIDO">CONCLUIDO</option>
-        `;
-    } else if (ordem.STATUS === 'EM ANDAMENTO') {
-        selectStatusHtml += `
-            <option value="PENDENTE">PENDENTE</option>
-            <option value="CONCLUIDO">CONCLUIDO</option>
-        `;
-    }
+        // Adicionando outras opções com base no status atual
+        if (ordem.STATUS === 'PENDENTE') {
+            selectStatusHtml += `
+                <option value="EM ANDAMENTO">EM ANDAMENTO</option>
+                <option value="CONCLUIDO">CONCLUIDO</option>
+            `;
+        } else if (ordem.STATUS === 'EM ANDAMENTO') {
+            selectStatusHtml += `
+                <option value="PENDENTE">PENDENTE</option>
+                <option value="CONCLUIDO">CONCLUIDO</option>
+            `;
+        }
 
-    selectStatusHtml += `</select>`;
+        selectStatusHtml += `</select>`;
   
           // Novo layout desejado (DESCRIÇÃO DO CHAMADO)
           modal.innerHTML = `            
@@ -167,16 +184,15 @@ function substituirLayout(idChamado) {
           const back = modal.querySelector("#back");
           back.addEventListener('click', function () {
             modal.innerHTML = conteudoOriginal;
-                 // Restaura a visualização da categoria selecionada
-            if (categoriaAtual === 'abertos') {
-                pendente();
-            } else if (categoriaAtual === 'aguardando') {
-                andamento();
-            } else if (categoriaAtual === 'fechados') {
-                finalizado();
+            if (idFuncionarioAtual) {
+              window.aparecemodal(idFuncionarioAtual);
+              restaurarCategoria();
+            } else {
+                console.error('ID do funcionário atual não definido');
             }
-             
           });
+
+    
 }
 });
 }

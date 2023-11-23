@@ -1,5 +1,6 @@
 // Definindo a variável 'modal' no escopo global
 let modal;
+let idFuncionarioAtual = null;
 
 document.addEventListener('DOMContentLoaded', (event) => {
     // Atribuindo o elemento à variável 'modal' quando o DOM estiver completamente carregado
@@ -7,14 +8,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     window.aparecemodal = function(funcionarioId) {
         console.log("ID do funcionário selecionado:", funcionarioId);
+        idFuncionarioAtual = funcionarioId;
 
         if (modal) {
             if (modal.classList.contains("sumiu")) {
                 modal.classList.remove("sumiu");
                 modal.classList.add("show");
-            } else if (modal.classList.contains("show")) {
-                modal.classList.remove("show");
-                modal.classList.add("sumiu");
             } else {
                 modal.classList.add("show");
             }
@@ -73,7 +72,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
             
                         // Atualiza o nome do funcionário na modal
                         $('#nome').text(response.funcionario);
-                        pendente();
+                        if (!categoriaAtual){
+                            pendente();
+                        }
+                        restaurarCategoria()
 
                         // // Adicionado: Inicializa os chamados
                         // inicializarChamados();
