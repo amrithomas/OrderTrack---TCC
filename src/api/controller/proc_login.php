@@ -20,11 +20,29 @@
         //Verificando no banco se a senha que está criptografada em base64 lá, é igual a digitada aq. FUNÇÃO UTILIZADA(password_verify())
         if (password_verify($senha, $verificasenha['SENHA_ADM'])) {
             $_SESSION['login'] = 1;
-
+            $_SESSION['msg'] = '<div class="notificacao">
+                                    <div class="notificacao-div">
+                                        <i class="bi bi-check-lg"></i>
+                                        <div class="mensagem">
+                                            <span class="text text-1">Login efetuado!</span>
+                                        </div>
+                                    </div>
+                                    <i class="bi bi-x close"></i>
+                                    <div class="tempo"></div>
+                                </div>';
             header('Location: ../../pages/menu.php');
             exit();
         } else {
-            $_SESSION['msg'] = "<center><span style='color:red;'>Usuario ou senha Incorretos</span></center>";
+            $_SESSION['msg'] = '<div class="notificacao" style="border-left: 6px solid red;">
+                <div class="notificacao-div">
+                    <i class="bi bi-x-circle-fill" style="color: red;"></i>
+                    <div class="mensagem">
+                        <span class="text text-1" style="color: red;">Usuario ou senha Incorretos</span>
+                    </div>
+                </div>
+                <i class="bi bi-x close" style="color: red;"></i>
+                <div class="tempo tempo_error" style="background-color: #ddd;"></div>
+            </div>';
             $_SESSION['login'] = 0;
 
             header('Location: ../../pages/login.php');
@@ -32,7 +50,16 @@
         }
       //Caso o usuario não esteja registrado no banco, ele nem verifica a senha e ja manda pra cá↓  
     } else {
-        $_SESSION['msg'] = "<center><span style='color:red;'>Usuario ou senha Incorretos</span></center>";
+        $_SESSION['msg'] = '<div class="notificacao" style="border-left: 6px solid red;">
+        <div class="notificacao-div">
+            <i class="bi bi-x-circle-fill" style="color: red;"></i>
+            <div class="mensagem">
+                <span class="text text-1" style="color: red;">Usuario ou senha Incorretos</span>
+            </div>
+            </div>
+            <i class="bi bi-x close" style="color: red;"></i>
+            <div class="tempo tempo_error" style="background-color: #ddd;"></div>
+        </div>';
         $_SESSION['login'] = 0;
 
         header('Location: ../../pages/login.php');

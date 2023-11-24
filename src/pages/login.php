@@ -21,7 +21,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../../src/styles/cadastro_funcionario/styles.css">
 
     <title>Login</title>
@@ -34,7 +34,7 @@
 
     <div class="container">
 
-      <a class="navbar-brand" href="menu.php">
+      <a class="navbar-brand" href="tela_inicial.php">
 
         <img src="../../assets/images/logo.png" id="logo" alt="Logo" width="30" height="30">
 
@@ -48,10 +48,38 @@
           <div class="login-form">
               <h2>Login</h2>
               <?php
-                if (isset($_SESSION['msg'])) {
-                    echo($_SESSION['msg'] . "<br>");
-                    unset($_SESSION['msg']);
-                }
+                  if (isset($_SESSION['msg'])) {
+                    echo $_SESSION['msg'];
+                echo '<script>
+                    const notificacao = document.querySelector(".notificacao");
+                    const tempo = document.querySelector(".tempo");
+                    let timer1;
+            
+                    if (notificacao) {
+                        notificacao.classList.add("active");
+                        tempo.classList.add("active");
+                        timer1 = setTimeout(() => {
+                            notificacao.classList.remove("active");
+                            tempo.classList.remove("active");
+                            notificacao.style.display = "none";
+                        }, 5000); // 1s = 1000 milliseconds
+                    }
+            
+                    const closeIcon = document.querySelector(".close");
+            
+                    if (closeIcon) {
+                        closeIcon.addEventListener("click", () => {
+                            notificacao.classList.remove("active");
+                            tempo.classList.remove("active");
+                            notificacao.style.display = "none";
+                            clearTimeout(timer1);
+                        });
+                    }
+            
+                    
+                </script>';
+                unset($_SESSION['msg']);
+              }
               ?>
               <form action="../api/controller/proc_login.php" method="post">
                   <input type="text" name="usuario" placeholder="Nome de Usuário" required>

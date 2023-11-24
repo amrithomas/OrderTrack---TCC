@@ -27,7 +27,7 @@
 
 <div class="container">
 
-    <a class="navbar-brand" href="./menu.php">
+    <a class="navbar-brand" href="./tela_inicial.php">
 
       <img src="../../assets/images/logo.png" id="logo" alt="Logo" width="30" height="30">
 
@@ -70,6 +70,8 @@
             <a class="dropdown-item" href="./cadastro_funcionario.php">Cadastrar Funcionário</a>
           </div>
         </li>
+        <a class="nav-link linkss" href="../api/controller/proc_log.php">Logout</a>
+
       </ul>
     </div>
   </nav>

@@ -1,9 +1,5 @@
 <?php
     session_start();
-    if ($_SESSION['login'] != 1) {
-        header("Location: ./login.php");
-        exit;
-    }
     include ('./modal.php');
 ?>
 <!DOCTYPE html>
@@ -19,11 +15,10 @@
 <body>
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" href='./menu.php'>
+            <a class="navbar-brand" href='./tela_inicial.php'>
                 <img src="../../assets/images/logo.png" id="logo" alt="Logo" width="30" height="30">
             </a>
          
-                <a class="nav-link linkss" href="../api/controller/proc_log.php">Logout</a>
         </div>
 
     </nav>
