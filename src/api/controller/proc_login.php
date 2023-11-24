@@ -21,7 +21,7 @@
         if (password_verify($senha, $verificasenha['SENHA_ADM'])) {
             $_SESSION['login'] = 1;
 
-            header('Location: ../../pages/tela_principal.php');
+            header('Location: ../../pages/menu.php');
             exit();
         } else {
             $_SESSION['msg'] = "<center><span style='color:red;'>Usuario ou senha Incorretos</span></center>";

@@ -1,10 +1,10 @@
 <?php
-session_start();
-if (!isset($_SESSION['login'])) {
-    header("Location: ./login.php");
-    exit;
-}
-include ('./modal.php');
+    session_start();
+    if ($_SESSION['login'] != 1) {
+        header("Location: ./login.php");
+        exit;
+    }
+    include ('./modal.php');
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -22,7 +22,10 @@ include ('./modal.php');
             <a class="navbar-brand" href='./menu.php'>
                 <img src="../../assets/images/logo.png" id="logo" alt="Logo" width="30" height="30">
             </a>
+         
+                <a class="nav-link linkss" href="../api/controller/proc_log.php">Logout</a>
         </div>
+
     </nav>
 
     <main>
