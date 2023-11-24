@@ -178,37 +178,7 @@ session_start();
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-        
-          const notificacao = document.querySelector(".notificacao");
-          const tempo = document.querySelector(".tempo");
-          let timer1;
-  
-          if (notificacao) {
-              notificacao.classList.add("active");
-              tempo.classList.add("active");
-              timer1 = setTimeout(() => {
-                  notificacao.classList.remove("active");
-                  tempo.classList.remove("active");
-                  notificacao.style.display = "none";
-              }, 5000); // 1s = 1000 milliseconds
-          }
-  
-          const closeIcon = document.querySelector(".close");
-  
-          if (closeIcon) {
-              closeIcon.addEventListener("click", () => {
-                  notificacao.classList.remove("active");
-                  tempo.classList.remove("active");
-                  notificacao.style.display = "none";
-                  clearTimeout(timer1);
-              });
-          }
-
-        
-
-        
-    </script>
+   
   
 
 </body>
