@@ -13,6 +13,10 @@
 
                 <button type="submit">Entrar</button>
 </form>
+<?php
+
+echo 'current php' . phpversion();
+?>
     
 </body>
 </html>
