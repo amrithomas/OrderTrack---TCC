@@ -127,3 +127,18 @@
     
 }
 
+
+select {
+    word-wrap: normal;
+    border-radius: 20px;
+    height: 47px;
+    color: #8cb2b0;
+    border: 2px solid #8cb2b0;
+    font-weight: 500;
+    padding: 6px;
+}
+
+select:focus {
+    border-color: #8cb2b0; /* Cor da borda quando o select está focado */
+  }
+
