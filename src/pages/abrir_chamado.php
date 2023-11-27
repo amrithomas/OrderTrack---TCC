@@ -110,7 +110,7 @@
                         </div>
                         <div class="form-group">
                             <label for="mensagem">Assunto: <span id="asterisco">*</span></label>
-                            <textarea class="form-control" id="mensagem" name="item" rows="4" required></textarea>
+                            <textarea class="form-control" id="mensagem" name="item" rows="6" required></textarea>
                         </div>
                         <div class="form-group">
                             <label for="local">Local: <span id="asterisco">*</span></label>
