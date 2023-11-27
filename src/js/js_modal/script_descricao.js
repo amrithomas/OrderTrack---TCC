@@ -148,7 +148,9 @@ function substituirLayout(idChamado) {
                       <hr style="border: 1px solid #999999; width: 98%; ">         
                       
                       <p class="datas" style="font-size: 24px;">Local: <span style="font-size: 24px; margin-left: 10px;">${ordem.LOCALIZACAO}</span> </p>
-                      <p class="datas" style="font-size: 24px;">Data inicial: <span style="font-size: 24px; margin-left: 10px;">Data: ${new Date(ordem.PRAZO).toLocaleDateString('pt-BR')}</span> </p>
+                      <p class="datas" style="font-size: 24px;">Data inicial: <span style="font-size: 24px; margin-left: 10px;">Data: ${new Date(ordem.CRIADO).toLocaleDateString('pt-BR')}</span> </p>
+                      <p class="datas" style="font-size: 24px;">Data final: <span style="font-size: 24px; margin-left: 10px;">Data: ${new Date(ordem.PRAZO).toLocaleDateString('pt-BR')}</span> </p>
+
                     
                     </div>
                     </div>
