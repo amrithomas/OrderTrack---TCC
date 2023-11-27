@@ -352,7 +352,8 @@
                             <tr class='tr-dados' style='font-size: 15px; text-align: center;'>
                                 <td>$id</td>
                                 <td>$servico</td>
-                                <td>$item</td>
+                                <td><textarea readonly style='width: 300px; padding-left: 13px;  textarea::-webkit-scrollbar {
+                                    width: 12px; }'>$item</textarea></td>
                                 <td>$localizacao</td>
                                 <td>$funcionario $sobrenome_funcionario</td>
                                 <td>$data</td>
@@ -762,6 +763,32 @@
           ';
 
             ?>
+
+
+
+
+
+
+
+
+
+            <style>
+                
+                    textarea::-webkit-scrollbar {
+                     width: 12px; /* Ajuste a largura aqui */
+
+                        }
+                
+            </style>
+
+
+
+
+
+
+
+
+
 
             <!-- Footer -->
 
