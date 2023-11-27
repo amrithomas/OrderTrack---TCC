@@ -1,34 +1,16 @@
 <?php
-
- 
-
-session_start();
-
-include_once('../../conection.php');
-
-$id = $_GET['id'];
-
-
- 
-
-$result_funcionario = "SELECT * FROM funcionarios WHERE ID_FUNCIONARIO = '$id'";
-
-   
-
-$query_funcionario = mysqli_query($conn, $result_funcionario);
-
- 
-
-$row_funcionario = mysqli_fetch_assoc($query_funcionario);
-
- 
-
-$_SESSION['id'] = $id;
-
- 
-
- 
-
+  session_start();
+  if ($_SESSION['login'] != 1) {
+    header("Location: ./login.php");
+    exit;
+  }
+  include_once('../../conection.php');
+  
+  $id = $_GET['id'];
+  $result_funcionario = "SELECT * FROM funcionarios WHERE ID_FUNCIONARIO = '$id'";
+  $query_funcionario = mysqli_query($conn, $result_funcionario);
+  $row_funcionario = mysqli_fetch_assoc($query_funcionario);
+  $_SESSION['id'] = $id;
 ?>
 
 <!DOCTYPE html>
