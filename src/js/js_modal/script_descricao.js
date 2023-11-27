@@ -63,7 +63,7 @@ function substituirLayout(idChamado) {
         const ordem = dados.chamado; 
       
         // Criando o elemento select para o status
-        let selectStatusHtml = `<select id="select_status" ${ordem.STATUS === 'CONCLUIDO' ? 'disabled' : ''}>`;
+        let selectStatusHtml = `<select style='cursor:pointer;' id="select_status" ${ordem.STATUS === 'CONCLUIDO' ? 'disabled' : ''}>`;
 
         // Adicionando a opção atual como a primeira opção
         selectStatusHtml += `<option value="${ordem.STATUS}">${ordem.STATUS}</option>`;
@@ -115,7 +115,7 @@ function substituirLayout(idChamado) {
                   <div class="modal-body modalBody" style="padding-top: 20px;">
                 
                     <div>
-                      <img src="../../assets/images/modal/voltar.png" id="back" alt="" style="width: 50px; padding: 5px" > 
+                      <img src="../../assets/images/modal/voltar.png" id="back" alt="" style="width: 50px; padding: 5px; cursor:pointer;" > 
                       <p style="font-weight: 700; margin-left: 80px; margin-top: -46px; font-size: 25px;" id="titulo_chamado">${ordem.SERVICO}</p>
                     </div>
                     <br>
@@ -148,7 +148,9 @@ function substituirLayout(idChamado) {
                       <hr style="border: 1px solid #999999; width: 98%; ">         
                       
                       <p class="datas" style="font-size: 24px;">Local: <span style="font-size: 24px; margin-left: 10px;">${ordem.LOCALIZACAO}</span> </p>
-                      <p class="datas" style="font-size: 24px;">Data inicial: <span style="font-size: 24px; margin-left: 10px;">Data: ${new Date(ordem.PRAZO).toLocaleDateString('pt-BR')}</span> </p>
+                      <p class="datas" style="font-size: 24px;">Data inicial: <span style="font-size: 24px; margin-left: 10px;">Data: ${new Date(ordem.CRIADO).toLocaleDateString('pt-BR')}</span> </p>
+                      <p class="datas" style="font-size: 24px;">Data final: <span style="font-size: 24px; margin-left: 10px;">Data: ${new Date(ordem.PRAZO).toLocaleDateString('pt-BR')}</span> </p>
+
                     
                     </div>
                     </div>

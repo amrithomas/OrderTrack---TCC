@@ -179,37 +179,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        // Carrega os dados salvos ao recarregar a página
-        loadData();
 
-        // Adiciona um listener para cada input do formulário para salvar os dados
-        document.querySelectorAll('.cont-form input, .cont-form textarea, .cont-form select').forEach(function(element) {
-          element.addEventListener('input', saveData);
-        });
-      });
-
-      function saveData() {
-        // Salva os dados de cada input no localStorage
-        document.querySelectorAll('.cont-form input, .cont-form textarea, .cont-form select').forEach(function(element) {
-          if(element.type !== 'file') { // Ignora campos de arquivo
-            localStorage.setItem(element.name, element.value);
-          }
-        });
-      }
-
-      function loadData() {
-        // Carrega os dados de cada input do localStorage
-        document.querySelectorAll('.cont-form input, .cont-form textarea, .cont-form select').forEach(function(element) {
-          if(element.type !== 'file') { // Ignora campos de arquivo
-            if(localStorage.getItem(element.name)) {
-              element.value = localStorage.getItem(element.name);
-            }
-          }
-        });
-      }
-    </script>
 
 
       
