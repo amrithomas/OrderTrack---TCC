@@ -47,27 +47,33 @@ document.addEventListener('DOMContentLoaded', (event) => {
                         
             
                         ordens.forEach(ordem => {
-                            const statusClass = getStatusClass(ordem.STATUS); 
-                            console.log(ordem.ID_ORDEM);
                             
-                            // Criação de novas linhas na tabela para cada ordem
-                            const row = $(`
-                                <tr data-chamado-id="${ordem.ID_ORDEM}" class="${statusClass}" onclick="substituirLayout(this.dataset.chamadoId)">
-                                    <td>
-                                        <p>Título do chamado: ${ordem.SERVICO}</p>
-                                        <p>Urgência: <span style="color:${ordem.PRIORIDADE === 'BAIXA' ? '#7dc73b' : (ordem.PRIORIDADE === 'MÉDIA' ? '#ffa632' : (ordem.PRIORIDADE === 'ALTA' ? '#ff5555' : '#008efb'))}
-                                        ; font-weight: 700; font-size: 23px;">&nbsp ${ordem.PRIORIDADE}</p>
-                                        <div class="nivel"></div>
-                                    </td>
-                                    <td>
-                                        <p>Status: ${ordem.STATUS}</p>
-                                        <p>Data: ${new Date(ordem.PRAZO).toLocaleDateString('pt-BR')}</p>
-                                    </td>
-                                </tr>
-                            `);
-            
-                            // Adiciona a nova linha à tabela
-                            tableBody.append(row);
+                            if (["PENDENTE", "EM ANDAMENTO", "CONCLUIDO"].includes(ordem.STATUS)) {
+                                const statusClass = getStatusClass(ordem.STATUS); 
+                                console.log(ordem.ID_ORDEM);
+                                
+                                // Criação de novas linhas na tabela para cada ordem
+                                const row = $(`
+                                    <tr data-chamado-id="${ordem.ID_ORDEM}" class="${statusClass}" onclick="substituirLayout(this.dataset.chamadoId)">
+                                        <td>
+                                            <p>Título do chamado: ${ordem.SERVICO}</p>
+                                            <p>Urgência: <span style="color:${ordem.PRIORIDADE === 'BAIXA' ? '#7dc73b' : (ordem.PRIORIDADE === 'MÉDIA' ? '#ffa632' : (ordem.PRIORIDADE === 'ALTA' ? '#ff5555' : '#008efb'))}
+                                            ; font-weight: 700; font-size: 23px;">&nbsp ${ordem.PRIORIDADE}</p>
+                                            <div class="nivel"></div>
+                                        </td>
+                                        <td>
+                                            <p>Status: ${ordem.STATUS}</p>
+                                            <p>Data: ${new Date(ordem.PRAZO).toLocaleDateString('pt-BR')}</p>
+                                        </td>
+                                    </tr>
+                                `);
+                
+                                // Adiciona a nova linha à tabela
+                                tableBody.append(row);
+                            } else {
+                                // Se o status for cancelado ele não ira aparecer e sera pulado
+                                console.log("Chamado com status cancelado:", ordem.ID_ORDEM, ordem.STATUS);
+                            }
                         });
             
                         // Atualiza o nome do funcionário na modal
