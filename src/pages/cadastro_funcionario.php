@@ -144,40 +144,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Carrega os dados salvos ao recarregar a página
-            loadFormData();
 
-            // Adiciona um listener para cada input do formulário para salvar os dados
-            document.querySelectorAll('.login-form input').forEach(function(element) {
-            if (element.type !== 'file' && element.type !== 'password') { // Ignora campos de arquivo e senha
-                element.addEventListener('input', saveFormData);
-            }
-            });
-        });
-
-        function saveFormData() {
-            // Salva os dados de cada input no localStorage
-            document.querySelectorAll('.login-form input').forEach(function(element) {
-            if (element.type !== 'file' && element.type !== 'password') { // Ignora campos de arquivo e senha
-                localStorage.setItem(element.name, element.value);
-            }
-            });
-        }
-
-        function loadFormData() {
-            // Carrega os dados de cada input do localStorage
-            document.querySelectorAll('.login-form input').forEach(function(element) {
-            if (element.type !== 'file' && element.type !== 'password') { // Ignora campos de arquivo e senha
-                const savedValue = localStorage.getItem(element.name);
-                if (savedValue) {
-                element.value = savedValue;
-                }
-            }
-            });
-        }
-    </script>
 
 
 </body>
