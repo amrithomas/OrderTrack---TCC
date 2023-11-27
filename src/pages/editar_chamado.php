@@ -1,19 +1,19 @@
 <?php
+  session_start();
+  include_once('../../conection.php');
+  if ($_SESSION['login'] != 1) {
+    header("Location: ./login.php");
+    exit;
+  }
 
-session_start();
-include_once('../../conection.php');
-$id = $_GET['id'];
+  $id = $_GET['id'];
+  $_SESSION['id'] = $id;
+  $result_usuario="SELECT * FROM ordem WHERE ID_ORDEM = '$id'";//string para ver os campos da tabela identificados pelo id e sua inserção 
+  $resultado_usuario= mysqli_query($conn, $result_usuario);// executa 
+  $row_usuario = mysqli_fetch_assoc($resultado_usuario);// é usada para retornar uma matriz associativa representando a próxima linha no conjunto de resultados representado pelo parâmetro result , aonde cada chave representa o nome de uma coluna do conjunto de resultados.
 
-$_SESSION['id'] = $id;
-
-$result_usuario="SELECT * FROM ordem WHERE ID_ORDEM = '$id'";//string para ver os campos da tabela identificados pelo id e sua inserção
-    
-$resultado_usuario= mysqli_query($conn, $result_usuario);// executa 
-$row_usuario = mysqli_fetch_assoc($resultado_usuario);// é usada para retornar uma matriz associativa representando a próxima linha no conjunto de resultados representado pelo parâmetro result , aonde cada chave representa o nome de uma coluna do conjunto de resultados.
-
-
-//setando data e hora do br
- date_default_timezone_set('America/Sao_Paulo');
+  //setando data e hora do br
+  date_default_timezone_set('America/Sao_Paulo');
 
 
 ?>
