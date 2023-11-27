@@ -63,7 +63,7 @@ function substituirLayout(idChamado) {
         const ordem = dados.chamado; 
       
         // Criando o elemento select para o status
-        let selectStatusHtml = `<select id="select_status" ${ordem.STATUS === 'CONCLUIDO' ? 'disabled' : ''}>`;
+        let selectStatusHtml = `<select style='cursor:pointer;' id="select_status" ${ordem.STATUS === 'CONCLUIDO' ? 'disabled' : ''}>`;
 
         // Adicionando a opção atual como a primeira opção
         selectStatusHtml += `<option value="${ordem.STATUS}">${ordem.STATUS}</option>`;
@@ -115,7 +115,7 @@ function substituirLayout(idChamado) {
                   <div class="modal-body modalBody" style="padding-top: 20px;">
                 
                     <div>
-                      <img src="../../assets/images/modal/voltar.png" id="back" alt="" style="width: 50px; padding: 5px" > 
+                      <img src="../../assets/images/modal/voltar.png" id="back" alt="" style="width: 50px; padding: 5px; cursor:pointer;" > 
                       <p style="font-weight: 700; margin-left: 80px; margin-top: -46px; font-size: 25px;" id="titulo_chamado">${ordem.SERVICO}</p>
                     </div>
                     <br>

@@ -67,19 +67,19 @@ function echoModal(){
                             id="lista"
                             src="../../assets/images/modal/fechado.png"
                             onclick="pendente()" 
-                            alt=""
+                            alt="" style="cursor:pointer;"
                           >
                           <img
                             id="aguardando"
                             src="../../assets/images/modal/aguardando.png"
                             onclick="andamento()"
-                            alt=""
+                            alt="" style="cursor:pointer;"
                           >
                           <img
                             id="concluido"
                             src="../../assets/images/modal/concluido.png"
                             onclick="finalizado()"
-                            alt=""
+                            alt="" style="cursor:pointer;"
                           >
                         </div>
                       </th>
