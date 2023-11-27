@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
                                     </td>
                                     <td>
                                         <p>Status: ${ordem.STATUS}</p>
-                                        <p>Data: ${ordem.PRAZO}</p>
+                                        <p>Data: ${new Date(ordem.PRAZO).toLocaleDateString('pt-BR')}</p>
                                     </td>
                                 </tr>
                             `);
