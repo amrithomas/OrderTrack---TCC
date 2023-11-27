@@ -366,7 +366,7 @@
                 if ($status == "PENDENTE") {
 
                     // PENDENTE = PRETO
-                    $dados .= "<td style='color: black;'>$status</td>";
+                    $dados .= "<td style='color: #FA9D4A;'>$status</td>";
 
                 } elseif ($status == "CONCLUIDO") {
 
@@ -376,16 +376,16 @@
                 } elseif ($status == "EM ANDAMENTO") {
 
                     // EM ANDAMENTO = AMARELO
-                    $dados .= "<td style='color: #F2D349;'>$status</td>";
+                    $dados .= "<td style='color: #FFD929;'>$status</td>";
 
                 } elseif ($status == "CANCELADO") {
 
                     // CANCELADO = VERMELHO
-                    $dados .= "<td style='color: red;'>$status</td>";
+                    $dados .= "<td style='color: red; '>$status</td>";
 
                 }
 
-                if ($status == 'PENDENTE') {
+                if ($status != 'CANCELADO') {
 
                     // Dropdown menu para editar ou cancelar um chamado
                     $dados .= " <td>
