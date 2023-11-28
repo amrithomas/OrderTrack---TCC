@@ -63,7 +63,7 @@ function substituirLayout(idChamado) {
         const ordem = dados.chamado; 
       
         // Criando o elemento select para o status
-        let selectStatusHtml = `<select style='cursor:pointer;' id="select_status" ${ordem.STATUS === 'CONCLUIDO' ? 'disabled' : ''}>`;
+        let selectStatusHtml = `<select style='cursor:pointer;' id="select_status" ${ordem.STATUS === 'CONCLUÍDO' ? 'disabled' : ''}>`;
 
         // Adicionando a opção atual como a primeira opção
         selectStatusHtml += `<option value="${ordem.STATUS}">${ordem.STATUS}</option>`;
@@ -72,12 +72,12 @@ function substituirLayout(idChamado) {
         if (ordem.STATUS === 'PENDENTE') {
             selectStatusHtml += `
                 <option value="EM ANDAMENTO">EM ANDAMENTO</option>
-                <option value="CONCLUIDO">CONCLUIDO</option>
+                <option value="CONCLUIDO">CONCLUÍDO</option>
             `;
         } else if (ordem.STATUS === 'EM ANDAMENTO') {
             selectStatusHtml += `
                 <option value="PENDENTE">PENDENTE</option>
-                <option value="CONCLUIDO">CONCLUIDO</option>
+                <option value="CONCLUIDO">CONCLUÍDO</option>
             `;
         }
 
@@ -147,9 +147,9 @@ function substituirLayout(idChamado) {
                     <div>
                       <hr style="border: 1px solid #999999; width: 98%; ">         
                       
-                      <p class="datas" style="font-size: 24px;">Local: <span style="font-size: 24px; margin-left: 10px;">${ordem.LOCALIZACAO}</span> </p>
-                      <p class="datas" style="font-size: 24px;">Data inicial: <span style="font-size: 24px; margin-left: 10px;">Data: ${new Date(ordem.CRIADO).toLocaleDateString('pt-BR')}</span> </p>
-                      <p class="datas" style="font-size: 24px;">Data final: <span style="font-size: 24px; margin-left: 10px;">Data: ${new Date(ordem.PRAZO).toLocaleDateString('pt-BR')}</span> </p>
+                      <p class="datas" style="font-size: 24px; ">Local: <span style="font-size: 24px; margin-left: 10px; color: #5c7877;">${ordem.LOCALIZACAO}</span> </p>
+                      <p class="datas" style="font-size: 24px; ">Data inicial: <span style="font-size: 24px; margin-left: 10px; color: #5c7877;"> ${new Date(ordem.CRIADO).toLocaleDateString('pt-BR')}</span> </p>
+                      <p class="datas" style="font-size: 24px; ">Data final: <span style="font-size: 24px; margin-left: 10px; color: #5c7877;"> ${new Date(ordem.PRAZO).toLocaleDateString('pt-BR')}</span> </p>
 
                     
                     </div>
