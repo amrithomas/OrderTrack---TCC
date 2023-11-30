@@ -150,7 +150,7 @@
                             $funcionarios = $row_funcionarios['NOME_FUNCIONARIO'];
                             $sobrenome = $row_funcionarios['SOBRENOME_FUNCIONARIO'];
                                         
-                            $filters .= "<option value='$funcionarios'>$funcionarios</option>";        
+                            $filters .= "<option value='$funcionarios $sobrenome'>$funcionarios $sobrenome</option>";        
                         };
 
 
@@ -223,7 +223,12 @@
                 if ($_GET['status'] == 'TODOS' && $_GET['funcionario'] != 'TODOS') {
 
                     $status_filter = $_GET['funcionario'];
-                    $result_usuario = "SELECT * FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON rel.FK_HISTORICO = historico_ordem.ID_HISTORICO  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO WHERE NOME_FUNCIONARIO = '$status_filter' ORDER BY ID_ORDEM $ordem LIMIT $inicio, $qnt_result_pg";
+                    $separar_nome = explode(' ', $status_filter);
+
+                    $nome_funcionario = $separar_nome[0];
+                    $sobrenome_funcionario = $separar_nome[1];
+
+                    $result_usuario = "SELECT * FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON rel.FK_HISTORICO = historico_ordem.ID_HISTORICO  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO WHERE NOME_FUNCIONARIO = '$nome_funcionario' AND SOBRENOME_FUNCIONARIO = '$sobrenome_funcionario' ORDER BY ID_ORDEM $ordem LIMIT $inicio, $qnt_result_pg";
 
                 } else if ($_GET['status'] != 'TODOS' && $_GET['funcionario'] == 'TODOS') {
 
@@ -233,9 +238,14 @@
                 } else if ($_GET['status'] != 'TODOS' && $_GET['funcionario'] != 'TODOS') {
 
                     $status_filter = $_GET['status'];
-                    $status_filter2 = $_GET['funcionario'];
 
-                    $result_usuario = "SELECT * FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON rel.FK_HISTORICO = historico_ordem.ID_HISTORICO  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO WHERE STATUS = '$status_filter' AND NOME_FUNCIONARIO = '$status_filter2' ORDER BY ID_ORDEM $ordem LIMIT $inicio, $qnt_result_pg";
+                    $status_filter2 = $_GET['funcionario'];
+                    $separar_nome = explode(' ', $status_filter2);
+
+                    $nome_funcionario = $separar_nome[0];
+                    $sobrenome_funcionario = $separar_nome[1];
+
+                    $result_usuario = "SELECT * FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON rel.FK_HISTORICO = historico_ordem.ID_HISTORICO  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO WHERE STATUS = '$status_filter' AND NOME_FUNCIONARIO = '$nome_funcionario' AND SOBRENOME_FUNCIONARIO = '$sobrenome_funcionario' ORDER BY ID_ORDEM $ordem LIMIT $inicio, $qnt_result_pg";
                 }
 
             } elseif (isset($_GET['status']) && !empty($_GET['status'])) { // Se existir apenas o $_Get['status'] 
@@ -263,7 +273,11 @@
                 } else {
 
                     $status_filter = $_GET['funcionario'];
-                    $result_usuario = "SELECT * FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON rel.FK_HISTORICO = historico_ordem.ID_HISTORICO  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO WHERE NOME_FUNCIONARIO = '$status_filter' ORDER BY ID_ORDEM $ordem LIMIT $inicio, $qnt_result_pg";
+                    $separar_nome = explode(' ', $status_filter);
+
+                    $nome_funcionario = $separar_nome[0];
+                    $sobrenome_funcionario = $separar_nome[1];
+                    $result_usuario = "SELECT * FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON rel.FK_HISTORICO = historico_ordem.ID_HISTORICO  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO WHERE NOME_FUNCIONARIO = '$nome_funcionario' AND SOBRENOME_FUNCIONARIO = '$sobrenome_funcionario' ORDER BY ID_ORDEM $ordem LIMIT $inicio, $qnt_result_pg";
                 
                 }
 
@@ -473,7 +487,11 @@
                 if ($_GET['status'] == 'TODOS' && $_GET['funcionario'] != 'TODOS') {
 
                     $filtro_paginacao = $_GET['funcionario'];
-                    $result_pg = "SELECT COUNT(ID_ORDEM) AS num_result FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON rel.FK_HISTORICO = historico_ordem.ID_HISTORICO  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO WHERE NOME_FUNCIONARIO = '$filtro_paginacao'";
+                    $separar_nome = explode(' ', $filtro_paginacao);
+
+                    $filtro_nome_funcionario = $separar_nome[0];
+                    $filtro_sobrenome_funcionario = $separar_nome[1];
+                    $result_pg = "SELECT COUNT(ID_ORDEM) AS num_result FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON rel.FK_HISTORICO = historico_ordem.ID_HISTORICO  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO WHERE NOME_FUNCIONARIO = '$filtro_nome_funcionario' AND SOBRENOME_FUNCIONARIO = '$filtro_sobrenome_funcionario'";
 
 
                 } else if ($_GET['status'] != 'TODOS' && $_GET['funcionario'] == 'TODOS') {
@@ -487,13 +505,19 @@
                     $filtro_paginacao = $_GET['status'];
                     $filtro_paginacao2 = $_GET['funcionario'];
 
+                    $separar_nome = explode(' ', $filtro_paginacao2);
+
+                    $filtro_nome_funcionario = $separar_nome[0];
+                    $filtro_sobrenome_funcionario = $separar_nome[1];
+
+
                     if ($filtro_paginacao2 == 'TODOS') {
 
                         $result_pg = "SELECT COUNT(ID_ORDEM) AS num_result FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON rel.FK_HISTORICO = historico_ordem.ID_HISTORICO  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO";
 
                     } else {
 
-                        $result_pg = "SELECT COUNT(ID_ORDEM) AS num_result FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON rel.FK_HISTORICO = historico_ordem.ID_HISTORICO  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO WHERE STATUS = '$filtro_paginacao' AND NOME_FUNCIONARIO = '$filtro_paginacao2'";
+                        $result_pg = "SELECT COUNT(ID_ORDEM) AS num_result FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON rel.FK_HISTORICO = historico_ordem.ID_HISTORICO  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO WHERE STATUS = '$filtro_paginacao' AND NOME_FUNCIONARIO = '$filtro_nome_funcionario' AND SOBRENOME_FUNCIONARIO = '$filtro_sobrenome_funcionario'";
      
                     }
                 }
@@ -516,13 +540,18 @@
 
                 $filtro_paginacao = $_GET['funcionario'];
 
+                $separar_nome = explode(' ', $filtro_paginacao);
+
+                $filtro_nome_funcionario = $separar_nome[0];
+                $filtro_sobrenome_funcionario = $separar_nome[1];
+
                 if ($filtro_paginacao == 'TODOS') {
 
                     $result_pg = "SELECT COUNT(ID_ORDEM) AS num_result FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON rel.FK_HISTORICO = historico_ordem.ID_HISTORICO  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO";
                     
                 } else {
 
-                    $result_pg = "SELECT COUNT(ID_ORDEM) AS num_result FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON rel.FK_HISTORICO = historico_ordem.ID_HISTORICO  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO WHERE NOME_FUNCIONARIO = '$filtro_paginacao'";
+                    $result_pg = "SELECT COUNT(ID_ORDEM) AS num_result FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON rel.FK_HISTORICO = historico_ordem.ID_HISTORICO  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO WHERE NOME_FUNCIONARIO = '$filtro_nome_funcionario' AND SOBRENOME_FUNCIONARIO = '$filtro_sobrenome_funcionario'";
                     
                 }
             } else {
@@ -538,7 +567,7 @@
             $row_pg = mysqli_fetch_assoc($resultado_pg);
 
             //Quantidade de pagina
-            $quantidade_pg = floor($row_pg['num_result'] / $qnt_result_pg);
+            $quantidade_pg = ceil($row_pg['num_result'] / $qnt_result_pg);
 
             //Limitar os links nates depois
             $max_links = 2;
