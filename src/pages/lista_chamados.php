@@ -556,7 +556,7 @@
             } else {
 
                 // Se nao ouver nenhum value no $_GET mostrar todas os chamados
-                $result_pg = "SELECT COUNT(ID_ORDEM) AS num_result FROM ordem";
+                $result_pg = "SELECT COUNT(ID_ORDEM) AS num_result FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON rel.FK_HISTORICO = historico_ordem.ID_HISTORICO  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO";
                 
 
             }
