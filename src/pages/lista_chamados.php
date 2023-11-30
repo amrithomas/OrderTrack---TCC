@@ -505,17 +505,16 @@
                     $filtro_paginacao = $_GET['status'];
                     $filtro_paginacao2 = $_GET['funcionario'];
 
-                    $separar_nome = explode(' ', $filtro_paginacao2);
-
-                    $filtro_nome_funcionario = $separar_nome[0];
-                    $filtro_sobrenome_funcionario = $separar_nome[1];
-
 
                     if ($filtro_paginacao2 == 'TODOS') {
 
                         $result_pg = "SELECT COUNT(ID_ORDEM) AS num_result FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON rel.FK_HISTORICO = historico_ordem.ID_HISTORICO  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO";
 
                     } else {
+                        $separar_nome = explode(' ', $filtro_paginacao2);
+
+                        $filtro_nome_funcionario = $separar_nome[0];
+                        $filtro_sobrenome_funcionario = $separar_nome[1];
 
                         $result_pg = "SELECT COUNT(ID_ORDEM) AS num_result FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON rel.FK_HISTORICO = historico_ordem.ID_HISTORICO  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO WHERE STATUS = '$filtro_paginacao' AND NOME_FUNCIONARIO = '$filtro_nome_funcionario' AND SOBRENOME_FUNCIONARIO = '$filtro_sobrenome_funcionario'";
      
