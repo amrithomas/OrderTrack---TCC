@@ -538,7 +538,7 @@
             $row_pg = mysqli_fetch_assoc($resultado_pg);
 
             //Quantidade de pagina
-            $quantidade_pg = ceil($row_pg['num_result'] / $qnt_result_pg);
+            $quantidade_pg = floor($row_pg['num_result'] / $qnt_result_pg);
 
             //Limitar os links nates depois
             $max_links = 2;
