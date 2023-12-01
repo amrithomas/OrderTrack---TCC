@@ -1,7 +1,10 @@
 <?php
-include_once('../../conection.php');
-session_start();
-
+  include_once('../../conection.php');
+  session_start();
+  if ($_SESSION['login'] != 1) {
+      header("Location: ./login.php");
+      exit;
+  }
 ?>
 
 <!DOCTYPE html>
@@ -12,14 +15,15 @@ session_start();
     <title>Lista Funcionários</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../styles/lista_funcionarios/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../styles/lista_funcionarios/styles.css">
 </head>
 <body>
 
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg ">
         <div class="container">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="./menu.php">
               <img src="../../assets/images/logo.png" id="logo" alt="Logo" width="30" height="30">
             </a>
 
@@ -30,7 +34,7 @@ session_start();
             <div class="collapse navbar-collapse justify-content-end header" id="navbarNav">
               <ul class="navbar-nav">
                 <li class="nav-item">
-                  <a class="nav-link linkss" href="#">Home</a>
+                  <a class="nav-link linkss" href="../../index.php">Home</a>
                 </li>
 
                 <li class="nav-item dropdown linkss">
@@ -55,14 +59,47 @@ session_start();
 
                   <div class="dropdown-menu" aria-labelledby="funcionariosDropdown">
                     <a class="dropdown-item" href="./lista_funcionarios.php">Lista de Funcionários</a>
-                    <a class="dropdown-item" href="./cadastrar_funcionario.php">Cadastrar Funcionário</a>
+                    <a class="dropdown-item" href="./cadastro_funcionario.php">Cadastrar Funcionário</a>
                   </div>
                 </li>
               </ul>
             </div>
           </div>
         </nav>
+        <?php
+    if (isset($_SESSION['msg'])) {
+        echo $_SESSION['msg'];
+    echo '<script>
+        const notificacao = document.querySelector(".notificacao");
+        const tempo = document.querySelector(".tempo");
+        let timer1;
 
+        if (notificacao) {
+            notificacao.classList.add("active");
+            tempo.classList.add("active");
+            timer1 = setTimeout(() => {
+                notificacao.classList.remove("active");
+                tempo.classList.remove("active");
+                notificacao.style.display = "none";
+            }, 5000); // 1s = 1000 milliseconds
+        }
+
+        const closeIcon = document.querySelector(".close");
+
+        if (closeIcon) {
+            closeIcon.addEventListener("click", () => {
+                notificacao.classList.remove("active");
+                tempo.classList.remove("active");
+                notificacao.style.display = "none";
+                clearTimeout(timer1);
+            });
+        }
+
+        
+    </script>';
+    unset($_SESSION['msg']);
+    }
+    ?>
        
 
         <!-- Div com a Tabela de Chamados -->
@@ -95,7 +132,7 @@ session_start();
                                     <tr>
                                         <th style='background-color: #8CB2B0; color: #fff;' scope='col'>ID</th>
                                         <th style='background-color: #8CB2B0; color: #fff;'  scope='col'>Nome</th>
-                                        <th style='background-color: #8CB2B0; color: #fff;'  scope='col'>Usuário</th>
+                                        <th style='background-color: #8CB2B0; color: #fff;'  scope='col'>Sobrenome</th>
                                         <th style='background-color: #8CB2B0; color: #fff;'  scope='col'>Status</th>
                                         <th style='background-color: #8CB2B0; color: #fff;'  scope='col'></th>
                                     </tr>
@@ -123,8 +160,8 @@ session_start();
                 $dados .= "
                             <tr class='tr-dados' style='font-size: 15px;'>
                                 <td>$id</td>
-                                <td>$funcionario $sobrenome</td>                          
-                                <td>$usuario</td>                          
+                                <td>$funcionario</td>                          
+                                <td>$sobrenome</td>                          
                         ";
                 
                 // Mudar a cor do Status da Ordem 
@@ -145,14 +182,14 @@ session_start();
                 // Verificar se o Funcionario esta Ativo ou Inativo, para alterar o link de Desativar e Ativar o funcionario
                 if($status == "ATIVO"){
                     $dados .= " <td>
-                                    <div class='dropdown drop' >
+                                    <div class='btn-group dropend drop' >
                                         <button class='btn  dropdown-toggle' type='button' data-bs-toggle='dropdown' aria-expanded='false'>
                                             <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-three-dots' viewBox='0 0 16 16'>
                                             <path d='M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z'/>
                                             </svg>
                                         </button>
                                         <ul class='dropdown-menu'>
-                                            <li><a class='dropdown-item' href='editar_funcionario.php?id=$id'>Editar Funcionário</a></li>
+                                            <li><a class='dropdown-item' href='./editar_funcionario.php?id=$id'>Editar Funcionário</a></li>
                                             <li><a class='dropdown-item' href='../api/controller/proc_desativar_usuario.php?id=$id'>Desativar Funcionário</a></li>
                                         </ul>
                                     </div>
@@ -167,7 +204,7 @@ session_start();
                                             </svg>
                                         </button>
                                         <ul class='dropdown-menu'>
-                                            <li><a class='dropdown-item' href='edit_usuario.php?id=$id'>Editar Funcionário</a></li>
+                                            <li><a class='dropdown-item' href='./editar_funcionario.php?id=$id'>Editar Funcionário</a></li>
                                             <li><a class='dropdown-item' href='../api/controller/proc_ativar_usuario.php?id=$id'>Ativar Funcionário</a></li>
                                         </ul>
                                     </div>
@@ -202,7 +239,7 @@ session_start();
             <img id="logo_equipe" src="../../assets/images/logo_equipe.png" alt="">
         </div>
         <div class="container">
-          <p class="d-flex justify-content-center align-items-center">© OrderTech. Todos os direitos reservados.</p>
+          <p class="d-flex justify-content-center align-items-center">© ProTask. Todos os direitos reservados.</p>
         </div>
       </footer>
         

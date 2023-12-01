@@ -1,75 +1,43 @@
 <?php
-session_start();
-include_once("conexao.php");
 
-if (isset($_POST['status']) && isset($_POST['call_id'])) {
-    $call_id = $_POST['call_id'];
-    $status = $_POST['status'];
+include_once('../../../conection.php');
 
-   $verifica_historico_ordem = mysqli_query($conn, "SELECT * from historico_ordem WHERE FK_ORDEM = '$call_id'");
-   $verifica_histo_ordem = mysqli_fetch_assoc($verifica_historico_ordem);
+$idChamado = $_POST['chamadoID'];
+$novoStatus = $_POST['novoStatus'];
+date_default_timezone_set('America/Sao_Paulo');
 
-   if($verifica_histo_ordem < 1){
-    $historico_ordem =  mysqli_query($conn, "INSERT INTO historico_ordem (FK_ORDEM) VALUES ('$call_id')");
-   }
+// Log para depuração
+error_log("Tentando atualizar o chamado ID: $idChamado para o status: $novoStatus");
+error_log("ID do Chamado: " . $idChamado . ", Novo Status: " . $novoStatus);
 
+$dataHoraAtual = date('Y-m-d H:i:s');
 
+$sql = "UPDATE ordem SET STATUS = ? WHERE ID_ORDEM = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("si", $novoStatus, $idChamado);
 
-    if ($status == 'CONCLUIDO') {
-        // Atualizar o status e definir o tempo de conclusão para a hora atual
-        $query_update_status = "UPDATE ordem SET STATUS = ? WHERE ID_ORDEM = ?";
-        $stmt_update_status = $conn->prepare($query_update_status);
-        $stmt_update_status->bind_param("si", $status, $call_id);
+if ($stmt->execute()) {
+    if ($stmt->affected_rows > 0) {
 
-        $query_update_status1 = "UPDATE historico_ordem SET  DATA_FINALIZACAO = NOW() WHERE FK_ORDEM = ?";
-        $stmt_update_status1 = $conn->prepare($query_update_status1);
-        $stmt_update_status1->bind_param("i", $call_id);
-
-        if ($stmt_update_status->execute() and $stmt_update_status1->execute()) {
-            echo "Status atualizado com sucesso.";
-        } else {
-            echo "Erro ao atualizar o status.";
+        if($novoStatus == "CONCLUIDO"){
+            $update_data = "UPDATE historico_ordem INNER JOIN rel ON rel.FK_HISTORICO = historico_ordem.ID_HISTORICO SET historico_ordem.DATA_FINALIZACAO = '$dataHoraAtual' WHERE rel.FK_ORDEM = '$idChamado';";
+            $upadade_query = mysqli_query($conn, $update_data);
         }
 
-        $stmt_update_status->close();
-        $stmt_update_status1->close();
-    } else if($status == 'EM ANDAMENTO'){
-        // Atualizar o status e definir o tempo de conclusão para a hora atual
-        $query_update_status = "UPDATE ordem SET STATUS = ? WHERE ID_ORDEM = ?";
-        $stmt_update_status = $conn->prepare($query_update_status);
-        $stmt_update_status->bind_param("si", $status, $call_id);
-
-        $query_update_status1 = "UPDATE historico_ordem SET  DATA_EXECUCAO = NOW() WHERE FK_ORDEM = ?";
-        $stmt_update_status1 = $conn->prepare($query_update_status1);
-        $stmt_update_status1->bind_param("i", $call_id);
-
-        if ($stmt_update_status->execute() and $stmt_update_status1->execute()) {
-            echo "Status atualizado com sucesso.";
-        } else {
-            echo "Erro ao atualizar o status.";
-        }
-
-        $stmt_update_status->close();
-        $stmt_update_status1->close();
-
+        echo "Status atualizado com sucesso.";
     } else {
-        // Atualizar apenas o status
-        $query_update_status = "UPDATE ordem SET STATUS = ? WHERE ID_ORDEM = ?";
-        $stmt_update_status = $conn->prepare($query_update_status);
-        $stmt_update_status->bind_param("si", $status, $call_id);
-
-        if ($stmt_update_status->execute()) {
-            echo "Status atualizado com sucesso.";
-        } else {
-            echo "Erro ao atualizar o status.";
-        }
-
-        $stmt_update_status->close();
+        echo "Nenhuma atualização foi feita. Verifique o ID do chamado.";
     }
-
-    $conn->close();
+    echo "Status atualizado com sucesso. Linhas afetadas: " . $stmt->affected_rows;
+} else {
+    echo "Erro ao atualizar o status: " . $stmt->error;
 }
+
+$stmt->close();
+$conn->close();
 ?>
+
+
 
 
 

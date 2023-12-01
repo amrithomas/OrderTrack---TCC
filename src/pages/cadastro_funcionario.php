@@ -1,26 +1,12 @@
 <?php
-
     include_once('../../conection.php');
-
     session_start();
-
- 
-
-   
-
-    if(isset($_SESSION['msg'])){
-
-        echo $_SESSION['msg'];
-
-        unset($_SESSION['msg']);
-
+    if ($_SESSION['login'] != 1) {
+        header("Location: ./login.php");
+        exit;
     }
-
 ?>
 
- 
-
- 
 
 <!DOCTYPE html>
 
@@ -39,13 +25,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../../src/styles/cadastro_funcionario/styles.css">
     <title>Cadastro de Funcionário</title>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="./menu.php">
                 <img src="../../assets/images/logo.png" id="logo" alt="Logo" width="30" height="30">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,7 +41,7 @@
             <div class="collapse navbar-collapse justify-content-end header" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link linkss" href="#">Home</a>
+                        <a class="nav-link linkss" href="../../index.php">Home</a>
                     </li>
                     <li class="nav-item dropdown linkss">
                         <a class="nav-link dropdown-toggle links" href="#" id="chamadosDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -64,8 +51,8 @@
                             </svg>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="chamadosDropdown">
-                            <a class="dropdown-item" href="#">Lista de Chamados</a>
-                            <a class="dropdown-item" href="#">Abrir Chamado</a>
+                            <a class="dropdown-item" href="./lista_chamados.php">Lista de Chamados</a>
+                            <a class="dropdown-item" href="./abrir_chamado.php">Abrir Chamado</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown ">
@@ -76,14 +63,50 @@
                             </svg>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="funcionariosDropdown">
-                            <a class="dropdown-item" href="#">Lista de Funcionários</a>
-                            <a class="dropdown-item" href="#">Login Funcionário</a>
+                            <a class="dropdown-item" href="./lista_funcionarios.php">Lista de Funcionários</a>
+                            <a class="dropdown-item" href="./cadastro_funcionario.php">Cadastrar Funcionário</a>
                         </div>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
+
+    <?php
+    if (isset($_SESSION['msg'])) {
+        echo $_SESSION['msg'];
+    echo '<script>
+        const notificacao = document.querySelector(".notificacao");
+        const tempo = document.querySelector(".tempo");
+        let timer1;
+
+        if (notificacao) {
+            notificacao.classList.add("active");
+            tempo.classList.add("active");
+            timer1 = setTimeout(() => {
+                notificacao.classList.remove("active");
+                tempo.classList.remove("active");
+                notificacao.style.display = "none";
+            }, 5000); // 1s = 1000 milliseconds
+        }
+
+        const closeIcon = document.querySelector(".close");
+
+        if (closeIcon) {
+            closeIcon.addEventListener("click", () => {
+                notificacao.classList.remove("active");
+                tempo.classList.remove("active");
+                notificacao.style.display = "none";
+                clearTimeout(timer1);
+            });
+        }
+
+        
+    </script>';
+    unset($_SESSION['msg']);
+    }
+    ?>
+
     <main class="container">
         <div class="login-form">
 
@@ -114,17 +137,23 @@
         </div>
 
     </main>
-    <footer class="mt-5">
+    <footer class="footer">
+        <div>
+            <img id="logo_equipe" src="../../assets/images/logo_equipe.png" alt="">
+        </div> 
+        <div class="container">
+          <p id="p_footer" class="d-flex justify-content-center align-items-center">© ProTask. Todos os direitos reservados.</p>
 
-        <p>&copy; ProTask . Todos os direitos reservados.</p>
-
-    </footer>
+        </div>                
+      </footer>
     <!-- Incluindo os arquivos JavaScript do Bootstrap (opcional) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
 
 </body>
 

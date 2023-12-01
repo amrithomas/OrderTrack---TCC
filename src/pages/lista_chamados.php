@@ -1,7 +1,10 @@
 <?php
-session_start();
-include_once('../../conection.php');
-
+    include_once('../../conection.php');
+    session_start();
+    if ($_SESSION['login'] != 1) {
+        header("Location: ./login.php");
+        exit;
+    }
 ?>
 
 <!DOCTYPE html>
@@ -13,6 +16,7 @@ include_once('../../conection.php');
     <title>Tabela</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../styles/lista_chamados/style.css">
 </head>
 
@@ -21,7 +25,7 @@ include_once('../../conection.php');
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg ">
         <div class="container">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="./menu.php">
                 <img src="../../assets/images/logo.png" id="logo" alt="Logo" width="30" height="30">
             </a>
 
@@ -32,7 +36,7 @@ include_once('../../conection.php');
             <div class="collapse navbar-collapse justify-content-end header" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link linkss" href="#">Home</a>
+                        <a class="nav-link linkss" href="../../index.php">Home</a>
                     </li>
 
                     <li class="nav-item dropdown linkss">
@@ -57,23 +61,51 @@ include_once('../../conection.php');
 
                         <div class="dropdown-menu" aria-labelledby="funcionariosDropdown">
                             <a class="dropdown-item" href="./lista_funcionarios.php">Lista de Funcionários</a>
-                            <a class="dropdown-item" href="./cadastrar_funcionario.php">Cadastrar Funcionário</a>
+                            <a class="dropdown-item" href="./cadastro_funcionario.php">Cadastrar Funcionário</a>
                         </div>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
+    <?php
+    if (isset($_SESSION['msg'])) {
+        echo $_SESSION['msg'];
+    echo '<script>
+        const notificacao = document.querySelector(".notificacao");
+        const tempo = document.querySelector(".tempo");
+        let timer1;
+
+        if (notificacao) {
+            notificacao.classList.add("active");
+            tempo.classList.add("active");
+            timer1 = setTimeout(() => {
+                notificacao.classList.remove("active");
+                tempo.classList.remove("active");
+                notificacao.style.display = "none";
+            }, 5000); // 1s = 1000 milliseconds
+        }
+
+        const closeIcon = document.querySelector(".close");
+
+        if (closeIcon) {
+            closeIcon.addEventListener("click", () => {
+                notificacao.classList.remove("active");
+                tempo.classList.remove("active");
+                notificacao.style.display = "none";
+                clearTimeout(timer1);
+            });
+        }
+
+        
+    </script>';
+    unset($_SESSION['msg']);
+    }
+    ?>
 
     <!-- Titulo -->
     <div class="titulo container">
         <h1>Lista de Chamados</h1>
-        <?php
-        if(isset($_SESSION['msg'])){//serve para dar a mensagem de cadastrado ou não//isset = basicamente verifica a existência de uma variável
-          echo $_SESSION['msg'];
-          unset($_SESSION['msg']);//unset tira o valor da variavel ou finalizar
-      }
-      ?>
     </div>
 
 
@@ -118,7 +150,7 @@ include_once('../../conection.php');
                             $funcionarios = $row_funcionarios['NOME_FUNCIONARIO'];
                             $sobrenome = $row_funcionarios['SOBRENOME_FUNCIONARIO'];
                                         
-                            $filters .= "<option value='$funcionarios'>$funcionarios</option>";        
+                            $filters .= "<option value='$funcionarios $sobrenome'>$funcionarios $sobrenome</option>";        
                         };
 
 
@@ -127,7 +159,7 @@ include_once('../../conection.php');
                     </select>
                 </div>
                 <div class='filtro3 col'>
-                    <label class='filtroLabelOrdem'>Ordem: Crescente ou Decresente:</label>
+                    <label class='filtroLabelOrdem'>Ordem: Crescente ou Decrescente:</label>
                     <select id='statusFilter3' name='ordem' onchange='applyStatusFilter()'>
                         <option id='selecionado_option3'></option>
                         <option value='Decrescente'>Decrescente</option>
@@ -184,26 +216,36 @@ include_once('../../conection.php');
             if ((isset($_GET['status']) && !empty($_GET['status']) and $_GET['status'] == 'TODOS') and (isset($_GET['funcionario']) && !empty($_GET['funcionario']) and $_GET['funcionario'] == 'TODOS')) {
 
                 //Se o $_GET['status'] tiver o value de 'TODOS', mostar todos os Chamados
-                $result_usuario = "SELECT * FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON historico_ordem.FK_ORDEM = ordem.ID_ORDEM  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO ORDER BY ID_ORDEM $ordem LIMIT $inicio, $qnt_result_pg";
+                $result_usuario = "SELECT * FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON rel.FK_HISTORICO = historico_ordem.ID_HISTORICO  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO ORDER BY ID_ORDEM $ordem LIMIT $inicio, $qnt_result_pg";
 
             } else if ((isset($_GET['status']) && !empty($_GET['status'])) and (isset($_GET['funcionario']) && !empty($_GET['funcionario']))) { // Se existir algum value no $_GET['status'] e $_GET['funcionario']
 
                 if ($_GET['status'] == 'TODOS' && $_GET['funcionario'] != 'TODOS') {
 
                     $status_filter = $_GET['funcionario'];
-                    $result_usuario = "SELECT * FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON historico_ordem.FK_ORDEM = ordem.ID_ORDEM  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO WHERE NOME_FUNCIONARIO = '$status_filter' ORDER BY ID_ORDEM $ordem LIMIT $inicio, $qnt_result_pg";
+                    $separar_nome = explode(' ', $status_filter);
+
+                    $nome_funcionario = $separar_nome[0];
+                    $sobrenome_funcionario = $separar_nome[1];
+
+                    $result_usuario = "SELECT * FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON rel.FK_HISTORICO = historico_ordem.ID_HISTORICO  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO WHERE NOME_FUNCIONARIO = '$nome_funcionario' AND SOBRENOME_FUNCIONARIO = '$sobrenome_funcionario' ORDER BY ID_ORDEM $ordem LIMIT $inicio, $qnt_result_pg";
 
                 } else if ($_GET['status'] != 'TODOS' && $_GET['funcionario'] == 'TODOS') {
 
                     $status_filter = $_GET['status'];
-                    $result_usuario = "SELECT * FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON historico_ordem.FK_ORDEM = ordem.ID_ORDEM  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO WHERE STATUS = '$status_filter' ORDER BY ID_ORDEM $ordem LIMIT $inicio, $qnt_result_pg";
+                    $result_usuario = "SELECT * FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON rel.FK_HISTORICO = historico_ordem.ID_HISTORICO INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO WHERE STATUS = '$status_filter' ORDER BY ID_ORDEM $ordem LIMIT $inicio, $qnt_result_pg";
                 
                 } else if ($_GET['status'] != 'TODOS' && $_GET['funcionario'] != 'TODOS') {
 
                     $status_filter = $_GET['status'];
-                    $status_filter2 = $_GET['funcionario'];
 
-                    $result_usuario = "SELECT * FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON historico_ordem.FK_ORDEM = ordem.ID_ORDEM  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO WHERE STATUS = '$status_filter' AND NOME_FUNCIONARIO = '$status_filter2' ORDER BY ID_ORDEM $ordem LIMIT $inicio, $qnt_result_pg";
+                    $status_filter2 = $_GET['funcionario'];
+                    $separar_nome = explode(' ', $status_filter2);
+
+                    $nome_funcionario = $separar_nome[0];
+                    $sobrenome_funcionario = $separar_nome[1];
+
+                    $result_usuario = "SELECT * FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON rel.FK_HISTORICO = historico_ordem.ID_HISTORICO  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO WHERE STATUS = '$status_filter' AND NOME_FUNCIONARIO = '$nome_funcionario' AND SOBRENOME_FUNCIONARIO = '$sobrenome_funcionario' ORDER BY ID_ORDEM $ordem LIMIT $inicio, $qnt_result_pg";
                 }
 
             } elseif (isset($_GET['status']) && !empty($_GET['status'])) { // Se existir apenas o $_Get['status'] 
@@ -211,13 +253,13 @@ include_once('../../conection.php');
                 if ($_GET['status'] == 'TODOS') {
 
                     //Se o $_GET['status'] tiver o value de 'TODOS', mostar todos os Chamados
-                    $result_usuario = "SELECT * FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON historico_ordem.FK_ORDEM = ordem.ID_ORDEM  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO ORDER BY ID_ORDEM $ordem LIMIT $inicio, $qnt_result_pg";
+                    $result_usuario = "SELECT * FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON rel.FK_HISTORICO = historico_ordem.ID_HISTORICO  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO ORDER BY ID_ORDEM $ordem LIMIT $inicio, $qnt_result_pg";
                 
                 } else {
 
                     //Se tiver algum value no $_GET['status'], mostar os Chamados com status que o usuario filtrou
                     $status_filter = $_GET['status'];
-                    $result_usuario = "SELECT * FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON historico_ordem.FK_ORDEM = ordem.ID_ORDEM  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO WHERE STATUS = '$status_filter' ORDER BY ID_ORDEM $ordem LIMIT $inicio, $qnt_result_pg";
+                    $result_usuario = "SELECT * FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON rel.FK_HISTORICO = historico_ordem.ID_HISTORICO  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO WHERE STATUS = '$status_filter' ORDER BY ID_ORDEM $ordem LIMIT $inicio, $qnt_result_pg";
                 
                 }
 
@@ -226,19 +268,23 @@ include_once('../../conection.php');
                 //Se o $_GET['funcionario'] tiver o value de 'TODOS', mostar todos os Chamados
                 if ($_GET['funcionario'] == 'TODOS') {
 
-                    $result_usuario = "SELECT * FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON historico_ordem.FK_ORDEM = ordem.ID_ORDEM  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO ORDER BY ID_ORDEM $ordem LIMIT $inicio, $qnt_result_pg";
+                    $result_usuario = "SELECT * FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON rel.FK_HISTORICO = historico_ordem.ID_HISTORICO  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO ORDER BY ID_ORDEM $ordem LIMIT $inicio, $qnt_result_pg";
                 
                 } else {
 
                     $status_filter = $_GET['funcionario'];
-                    $result_usuario = "SELECT * FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON historico_ordem.FK_ORDEM = ordem.ID_ORDEM  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO WHERE NOME_FUNCIONARIO = '$status_filter' ORDER BY ID_ORDEM $ordem LIMIT $inicio, $qnt_result_pg";
+                    $separar_nome = explode(' ', $status_filter);
+
+                    $nome_funcionario = $separar_nome[0];
+                    $sobrenome_funcionario = $separar_nome[1];
+                    $result_usuario = "SELECT * FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON rel.FK_HISTORICO = historico_ordem.ID_HISTORICO  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO WHERE NOME_FUNCIONARIO = '$nome_funcionario' AND SOBRENOME_FUNCIONARIO = '$sobrenome_funcionario' ORDER BY ID_ORDEM $ordem LIMIT $inicio, $qnt_result_pg";
                 
                 }
 
             } else {
 
                 // Se não tiver nenhum value no $_GET mostrar todos os Chamados
-                $result_usuario = "SELECT * FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON historico_ordem.FK_ORDEM = ordem.ID_ORDEM  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO ORDER BY ID_ORDEM $ordem LIMIT $inicio, $qnt_result_pg";
+                $result_usuario = "SELECT * FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON rel.FK_HISTORICO = historico_ordem.ID_HISTORICO INNER JOIN funcionarios ON rel.FK_FUNCIONARIO = funcionarios.ID_FUNCIONARIO ORDER BY ID_ORDEM $ordem LIMIT $inicio, $qnt_result_pg";
             }
 
             // QUERY COM O BANCO
@@ -254,7 +300,7 @@ include_once('../../conection.php');
                                         <th style='background-color: #8CB2B0; color: #fff;'  scope='col'>Serviço</th>
                                         <th style='background-color: #8CB2B0; color: #fff;'  scope='col'>Descrição</th>
                                         <th style='background-color: #8CB2B0; color: #fff;'  scope='col'>Localização</th>
-                                        <th style='background-color: #8CB2B0; color: #fff;'  scope='col'>Funcionario</th>
+                                        <th style='background-color: #8CB2B0; color: #fff;'  scope='col'>Funcionário</th>
                                         <th style='background-color: #8CB2B0; color: #fff;'  scope='col'>Data de Criação</th>
                                         <th style='background-color: #8CB2B0; color: #fff;'  scope='col'>Prazo</th>
                                         <th style='background-color: #8CB2B0; color: #fff;'  scope='col'>Data de Conclusão</th>
@@ -320,7 +366,8 @@ include_once('../../conection.php');
                             <tr class='tr-dados' style='font-size: 15px; text-align: center;'>
                                 <td>$id</td>
                                 <td>$servico</td>
-                                <td>$item</td>
+                                <td><textarea readonly style='width: 300px; padding-left: 13px;  textarea::-webkit-scrollbar {
+                                    width: 12px; }'>$item</textarea></td>
                                 <td>$localizacao</td>
                                 <td>$funcionario $sobrenome_funcionario</td>
                                 <td>$data</td>
@@ -334,7 +381,7 @@ include_once('../../conection.php');
                 if ($status == "PENDENTE") {
 
                     // PENDENTE = PRETO
-                    $dados .= "<td style='color: black;'>$status</td>";
+                    $dados .= "<td style='color: #FA9D4A;'>$status</td>";
 
                 } elseif ($status == "CONCLUIDO") {
 
@@ -344,16 +391,16 @@ include_once('../../conection.php');
                 } elseif ($status == "EM ANDAMENTO") {
 
                     // EM ANDAMENTO = AMARELO
-                    $dados .= "<td style='color: #F2D349;'>$status</td>";
+                    $dados .= "<td style='color: #FFD929;'>$status</td>";
 
                 } elseif ($status == "CANCELADO") {
 
                     // CANCELADO = VERMELHO
-                    $dados .= "<td style='color: red;'>$status</td>";
+                    $dados .= "<td style='color: red; '>$status</td>";
 
                 }
 
-                if ($status == 'PENDENTE') {
+                if ($status != 'CANCELADO') {
 
                     // Dropdown menu para editar ou cancelar um chamado
                     $dados .= " <td>
@@ -363,7 +410,7 @@ include_once('../../conection.php');
                                     <path d='M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z'/>
                                     </svg>
                                   </button>
-                                  <ul class='dropdown-menu' style=''>
+                                  <ul class='dropdown-menu'>
                                     <li>
                                       <a class='dropdown-item' href='editar_chamado.php?id=$id'> 
                                         <svg id='svg-drop1' xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-pencil-square' viewBox='0 0 16 16'>
@@ -440,13 +487,17 @@ include_once('../../conection.php');
                 if ($_GET['status'] == 'TODOS' && $_GET['funcionario'] != 'TODOS') {
 
                     $filtro_paginacao = $_GET['funcionario'];
-                    $result_pg = "SELECT COUNT(ID_ORDEM) AS num_result FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON historico_ordem.FK_ORDEM = ordem.ID_ORDEM  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO WHERE NOME_FUNCIONARIO = '$filtro_paginacao'";
+                    $separar_nome = explode(' ', $filtro_paginacao);
+
+                    $filtro_nome_funcionario = $separar_nome[0];
+                    $filtro_sobrenome_funcionario = $separar_nome[1];
+                    $result_pg = "SELECT COUNT(ID_ORDEM) AS num_result FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON rel.FK_HISTORICO = historico_ordem.ID_HISTORICO  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO WHERE NOME_FUNCIONARIO = '$filtro_nome_funcionario' AND SOBRENOME_FUNCIONARIO = '$filtro_sobrenome_funcionario'";
 
 
                 } else if ($_GET['status'] != 'TODOS' && $_GET['funcionario'] == 'TODOS') {
 
                     $filtro_paginacao = $_GET['status'];
-                    $result_pg = "SELECT COUNT(ID_ORDEM) AS num_result FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON historico_ordem.FK_ORDEM = ordem.ID_ORDEM  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO WHERE STATUS = '$filtro_paginacao'";
+                    $result_pg = "SELECT COUNT(ID_ORDEM) AS num_result FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON rel.FK_HISTORICO = historico_ordem.ID_HISTORICO  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO WHERE STATUS = '$filtro_paginacao'";
    
 
                 } else if ((isset($_GET['status']) && !empty($_GET['status'])) and (isset($_GET['funcionario']) && !empty($_GET['funcionario']))) {
@@ -454,13 +505,18 @@ include_once('../../conection.php');
                     $filtro_paginacao = $_GET['status'];
                     $filtro_paginacao2 = $_GET['funcionario'];
 
+
                     if ($filtro_paginacao2 == 'TODOS') {
 
-                        $result_pg = "SELECT COUNT(ID_ORDEM) AS num_result FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON historico_ordem.FK_ORDEM = ordem.ID_ORDEM  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO";
+                        $result_pg = "SELECT COUNT(ID_ORDEM) AS num_result FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON rel.FK_HISTORICO = historico_ordem.ID_HISTORICO  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO";
 
                     } else {
+                        $separar_nome = explode(' ', $filtro_paginacao2);
 
-                        $result_pg = "SELECT COUNT(ID_ORDEM) AS num_result FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON historico_ordem.FK_ORDEM = ordem.ID_ORDEM  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO WHERE STATUS = '$filtro_paginacao' AND NOME_FUNCIONARIO = '$filtro_paginacao2'";
+                        $filtro_nome_funcionario = $separar_nome[0];
+                        $filtro_sobrenome_funcionario = $separar_nome[1];
+
+                        $result_pg = "SELECT COUNT(ID_ORDEM) AS num_result FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON rel.FK_HISTORICO = historico_ordem.ID_HISTORICO  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO WHERE STATUS = '$filtro_paginacao' AND NOME_FUNCIONARIO = '$filtro_nome_funcionario' AND SOBRENOME_FUNCIONARIO = '$filtro_sobrenome_funcionario'";
      
                     }
                 }
@@ -483,19 +539,24 @@ include_once('../../conection.php');
 
                 $filtro_paginacao = $_GET['funcionario'];
 
+                $separar_nome = explode(' ', $filtro_paginacao);
+
+                $filtro_nome_funcionario = $separar_nome[0];
+                $filtro_sobrenome_funcionario = $separar_nome[1];
+
                 if ($filtro_paginacao == 'TODOS') {
 
-                    $result_pg = "SELECT COUNT(ID_ORDEM) AS num_result FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON historico_ordem.FK_ORDEM = ordem.ID_ORDEM  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO";
+                    $result_pg = "SELECT COUNT(ID_ORDEM) AS num_result FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON rel.FK_HISTORICO = historico_ordem.ID_HISTORICO  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO";
                     
                 } else {
 
-                    $result_pg = "SELECT COUNT(ID_ORDEM) AS num_result FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON historico_ordem.FK_ORDEM = ordem.ID_ORDEM  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO WHERE NOME_FUNCIONARIO = '$filtro_paginacao'";
+                    $result_pg = "SELECT COUNT(ID_ORDEM) AS num_result FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON rel.FK_HISTORICO = historico_ordem.ID_HISTORICO  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO WHERE NOME_FUNCIONARIO = '$filtro_nome_funcionario' AND SOBRENOME_FUNCIONARIO = '$filtro_sobrenome_funcionario'";
                     
                 }
             } else {
 
                 // Se nao ouver nenhum value no $_GET mostrar todas os chamados
-                $result_pg = "SELECT COUNT(ID_ORDEM) AS num_result FROM ordem";
+                $result_pg = "SELECT COUNT(ID_ORDEM) AS num_result FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON rel.FK_HISTORICO = historico_ordem.ID_HISTORICO  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO";
                 
 
             }
@@ -526,8 +587,11 @@ include_once('../../conection.php');
                 $status_get = $_GET['status'];
                 $funcionario_get = $_GET['funcionario'];
                 
-
-                $paginacao .= "<li class='page-item'><a class='page-link' href='lista_chamados.php?pagina=1&status=$status_get&funcionario=$funcionario_get&ordem=$ordem_get'>Primeira</a></li>";
+                if($quantidade_pg > 1){
+                    $paginacao .= "<li class='page-item'><a class='page-link' href='lista_chamados.php?pagina=1&status=$status_get&funcionario=$funcionario_get&ordem=$ordem_get'>Primeira</a></li>";
+                }else {
+                    $paginacao .= "<li class='page-item page-link pag_disable_primeira'>Primeira</li>";
+                }
 
                 for ($pag_ant = $pagina - $max_links; $pag_ant <= $pagina - 1; $pag_ant++) {
                     if ($pag_ant >= 1) {
@@ -536,13 +600,19 @@ include_once('../../conection.php');
                 }
 
                 $paginacao .= "<li class='page-item page-link' style='background-color: #8CB2B0; color: #fff'>$pagina</li>";
+
                 for ($pag_dep = $pagina + 1; $pag_dep <= $pagina + $max_links; $pag_dep++) {
                     if ($pag_dep <= $quantidade_pg) {
                         $paginacao .= "<li class='page-item'><a  class='page-link' href='lista_chamados.php?pagina=$pag_dep&status=$status_get&funcionario=$funcionario_get&ordem=$ordem_get'> $pag_dep </a></li>";
                     }
                 }
 
-                $paginacao .= "<li class='page-item'><a class='page-link' href= 'lista_chamados.php?pagina=$quantidade_pg&status=$status_get&funcionario=$funcionario_get&ordem=$ordem_get'>  Ultima</a></li>";
+                if($quantidade_pg > 1){
+                    $paginacao .= "<li class='page-item'><a class='page-link' href= 'lista_chamados.php?pagina=$quantidade_pg&status=$status_get&funcionario=$funcionario_get&ordem=$ordem_get'>  Última</a></li>";
+                }else {
+                    $paginacao .= "<li class='page-item page-link pag_disable_ultima'>Última</li>";
+                }
+
                 $paginacao .= "</ul></nav></div>";
 
             } else if ((isset($_GET['status']) && !empty($_GET['status'])) and (isset($_GET['funcionario']) && !empty($_GET['funcionario']))) {
@@ -550,7 +620,12 @@ include_once('../../conection.php');
                 $status_get = $_GET['status'];
                 $funcionario_get = $_GET['funcionario'];
 
-                $paginacao .= "<li class='page-item'><a class='page-link' href='lista_chamados.php?pagina=1&status=$status_get&funcionario=$funcionario_get&ordem=$ordem_get'>Primeira</a></li>";
+                if($quantidade_pg > 1){
+                    $paginacao .= "<li class='page-item'><a class='page-link' href='lista_chamados.php?pagina=1&status=$status_get&funcionario=$funcionario_get&ordem=$ordem_get'>Primeira</a></li>";
+                }else {
+                    $paginacao .= "<li class='page-item page-link pag_disable_primeira'>Primeira</li>";
+                }
+
 
                 for ($pag_ant = $pagina - $max_links; $pag_ant <= $pagina - 1; $pag_ant++) {
                     if ($pag_ant >= 1) {
@@ -565,14 +640,23 @@ include_once('../../conection.php');
                     }
                 }
 
-                $paginacao .= "<li class='page-item'><a class='page-link' href= 'lista_chamados.php?pagina=$quantidade_pg&status=$status_get&funcionario=$funcionario_get&ordem=$ordem_get'>  Ultima</a></li>";
+                if($quantidade_pg > 1){
+                    $paginacao .= "<li class='page-item'><a class='page-link' href= 'lista_chamados.php?pagina=$quantidade_pg&status=$status_get&funcionario=$funcionario_get&ordem=$ordem_get'>  Última</a></li>";
+                }else{
+                    $paginacao .= "<li class='page-item page-link pag_disable_ultima'>Última</li>";
+                }
+
                 $paginacao .= "</ul></nav></div>";
 
             } else if (isset($_GET['status']) && !empty($_GET['status'])) {
             
                 $status_get = $_GET['status'];
 
-                $paginacao .= "<li class='page-item'><a class='page-link' href='lista_chamados.php?pagina=1&status=$status_get&ordem=$ordem_get'>Primeira</a></li>";
+                if($quantidade_pg > 1){
+                    $paginacao .= "<li class='page-item'><a class='page-link' href='lista_chamados.php?pagina=1&status=$status_get&ordem=$ordem_get'>Primeira</a></li>";
+                }else{
+                    $paginacao .= "<li class='page-item page-link pag_disable_primeira'>Primeira</li>";
+                }
 
                 for ($pag_ant = $pagina - $max_links; $pag_ant <= $pagina - 1; $pag_ant++) {
                     if ($pag_ant >= 1) {
@@ -587,18 +671,27 @@ include_once('../../conection.php');
                     }
                 }
 
-                $paginacao .= "<li class='page-item'><a class='page-link' href= 'lista_chamados.php?pagina=$quantidade_pg&status=$status_get&ordem=$ordem_get'>  Ultima</a></li>";
+                if($quantidade_pg > 1){
+                    $paginacao .= "<li class='page-item'><a class='page-link' href= 'lista_chamados.php?pagina=$quantidade_pg&status=$status_get&ordem=$ordem_get'>  Última</a></li>";
+                }else{
+                    $paginacao .= "<li class='page-item page-link pag_disable_ultima'>Última</li>";
+                }
+
                 $paginacao .= "</ul></nav></div>";
 
             } else if (isset($_GET['funcionario']) && !empty($_GET['funcionario'])) {
                 
                 $status_get = $_GET['funcionario'];
 
-                $paginacao .= "<li class='page-item'><a class='page-link' href='lista_chamados.php?pagina=1&funcionario=$status_get&ordem=$ordem_get'>Primeira</a></li>";
+                if($quantidade_pg > 1){
+                    $paginacao .= "<li class='page-item'><a class='page-link' href='lista_chamados.php?pagina=1&funcionario=$status_get&ordem=$ordem_get'>Primeira</a></li>";
+                }else{
+                    $paginacao .= "<li class='page-item page-link pag_disable_primeira'>Primeira</li>";
+                }
 
                 for ($pag_ant = $pagina - $max_links; $pag_ant <= $pagina - 1; $pag_ant++) {
                     if ($pag_ant >= 1) {
-                        $paginacao .= "<li class='page-item'><a class='page-link' href='lista_chamados.php?pagina=$pag_ant&funcionario=$status_get&ordem=$ordem_get'> $pag_ant </a></li>";
+                        $paginacao .= "<li class='page-item '><a class='page-link' href='lista_chamados.php?pagina=$pag_ant&funcionario=$status_get&ordem=$ordem_get'> $pag_ant </a></li>";
                     }
                 }
 
@@ -609,11 +702,20 @@ include_once('../../conection.php');
                     }
                 }
 
-                $paginacao .= "<li class='page-item'><a class='page-link' href= 'lista_chamados.php?pagina=$quantidade_pg&funcionario=$status_get&ordem=$ordem_get'>  Ultima</a></li>";
+                if($quantidade_pg > 1){
+                    $paginacao .= "<li class='page-item'><a class='page-link' href= 'lista_chamados.php?pagina=$quantidade_pg&funcionario=$status_get&ordem=$ordem_get'>  Última</a></li>";
+                }else{
+                    $paginacao .= "<li class='page-item page-link pag_disable_ultima'>Última</li>";
+                }
+
                 $paginacao .= "</ul></nav></div>";
             } else { // Se não existir nenhum value no $_GET 
 
-                $paginacao .= "<li class='page-item'><a class='page-link' href='lista_chamados.php?pagina=1&ordem=$ordem_get'>Primeira</a></li>";
+                if($quantidade_pg > 1){
+                    $paginacao .= "<li class='page-item'><a class='page-link' href='lista_chamados.php?pagina=1&ordem=$ordem_get'>Primeira</a></li>";
+                }else{
+                    $paginacao .= "<li class='page-item page-link pag_disable_primeira'>Primeira</li>";
+                }
                 for ($pag_ant = $pagina - $max_links; $pag_ant <= $pagina - 1; $pag_ant++) {
                     if ($pag_ant >= 1) {
                         $paginacao .= "<li class='page-item'><a class='page-link' href='lista_chamados.php?pagina=$pag_ant&ordem=$ordem_get'> $pag_ant </a></li>";
@@ -627,7 +729,12 @@ include_once('../../conection.php');
                     }
                 }
 
-                $paginacao .= "<li class='page-item'><a class='page-link' href= 'lista_chamados.php?pagina=$quantidade_pg&ordem=$ordem_get'>  Ultima</a></li>";
+                if($quantidade_pg > 1){
+                    $paginacao .= "<li class='page-item'><a class='page-link' href= 'lista_chamados.php?pagina=$quantidade_pg&ordem=$ordem_get'>  Última</a></li>";
+                }else{
+                    $paginacao .= "<li class='page-item page-link pag_disable_ultima'>Última</li>";
+                }
+
                 $paginacao .= "</ul></nav></div></div>";
             }
 
@@ -685,6 +792,32 @@ include_once('../../conection.php');
 
             ?>
 
+
+
+
+
+
+
+
+
+            <style>
+                
+                    textarea::-webkit-scrollbar {
+                     width: 12px; /* Ajuste a largura aqui */
+
+                        }
+                
+            </style>
+
+
+
+
+
+
+
+
+
+
             <!-- Footer -->
 
 
@@ -696,7 +829,7 @@ include_once('../../conection.php');
             <img id="logo_equipe" src="../../assets/images/logo_equipe.png" alt="">
         </div>
         <div class="container">
-            <p class="d-flex justify-content-center align-items-center">© OrderTech. Todos os direitos reservados.</p>
+            <p class="d-flex justify-content-center align-items-center">© ProTask. Todos os direitos reservados.</p>
         </div>
     </footer>
 

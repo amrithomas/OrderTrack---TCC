@@ -87,6 +87,27 @@ td {
     font-weight: 500;
 }
 
+.pag_disable_primeira {
+    color: #8CB2B0;
+    font-weight: 500;
+    border-top-left-radius: var(--bs-pagination-border-radius);
+    border-bottom-left-radius: var(--bs-pagination-border-radius);
+}
+
+.pag_disable_ultima {
+    color: #8CB2B0;
+    font-weight: 500;
+    border-top-right-radius: var(--bs-pagination-border-radius);
+    border-bottom-right-radius: var(--bs-pagination-border-radius);
+}
+
+.pag_disable_primeira:hover {
+    color: #8CB2B0;
+}
+
+.pag_disable_ultima:hover{
+    color: #8CB2B0;
+}
 
 .container-fluid {
     padding: 20px; 
@@ -296,7 +317,7 @@ td {
 
 
   
-  footer {
+footer {
     color: #A9A3A3;
     font-weight: 500;
     background-color: #fff;
@@ -313,10 +334,117 @@ td {
 
     
     
-  }
+}
 
 
 
+.notificacao{
+    position: absolute;
+    top: 25px;
+    right: 30px;
+    border-radius: 12px;
+    background: #fff;
+    padding: 20px 35px 20px 25px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    border-left: 6px solid #8CB2B0;
+    overflow: hidden;
+    transform: translateX(calc(100% + 30px));
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.35);
+}
+.notificacao.active{
+    transform: translateX(0%);
+}
+.notificacao .notificacao-div{
+    display: flex;
+    align-items: center;
+}
+.notificacao-div .check{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 35px;
+    width: 35px;
+    background-color: #8CB2B0;
+    color: #fff;
+    font-size: 20px;
+    border-radius: 50%;
+}
+
+.notificacao-div .mensagem{
+    display: flex;
+    flex-direction: column;
+    margin: 0 20px;
+}
+
+.mensagem .text{
+    font-size: 20px;
+    font-weight: 400;;
+    color: #8CB2B0;
+}
+.mensagem .text.text-1{
+    font-weight: 600;
+    color: #8CB2B0;
+}
+.notificacao .close{
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    padding: 5px;
+    cursor: pointer;
+    opacity: 0.7;
+}
+.notificacao .close:hover{
+    opacity: 1;
+}
+.notificacao .tempo{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    width: 100%;
+    background: #ddd;
+}
+.notificacao .tempo:before{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #8CB2B0;
+}
+.tempo.active:before{
+    animation: progress 5s linear forwards;
+}
+
+@keyframes progress {
+    100%{
+        right: 100%;
+    }
+}
+
+.bi-check-lg {
+    font-size: 30px;
+    color: #8CB2B0;
+}
+
+.close {
+    font-size: 20px;
+    color: #8CB2B0;
+}
+
+.bi-x-circle-fill {
+    color: #8CB2B0;
+}
   
 
 
+.notificacao .tempo_error:before{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    background-color: red;
+}

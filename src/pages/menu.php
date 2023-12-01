@@ -1,3 +1,10 @@
+<?php
+    session_start();
+    if ($_SESSION['login'] != 1) {
+        header("Location: ./login.php");
+        exit;
+    }
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -8,8 +15,8 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-    
-    <link rel="stylesheet" href="../../src/styles/menu/styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../../src/styles/menu/style.css">
     <title>Menu</title>
 
 </head>
@@ -20,7 +27,7 @@
 
 <div class="container">
 
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="../../index.php">
 
       <img src="../../assets/images/logo.png" id="logo" alt="Logo" width="30" height="30">
 
@@ -34,7 +41,7 @@
        <div class="collapse navbar-collapse justify-content-end header" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link linkss" href="#">Home</a>
+          <a class="nav-link linkss" href="../../index.php">Home</a>
         </li>
 
         <li class="nav-item dropdown linkss">
@@ -46,8 +53,8 @@
 
 
           <div class="dropdown-menu" aria-labelledby="chamadosDropdown">
-            <a class="dropdown-item" href="#">Lista de Chamados</a>
-            <a class="dropdown-item" href="#">Abrir Chamado</a>
+            <a class="dropdown-item" href="./lista_chamados.php">Lista de Chamados</a>
+            <a class="dropdown-item" href="./abrir_chamado.php">Abrir Chamado</a>
           </div>
         </li>
 
@@ -59,64 +66,107 @@
           </a>
 
           <div class="dropdown-menu" aria-labelledby="funcionariosDropdown">
-            <a class="dropdown-item" href="#">Lista de Funcionários</a>
-            <a class="dropdown-item" href="#">Login Funcionário</a>
-
+            <a class="dropdown-item" href="./lista_funcionarios.php">Lista de Funcionários</a>
+            <a class="dropdown-item" href="./cadastro_funcionario.php">Cadastrar Funcionário</a>
           </div>
         </li>
+        <a class="nav-link linkss" href="../api/controller/proc_log.php">Logout</a>
+
       </ul>
     </div>
   </nav>
 </div>
+<?php
+    if (isset($_SESSION['msg'])) {
+        echo $_SESSION['msg'];
+    echo '<script>
+        const notificacao = document.querySelector(".notificacao");
+        const tempo = document.querySelector(".tempo");
+        let timer1;
+
+        if (notificacao) {
+            notificacao.classList.add("active");
+            tempo.classList.add("active");
+            timer1 = setTimeout(() => {
+                notificacao.classList.remove("active");
+                tempo.classList.remove("active");
+                notificacao.style.display = "none";
+            }, 5000); // 1s = 1000 milliseconds
+        }
+
+        const closeIcon = document.querySelector(".close");
+
+        if (closeIcon) {
+            closeIcon.addEventListener("click", () => {
+                notificacao.classList.remove("active");
+                tempo.classList.remove("active");
+                notificacao.style.display = "none";
+                clearTimeout(timer1);
+            });
+        }
+
+        
+    </script>';
+    unset($_SESSION['msg']);
+    }
+    ?>
    <main>
     <div class="card" href="../">
-        <div class="imgBX">
-            <img src="../../assets/images/menu/abrirChamado.png" alt="Abertura de Lista de Serviço">
-        </div>
-        <div class="content">
-            <div class="details">
-                <h2>Abertura de Lista de Serviço</h2>
+        <a href="./abrir_chamado.php">
+            <div class="imgBX">
+                <img src="../../assets/images/menu/notificacao.png" style="top: 35px; width: 77%;" alt="Abertura de Lista de Serviço">
             </div>
-        </div>
+            <div class="content">
+                <div class="details">
+                    <h2>Abertura Serviço</h2>
+                </div>
+            </div>
+        </a>
     </div>
 
     <div class="card">
-        <div class="imgBX">
-            <img src="../../assets/images/menu/lista_chamados.png" alt="Lista de Serviço">
-        </div>
-        <div class="content">
-            <div class="details">
-                <h2>Lista de Serviço</h2>
+        <a href="./lista_chamados.php">
+            <div class="imgBX">
+                <img src="../../assets/images/menu/lista_chamados.png" alt="Lista de Serviço">
             </div>
-        </div>
+            <div class="content">
+                <div class="details">
+                    <h2>Lista de Serviço</h2>
+                </div>
+            </div>
+        </a>
     </div>
 
     <div class="card">
-        <div class="imgBX">
-            <img src="../../assets/images/menu/adicionar_funcionarios.png" alt="Adicionar Funcionários">
-        </div>
-        <div class="content">
-            <div class="details">
-                <h2>Adicionar Funcionários</h2>
+        <a href="./cadastro_funcionario.php">
+            <div class="imgBX">
+                <img src="../../assets/images/menu/adicionar-usuario.png" alt="Adicionar Funcionários">
             </div>
-        </div>
+            <div class="content">
+                <div class="details">
+                    <h2>Adicionar Funcionários</h2>
+                </div>
+            </div>
+        </a>
     </div>
 
     <div class="card" >
-        <div class="imgBX">
-            <img src="../../assets/images/menu/equipe.png" alt="Lista de Funcionários">
-        </div>
-        <div class="content">
-            <div class="details">
-                <h2>Lista de Funcionários</h2>
+        <a href="./lista_funcionarios.php">
+            <div class="imgBX">
+                <img src="../../assets/images/menu/groupe.png" alt="Lista de Funcionários">
             </div>
-        </div>
+            <div class="content">
+                <div class="details">
+                    <h2>Lista de Funcionários</h2>
+                </div>
+            </div>
+        </a>
     </div>
 
     <div class="card">
-    <a href="relatorios.php">
+    <a href="./relatorio.php">
         <div class="imgBX">
-            <img src="../../assets/images/menu/relatorios.png" alt="Relatórios">
+            <img src="../../assets/images/menu/grafico.png" alt="Relatórios">
         </div>
         <div class="content">
             <div class="details">
@@ -128,8 +178,16 @@
 </main>
 
 
-    <footer>
-        <p>&copy; ProTask . Todos os direitos reservados.</p>
+
+
+    <footer class="footer">
+        <div>
+            <img id="logo_equipe" src="../../assets/images/logo_equipe.png" alt="">
+        </div> 
+        <div class="container">
+          <p class="d-flex justify-content-center align-items-center">© ProTask. Todos os direitos reservados.</p>
+
+        </div>                
     </footer>
     
     <!-- Incluindo os arquivos JavaScript do Bootstrap (opcional) -->
@@ -139,7 +197,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
-
 
 
 

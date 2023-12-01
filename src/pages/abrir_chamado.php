@@ -1,6 +1,10 @@
 <?php 
   session_start();
   include_once('../../conection.php');
+  if ($_SESSION['login'] != 1) {
+    header("Location: ./login.php");
+    exit;
+  }
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -10,12 +14,13 @@
     <title>Abrir Chamado</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../styles/abrir_chamado/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../styles/abrir_chamado/styles.css">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg ">
         <div class="container">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="./menu.php">
               <img src="../../assets/images/logo.png" id="logo" alt="Logo" width="30" height="30">
               
             </a>
@@ -27,7 +32,7 @@
             <div class="collapse navbar-collapse justify-content-end header" id="navbarNav">
               <ul class="navbar-nav">
                 <li class="nav-item">
-                  <a class="nav-link linkss" href="#">Home</a>
+                  <a class="nav-link linkss" href="../../index.php">Home</a>
                 </li>
 
                 <li class="nav-item dropdown linkss">
@@ -52,7 +57,7 @@
 
                   <div class="dropdown-menu" aria-labelledby="funcionariosDropdown">
                     <a class="dropdown-item" href="./lista_funcionarios.php">Lista de Funcionários</a>
-                    <a class="dropdown-item" href="./cadastrar_funcionario.php">Cadastrar Funcionário</a>
+                    <a class="dropdown-item" href="./cadastro_funcionario.php">Cadastrar Funcionário</a>
                   </div>
                 </li>
               </ul>
@@ -61,12 +66,40 @@
         </div>
       
     <div class="container">
-      <?php
-        if(isset($_SESSION['msg'])){//serve para dar a mensagem de cadastrado ou não//isset = basicamente verifica a existência de uma variável
-          echo $_SESSION['msg'];
-          unset($_SESSION['msg']);//unset tira o valor da variavel ou finalizar
-      }
-      ?>
+    <?php
+    if (isset($_SESSION['msg'])) {
+        echo $_SESSION['msg'];
+    echo '<script>
+        const notificacao = document.querySelector(".notificacao");
+        const tempo = document.querySelector(".tempo");
+        let timer1;
+
+        if (notificacao) {
+            notificacao.classList.add("active");
+            tempo.classList.add("active");
+            timer1 = setTimeout(() => {
+                notificacao.classList.remove("active");
+                tempo.classList.remove("active");
+                notificacao.style.display = "none";
+            }, 5000); // 1s = 1000 milliseconds
+        }
+
+        const closeIcon = document.querySelector(".close");
+
+        if (closeIcon) {
+            closeIcon.addEventListener("click", () => {
+                notificacao.classList.remove("active");
+                tempo.classList.remove("active");
+                notificacao.style.display = "none";
+                clearTimeout(timer1);
+            });
+        }
+
+        
+    </script>';
+    unset($_SESSION['msg']);
+    }
+    ?>
             <div class="container container-form">
                 <div class="text-start">
                     <h2 class="d-flex justify-content-center align-items-center titulo">Abrir Chamado</h2>
@@ -77,7 +110,7 @@
                         </div>
                         <div class="form-group">
                             <label for="mensagem">Assunto: <span id="asterisco">*</span></label>
-                            <textarea class="form-control" id="mensagem" name="item" rows="4" required></textarea>
+                            <textarea class="form-control" id="mensagem" name="item" rows="6" required></textarea>
                         </div>
                         <div class="form-group">
                             <label for="local">Local: <span id="asterisco">*</span></label>
@@ -86,11 +119,11 @@
                         <div class="form-group">
                             <label for="imagem">Upload de Imagem: </label>
                             <br>
-                            <input type="file" class="form-control-file " id="imagem" name="imagem">
+                            <input type="file" class="form-control-file " id="img" name="img">
                         </div>
                         <div class="form-group">
                             <label for="selectOption" class="form-label">Urgência: <span id="asterisco">*</span></label>
-                            <select class="form-select " style="width: 200px;" id="selectOption" name="urgencia">
+                            <select class="form-select " style="width: 200px;" id="selectOption" name="urgencia" required>
                                 <option value="" disabled selected>Selecione</option>
                                 <option value="ALTA">Alta</option>
                                 <option value="MEDIA">Média</option>
@@ -98,12 +131,12 @@
                             </select>
                         </div>
                         <div class="form-group ">
-                            <label for="">Data Final: <span id="asterisco">*</span></label><br>
-                            <input name="data" type="date" id="inputDate" min="<?php echo date("Y-m-d");?>">
+                            <label for="">Prazo: <span id="asterisco">*</span></label><br>
+                            <input name="data" type="date" id="inputDate" min="<?php echo date("Y-m-d");?>" required>
                         </div>
                         <div class="form-group">
                             <label for="selectOption" class="form-label">Funcionario: <span id="asterisco">*</span></label>
-                            <select name="funcionarios" class="form-select " style="width: 200px;" id="selectOption">
+                            <select name="funcionarios" class="form-select " style="width: 200px;" id="selectOption" required>
                                 <option value="" disabled selected>Selecione</option>
                                 <?php
 
@@ -138,7 +171,7 @@
             <img id="logo_equipe" src="../../assets/images/logo_equipe.png" alt="">
         </div> 
         <div class="container">
-          <p class="d-flex justify-content-center align-items-center">© OrderTech. Todos os direitos reservados.</p>
+          <p class="d-flex justify-content-center align-items-center">© ProTask. Todos os direitos reservados.</p>
 
         </div>                
       </footer>
@@ -146,6 +179,8 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
 
       
     
