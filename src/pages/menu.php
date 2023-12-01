@@ -27,7 +27,7 @@
 
 <div class="container">
 
-    <a class="navbar-brand" href="./tela_inicial.php">
+    <a class="navbar-brand" href="../../index.php">
 
       <img src="../../assets/images/logo.png" id="logo" alt="Logo" width="30" height="30">
 
@@ -41,7 +41,7 @@
        <div class="collapse navbar-collapse justify-content-end header" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link linkss" href="./tela_inicial.php">Home</a>
+          <a class="nav-link linkss" href="../../index.php">Home</a>
         </li>
 
         <li class="nav-item dropdown linkss">

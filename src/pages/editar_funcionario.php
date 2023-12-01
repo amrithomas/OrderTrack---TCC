@@ -63,7 +63,7 @@
 
                 <li class="nav-item">
 
-                  <a class="nav-link linkss" href="./tela_inicial.php">Home</a>
+                  <a class="nav-link linkss" href="../../index.php">Home</a>
 
                 </li>
 

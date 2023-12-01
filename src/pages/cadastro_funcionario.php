@@ -33,7 +33,7 @@
             <div class="collapse navbar-collapse justify-content-end header" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link linkss" href="./tela_inicial.php">Home</a>
+                        <a class="nav-link linkss" href="../../index.php">Home</a>
                     </li>
                     <li class="nav-item dropdown linkss">
                         <a class="nav-link dropdown-toggle links" href="#" id="chamadosDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

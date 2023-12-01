@@ -34,7 +34,7 @@
 
     <div class="container">
 
-      <a class="navbar-brand" href="tela_inicial.php">
+      <a class="navbar-brand" href="../../index.php">
 
         <img src="../../assets/images/logo.png" id="logo" alt="Logo" width="30" height="30">
 

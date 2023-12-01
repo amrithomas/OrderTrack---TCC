@@ -56,7 +56,7 @@
        <div class="collapse navbar-collapse justify-content-end header" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link linkss" href="./tela_inicial.php">Home</a>
+          <a class="nav-link linkss" href="../../index.php">Home</a>
         </li>
 
         <li class="nav-item dropdown linkss">
@@ -128,7 +128,7 @@
             echo "<label for='ano'>Selecione o ano:</label>";
             echo "<select name='ano' id='ano' required>";
             $anoAtual = date('Y');
-            for ($ano = 2010; $ano <= $anoAtual; $ano++) {
+            for ($ano = 1990; $ano <= $anoAtual; $ano++) {
                 echo "<option value='$ano'>$ano</option>";
             }
             echo "</select>";
