@@ -98,39 +98,8 @@
 <div class="div-notificacao">
 
 </div>
-<script>
-      
-        const notificacao = document.querySelector(".notificacao");
-        const tempo = document.querySelector(".tempo");
-        let timer1;
-
-        if (notificacao) {
-            notificacao.classList.add("active");
-            tempo.classList.add("active");
-            timer1 = setTimeout(() => {
-                notificacao.classList.remove("active");
-                tempo.classList.remove("active");
-                notificacao.style.display = "none";
-            }, 5000); // 1s = 1000 milliseconds
-        }
-
-        const closeIcon = document.querySelector(".close");
-
-        if (closeIcon) {
-            closeIcon.addEventListener("click", () => {
-                notificacao.classList.remove("active");
-                tempo.classList.remove("active");
-                notificacao.style.display = "none";
-                clearTimeout(timer1);
-            });
-        }
-
-        
-    </script>
 
 
-
-    
     <main>
         <div class="formEstilo">
           <div class="container">
@@ -209,6 +178,40 @@
             <p class="d-flex justify-content-center align-items-center">© ProTask. Todos os direitos reservados.</p>
         </div>
     </footer>
+
+    <script>
+
+      function timeAlert(){
+        const notificacao = document.querySelector(".notificacao");
+        const tempo = document.querySelector(".tempo");
+        let timer1;
+
+        if (notificacao) {
+            notificacao.classList.add("active");
+            tempo.classList.add("active");
+            timer1 = setTimeout(() => {
+                notificacao.classList.remove("active");
+                tempo.classList.remove("active");
+                notificacao.style.display = "none";
+                notificacao.remove();
+            }, 5000); // 1s = 1000 milliseconds
+        }
+
+        const closeIcon = document.querySelector(".close");
+
+        if (closeIcon) {
+            closeIcon.addEventListener("click", () => {
+                notificacao.classList.remove("active");
+                tempo.classList.remove("active");
+                notificacao.style.display = "none";
+                notificacao.remove();
+                clearTimeout(timer1);
+            });
+        }
+        
+      }
+   
+    </script>
 
     
     <!-- Incluindo os arquivos JavaScript do Bootstrap (opcional) -->
