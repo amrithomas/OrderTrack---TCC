@@ -134,11 +134,24 @@
             <div class="form-group">
               <label for="selectOption" class="form-label">Urgência: </label>
                 <select name='urgencia' class="form-select " style="width: 200px;" id="selectOption" required>
-                  <?php $prioridade = $row_usuario['PRIORIDADE']; ?> 
-                  <option value="<?php echo $prioridade; ?>"><?php echo $prioridade; ?></option>
-                  <option value="ALTA">Alta</option>
-                  <option value="MEDIA">Média</option>
-                  <option value="BAIXA">Baixa</option>
+                <?php $prioridade = $row_usuario['PRIORIDADE'];
+                  if ($prioridade == 'ALTA') {
+                            echo '<option value="ALTA">ALTA</option>';
+                            echo '<option value="MEDIA">MÉDIA</option>';
+                            echo '<option value="BAIXA">BAIXA</option>';
+                        }
+                  if($prioridade == 'BAIXA'){
+                             echo '<option value="BAIXA">BAIXA</option>';
+                            echo '<option value="ALTA">ALTA</option>';
+                            echo '<option value="MEDIA">MÉDIA</option>';
+                  }  
+ 
+                  if($prioridade == 'MÉDIA'){
+                            echo '<option value="MEDIA">MÉDIA</option>';
+                            echo '<option value="ALTA">ALTA</option>';
+                            echo '<option value="BAIXA">BAIXA</option>';
+                  }  
+                  ?>
                 </select>
             </div>
             <div class="form-group ">
@@ -187,6 +200,20 @@
                                 <option value='EM ANDAMENTO'>EM ANDAMENTO</option>
                                 <option value='CONCLUIDO'>CONCLUIDO</option>
                                 <option value='CANCELADO'>CANCELADO</option>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                               </select>
                           </div>
 
