@@ -6,6 +6,7 @@
     exit;
   }
 ?>
+
 <!DOCTYPE html>
 
 <html lang="pt-BR">
@@ -71,8 +72,8 @@
 
 
           <div class="dropdown-menu" aria-labelledby="chamadosDropdown">
-            <a class="dropdown-item" href="#">Lista de Chamados</a>
-            <a class="dropdown-item" href="#">Abrir Chamado</a>
+            <a class="dropdown-item" href="./lista_chamados.php">Lista de Chamados</a>
+            <a class="dropdown-item" href="./abrir_chamado.php">Abrir Chamado</a>
           </div>
         </li>
 
@@ -84,8 +85,8 @@
           </a>
 
           <div class="dropdown-menu" aria-labelledby="funcionariosDropdown">
-            <a class="dropdown-item" href="#">Lista de Funcionários</a>
-            <a class="dropdown-item" href="#">Login Funcionário</a>
+            <a class="dropdown-item" href="./lista_funcionarios.php">Lista de Funcionários</a>
+            <a class="dropdown-item" href="./cadastro_funcionario.php">Cadastrar Funcionário</a>
 
           </div>
         </li>

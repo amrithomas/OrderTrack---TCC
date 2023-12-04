@@ -151,7 +151,7 @@
                             $funcionarios = $row_funcionarios['NOME_FUNCIONARIO'];
                             $sobrenome = $row_funcionarios['SOBRENOME_FUNCIONARIO'];
                                         
-                            $filters .= "<option value='$funcionarios $sobrenome'>$funcionarios $sobrenome</option>";        
+                            $filters .= "<option value='$funcionarios $sobrenome' name='funcionario'>$funcionarios $sobrenome</option>";        
                         };
 
 

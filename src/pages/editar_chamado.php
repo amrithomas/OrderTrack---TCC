@@ -134,24 +134,41 @@
             <div class="form-group">
               <label for="selectOption" class="form-label">Urgência: </label>
                 <select name='urgencia' class="form-select " style="width: 200px;" id="selectOption" required>
-                <?php $prioridade = $row_usuario['PRIORIDADE'];
-                  if ($prioridade == 'ALTA') {
-                            echo '<option value="ALTA">ALTA</option>';
-                            echo '<option value="MEDIA">MÉDIA</option>';
-                            echo '<option value="BAIXA">BAIXA</option>';
+            
+                        <?php
+                        $prioridade = $row_usuario['PRIORIDADE'];
+                        switch ($prioridade) {
+                            case 'ALTA':
+                                ?>
+                                <option value="ALTA" selected>ALTA</option>
+                                <option value="MEDIA">MÉDIA</option>
+                                <option value="BAIXA">BAIXA</option>
+                                <?php
+                                break;
+                            case 'MEDIA':
+                                ?>
+                                <option value="MEDIA" selected>MÉDIA</option>
+                                <option value="ALTA">ALTA</option>
+                                <option value="BAIXA">BAIXA</option>
+                                <?php
+                                break;
+                            case 'BAIXA':
+                                ?>
+                                <option value="BAIXA" selected>BAIXA</option>
+                                <option value="ALTA">ALTA</option>
+                                <option value="MEDIA">MÉDIA</option>
+                                <?php
+                                break;
+                            default:
+                                // Caso não corresponda a nenhum dos casos anteriores, exibe as opções padrão
+                                ?>
+                                <option value="ALTA">ALTA</option>
+                                <option value="MEDIA">MÉDIA</option>
+                                <option value="BAIXA">BAIXA</option>
+                                <?php
+                                break;
                         }
-                  if($prioridade == 'BAIXA'){
-                             echo '<option value="BAIXA">BAIXA</option>';
-                            echo '<option value="ALTA">ALTA</option>';
-                            echo '<option value="MEDIA">MÉDIA</option>';
-                  }  
- 
-                  if($prioridade == 'MÉDIA'){
-                            echo '<option value="MEDIA">MÉDIA</option>';
-                            echo '<option value="ALTA">ALTA</option>';
-                            echo '<option value="BAIXA">BAIXA</option>';
-                  }  
-                  ?>
+                        ?>
                 </select>
             </div>
             <div class="form-group ">
@@ -173,7 +190,7 @@
                                       $funcionario = $row_funcionarios['NOME_FUNCIONARIO'];
                                       $sobrenome = $row_funcionarios['SOBRENOME_FUNCIONARIO'];
                                                   
-                                      $funcionarios .= "<option value='$funcionario $sobrenome'>$funcionario  $sobrenome</option>";        
+                                      $funcionarios .= "<option value='$funcionario  $sobrenome' name='funcionario'>$funcionario  $sobrenome</option>";        
                                   };
                                   
                                   $result_funcionario_ordem = "SELECT * FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON rel.FK_HISTORICO = historico_ordem.ID_HISTORICO  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO WHERE ID_ORDEM = '$id'";
@@ -195,24 +212,39 @@
                           <div class="form-group">
                               <label for="selectOption" class="form-label">Status Ordem: </label>
                               <select class="form-select " name='status' style="width: 200px;" id="selectOption" required>
-                                <option value="<?php echo $row_usuario['STATUS']; ?>"><?php echo $row_usuario['STATUS']; ?></option>
-                                <option value='PENDENTE'>PENDENTE</option>
-                                <option value='EM ANDAMENTO'>EM ANDAMENTO</option>
-                                <option value='CONCLUIDO'>CONCLUIDO</option>
-                                <option value='CANCELADO'>CANCELADO</option>
+                               
 
+                                  <?php $status_select = $row_usuario['STATUS'];
 
+                                  if ($status_select == 'PENDENTE') {
+                                    echo '<option value="PENDENTE" selected>PENDENTE</option>';
+                                    echo '<option value="EM ANDAMENTO">EM ANDAMENTO</option>';
+                                    echo '<option value="CONCLUIDO">CONCLUÍDO</option>'; 
+                                    echo '<option value="CANCELADO">CANCELADO</option>'; 
 
+                                  }
 
+                                  if ($status_select == 'EM ANDAMENTO') {
+                                    echo '<option value="EM ANDAMENTO" selected>EM ANDAMENTO</option>';
+                                    echo '<option value="PENDENTE">PENDENTE</option>';
+                                    echo '<option value="CONCLUIDO">CONCLUÍDO</option>'; 
+                                    echo '<option value="CANCELADO">CANCELADO</option>'; 
+                                  }
 
+                                  if ($status_select == 'CONCLUIDO') {
+                                    echo '<option value="CONCLUIDO" selected>CONCLUÍDO</option>';
+                                    echo '<option value="PENDENTE">PENDENTE</option>';
+                                    echo '<option value="EM ANDAMENTO">EM ANDAMENTO</option>'; 
+                                    echo '<option value="CANCELADO">CANCELADO</option>'; 
+                                  }
 
-
-
-
-
-
-
-
+                                  if ($status_select == 'CANCELADO') {
+                                    echo '<option value="CANCELADO" selected>CANCELADO</option>';
+                                    echo '<option value="PENDENTE">PENDENTE</option>';
+                                    echo '<option value="EM ANDAMENTO">EM ANDAMENTO</option>'; 
+                                    echo '<option value="CONCLUIDO">CONCLUÍDO</option>'; 
+                                  }              
+                                  ?>
 
                               </select>
                           </div>
