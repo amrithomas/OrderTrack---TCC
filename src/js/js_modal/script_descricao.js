@@ -76,7 +76,6 @@ function substituirLayout(idChamado) {
             `;
         } else if (ordem.STATUS === 'EM ANDAMENTO') {
             selectStatusHtml += `
-                <option value="PENDENTE">PENDENTE</option>
                 <option value="CONCLUIDO">CONCLUÍDO</option>
             `;
         }
