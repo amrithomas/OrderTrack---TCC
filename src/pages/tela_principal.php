@@ -21,7 +21,7 @@
             </a>
          
         </div>
-
+ 
     </nav>
 
     <main>
@@ -38,8 +38,9 @@
        
                 while($row_usuario = mysqli_fetch_assoc($resultado_usuario)){
                     if($row_usuario['STATUS_FUNCIONARIO'] == 'ATIVO'){
-                        echo '<div class="sub-card">';
-                      // Verifique se a imagem não está vazia
+
+                        echo '<div class="sub-card" onclick="aparecemodal(' . $row_usuario['ID_FUNCIONARIO'] . ')"alt="Ícone de Mensagem" class="mensagem-img"> ';
+                        // Verifique se a imagem não está vazia
                 if (!empty($row_usuario['IMAGEM_FUNCIONARIO'])) {
                     $tipo_mime = 'image/png'; // Substitua pelo tipo MIME correto (exemplo: image/png)
                     $imagem_base64 = base64_encode($row_usuario['IMAGEM_FUNCIONARIO']); // Codifica a imagem do funcionário em uma representação em base64.
@@ -57,14 +58,15 @@
                     echo '<img src="../../assets/images/telaPrincipal/funcionario.png" alt="' . $row_usuario['NOME_FUNCIONARIO'] . '" class="funcionario-img">';
                 }
 
-                       
                         echo '<h3>' . $row_usuario['NOME_FUNCIONARIO'] . " " . $row_usuario['SOBRENOME_FUNCIONARIO'].'</h3>';
                         echo '<a onclick="aparecemodal(' . $row_usuario['ID_FUNCIONARIO'] . ')"><img src="../../assets/images/telaPrincipal/messagem.png" alt="Ícone de Mensagem" class="mensagem-img"></a>';
                         echo '<div class="subcard-overlay">';
                         echo '<h3>Detalhes do ' . $row_usuario['NOME_FUNCIONARIO'] . '</h3>';
                         // Coloque aqui mais detalhes sobre o funcionário
                         echo '</div>';
-                        echo '</div>';                        
+                        echo '</a></div>';           
+
+
                     }
                 }
             ?>
