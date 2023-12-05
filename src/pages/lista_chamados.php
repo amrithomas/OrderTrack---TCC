@@ -143,7 +143,7 @@
                         <option value='TODOS'>TODOS</option>
                         ";
                         // Query para pegar todos os funcionarios Ativos
-                        $resultados_funcionarios = "SELECT * FROM funcionarios WHERE STATUS_FUNCIONARIO = 'ATIVO'";
+                        $resultados_funcionarios = "SELECT * FROM funcionarios";
                         $query_funcionarios = mysqli_query($conn, $resultados_funcionarios);
               
                         while($row_funcionarios = mysqli_fetch_assoc($query_funcionarios)){
