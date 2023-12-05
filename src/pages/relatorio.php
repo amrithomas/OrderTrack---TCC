@@ -132,7 +132,7 @@
             echo "<label for='ano'>Selecione o ano:</label>";
             echo "<select name='ano' id='ano' required>";
             $anoAtual = date('Y');
-            for ($ano = 1990; $ano <= $anoAtual; $ano++) {
+            for ($ano = 2023; $ano <= $anoAtual; $ano++) {
                 echo "<option value='$ano'>$ano</option>";
             }
             echo "</select>";

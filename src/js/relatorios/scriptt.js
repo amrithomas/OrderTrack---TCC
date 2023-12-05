@@ -63,7 +63,7 @@ function criarOuAtualizarGraficoSemanal(dados) {
 
     if (todosZeros) {
         alertPersonalizado();
-        return; // Retorna sem criar o gráfico
+  
     }
 
    
@@ -218,7 +218,7 @@ function criarOuAtualizarGraficoMensal(dados) {
 
     if (todosZeros) {
         alertPersonalizado2()
-        return; // Retorna sem criar o gráfico
+   
     }
 
     if (graficoMensal) {
@@ -369,7 +369,7 @@ function criarOuAtualizarGraficoDiario(dados) {
 
     if (todosZeros) {
         alertPersonalizado3();
-        return; // Retorna sem criar o gráfico
+    
     }
 
     if (graficoDiario) {
@@ -512,7 +512,7 @@ function criarOuAtualizarGraficoAnual(dados) {
 
     if (todosZeros) {
         alertPersonalizado4();
-        return; // Retorna sem criar o gráfico
+   
     }
 
     if (graficoAnual) {

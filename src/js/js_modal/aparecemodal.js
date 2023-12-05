@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
     modal = document.getElementById("myModal");
 
     window.aparecemodal = function(funcionarioId) {
-        console.log("ID do funcionário selecionado:", funcionarioId);
         idFuncionarioAtual = funcionarioId;
 
         if (modal) {
@@ -27,7 +26,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 type: 'GET',
                 data: { funcionarioID: funcionarioId },
                 success: function(data) {
-                    console.log("Dados recebidos:", data);
                     const response = JSON.parse(data);
             
                     if (response.success) {
@@ -50,7 +48,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
                             
                             if (["PENDENTE", "EM ANDAMENTO", "CONCLUIDO"].includes(ordem.STATUS)) {
                                 const statusClass = getStatusClass(ordem.STATUS); 
-                                console.log(ordem.ID_ORDEM);
                                 
                                 // Criação de novas linhas na tabela para cada ordem
                                 const row = $(`
