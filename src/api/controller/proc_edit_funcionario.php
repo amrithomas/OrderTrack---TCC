@@ -5,11 +5,9 @@ include_once("../../../conection.php");
 $id = $_SESSION['id'];
 
 $nome = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_STRING);
+$sobrenome = filter_input(INPUT_POST, 'sobrenome', FILTER_SANITIZE_STRING);
 $status = filter_input(INPUT_POST, 'status', FILTER_SANITIZE_STRING);
-$nome_completo = $_POST['nome'];
-$nome_sobrenome = explode(" ", $nome_completo);
-$nome = $nome_sobrenome[0];
-$sobrenome = $nome_sobrenome[1];
+
 
 //verificação para não deixar enviar campo nulo
 var_dump($nome);
@@ -81,11 +79,11 @@ if (isset($_FILES["imagem"]) && $_FILES["imagem"]["error"] === UPLOAD_ERR_OK) {
     if (!empty($imagem_binaria)) {
         $update_query = "UPDATE funcionarios SET NOME_FUNCIONARIO=?, SOBRENOME_FUNCIONARIO=?, IMAGEM_FUNCIONARIO=?, STATUS_FUNCIONARIO=? WHERE ID_FUNCIONARIO = ?";
         $stmt = mysqli_prepare($conn, $update_query);
-        mysqli_stmt_bind_param($stmt, 'ssssi', $nome, $nome_sobrenome[1], $imagem_binaria, $status, $id);
+        mysqli_stmt_bind_param($stmt, 'ssssi', $nome, $sobrenome, $imagem_binaria, $status, $id);
     } else {
         $update_query = "UPDATE funcionarios SET NOME_FUNCIONARIO=?, SOBRENOME_FUNCIONARIO=?, STATUS_FUNCIONARIO=? WHERE ID_FUNCIONARIO = ?";
         $stmt = mysqli_prepare($conn, $update_query);
-        mysqli_stmt_bind_param($stmt, 'sssi', $nome, $nome_sobrenome[1], $status, $id);
+        mysqli_stmt_bind_param($stmt, 'sssi', $nome, $sobrenome, $status, $id);
     }
 
     if (mysqli_stmt_execute($stmt)) {
@@ -117,7 +115,7 @@ if (isset($_FILES["imagem"]) && $_FILES["imagem"]["error"] === UPLOAD_ERR_OK) {
 } else {
     $update_query = "UPDATE funcionarios SET NOME_FUNCIONARIO=?, SOBRENOME_FUNCIONARIO=?, STATUS_FUNCIONARIO=? WHERE ID_FUNCIONARIO = ?";
     $stmt = mysqli_prepare($conn, $update_query);
-    mysqli_stmt_bind_param($stmt, 'sssi', $nome, $nome_sobrenome[1], $status, $id);
+    mysqli_stmt_bind_param($stmt, 'sssi', $nome, $sobrenome, $status, $id);
 
     if (mysqli_stmt_execute($stmt)) {
         $_SESSION['msg'] = '<div class="notificacao">

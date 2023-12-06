@@ -174,9 +174,16 @@
 
           <div class="form-group">
 
-              <label for="nomeFuncionario">Nome do Funcionário:</label>
+              <label for="nomeFuncionario">Nome:</label>
 
-              <input type="text" class="form-control" id="nomeFuncionario" name="nome" value="<?php echo $row_funcionario['NOME_FUNCIONARIO'] ." ". $row_funcionario['SOBRENOME_FUNCIONARIO'] ?>" required>
+              <input type="text" class="form-control" placeholder="Nome" id="nomeFuncionario" name="nome" value="<?php echo $row_funcionario['NOME_FUNCIONARIO']?>" required>
+
+          </div>
+          <div class="form-group">
+
+              <label for="nomeFuncionario">Sobrenome:</label>
+
+              <input type="text" class="form-control" id="nomeFuncionario" placeholder="Sobrenome" name="sobrenome" value="<?php echo $row_funcionario['SOBRENOME_FUNCIONARIO'] ?>" required>
 
           </div>
 
