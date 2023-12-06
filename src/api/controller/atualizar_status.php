@@ -24,7 +24,7 @@ if ($stmt->execute()) {
             $upadade_query = mysqli_query($conn, $update_data);
         }
 
-        echo "Status atualizado com sucesso.";
+        echo "Status atualizadoo com sucesso.";
     } else {
         echo "Nenhuma atualização foi feita. Verifique o ID do chamado.";
     }

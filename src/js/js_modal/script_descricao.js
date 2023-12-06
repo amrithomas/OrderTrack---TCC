@@ -42,7 +42,6 @@ function restaurarCategoria() {
 function substituirLayout(idChamado) {
     //Função que tras os dados da descrição
     const modal = document.querySelector("#myModal");
-    console.log(idChamado, 'aa')
 
     // Se o conteúdo original não foi definido, defina-o agora
     if (!conteudoOriginal) { 
@@ -76,7 +75,6 @@ function substituirLayout(idChamado) {
             `;
         } else if (ordem.STATUS === 'EM ANDAMENTO') {
             selectStatusHtml += `
-                <option value="PENDENTE">PENDENTE</option>
                 <option value="CONCLUIDO">CONCLUÍDO</option>
             `;
         }
@@ -131,7 +129,7 @@ function substituirLayout(idChamado) {
                         </div>
                       
                         <div class="col box-foto" >
-                          <img src="../../assets/images/modal/pessoa.png" id="foto" alt="">
+                          <img src="../../assets/images/modal/foto_objeto_chamado.png" id="foto" alt="">
                         </div> 
                                 
                       </div>
@@ -169,10 +167,6 @@ function substituirLayout(idChamado) {
                   data: {
                       chamadoID: idChamado, // Supondo que você tenha o ID do chamado disponível
                       novoStatus: statusSelecionado
-                  },
-                  success: function(response) {
-                      console.log('Status atualizado com sucesso.');
-                      // Você pode querer atualizar a interface do usuário aqui
                   },
                   error: function(jqXHR, textStatus, errorThrown) {
                       console.error('Erro ao atualizar o status: ', textStatus, errorThrown);

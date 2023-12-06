@@ -23,6 +23,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Chamado</title>
+    <link rel="shortcut icon" type="png" href="../../assets/images/icone_logo.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
@@ -133,11 +134,41 @@
             <div class="form-group">
               <label for="selectOption" class="form-label">Urgência: </label>
                 <select name='urgencia' class="form-select " style="width: 200px;" id="selectOption" required>
-                  <?php $prioridade = $row_usuario['PRIORIDADE']; ?> 
-                  <option value="<?php echo $prioridade; ?>"><?php echo $prioridade; ?></option>
-                  <option value="ALTA">Alta</option>
-                  <option value="MEDIA">Média</option>
-                  <option value="BAIXA">Baixa</option>
+            
+                        <?php
+                        $prioridade = $row_usuario['PRIORIDADE'];
+                        switch ($prioridade) {
+                            case 'ALTA':
+                                ?>
+                                <option value="ALTA" selected>ALTA</option>
+                                <option value="MEDIA">MÉDIA</option>
+                                <option value="BAIXA">BAIXA</option>
+                                <?php
+                                break;
+                            case 'MEDIA':
+                                ?>
+                                <option value="MEDIA" selected>MÉDIA</option>
+                                <option value="ALTA">ALTA</option>
+                                <option value="BAIXA">BAIXA</option>
+                                <?php
+                                break;
+                            case 'BAIXA':
+                                ?>
+                                <option value="BAIXA" selected>BAIXA</option>
+                                <option value="ALTA">ALTA</option>
+                                <option value="MEDIA">MÉDIA</option>
+                                <?php
+                                break;
+                            default:
+                                // Caso não corresponda a nenhum dos casos anteriores, exibe as opções padrão
+                                ?>
+                                <option value="ALTA">ALTA</option>
+                                <option value="MEDIA">MÉDIA</option>
+                                <option value="BAIXA">BAIXA</option>
+                                <?php
+                                break;
+                        }
+                        ?>
                 </select>
             </div>
             <div class="form-group ">
@@ -159,7 +190,7 @@
                                       $funcionario = $row_funcionarios['NOME_FUNCIONARIO'];
                                       $sobrenome = $row_funcionarios['SOBRENOME_FUNCIONARIO'];
                                                   
-                                      $funcionarios .= "<option value='$funcionario $sobrenome'>$funcionario  $sobrenome</option>";        
+                                      $funcionarios .= "<option value='$funcionario  $sobrenome' name='funcionario'>$funcionario  $sobrenome</option>";        
                                   };
                                   
                                   $result_funcionario_ordem = "SELECT * FROM ordem INNER JOIN rel ON ID_ORDEM = FK_ORDEM INNER JOIN historico_ordem ON rel.FK_HISTORICO = historico_ordem.ID_HISTORICO  INNER JOIN funcionarios ON FK_FUNCIONARIO = ID_FUNCIONARIO WHERE ID_ORDEM = '$id'";
@@ -181,11 +212,40 @@
                           <div class="form-group">
                               <label for="selectOption" class="form-label">Status Ordem: </label>
                               <select class="form-select " name='status' style="width: 200px;" id="selectOption" required>
-                                <option value="<?php echo $row_usuario['STATUS']; ?>"><?php echo $row_usuario['STATUS']; ?></option>
-                                <option value='PENDENTE'>PENDENTE</option>
-                                <option value='EM ANDAMENTO'>EM ANDAMENTO</option>
-                                <option value='CONCLUIDO'>CONCLUIDO</option>
-                                <option value='CANCELADO'>CANCELADO</option>
+                               
+
+                                  <?php $status_select = $row_usuario['STATUS'];
+
+                                  if ($status_select == 'PENDENTE') {
+                                    echo '<option value="PENDENTE" selected>PENDENTE</option>';
+                                    echo '<option value="EM ANDAMENTO">EM ANDAMENTO</option>';
+                                    echo '<option value="CONCLUIDO">CONCLUÍDO</option>'; 
+                                    echo '<option value="CANCELADO">CANCELADO</option>'; 
+
+                                  }
+
+                                  if ($status_select == 'EM ANDAMENTO') {
+                                    echo '<option value="EM ANDAMENTO" selected>EM ANDAMENTO</option>';
+                                    echo '<option value="PENDENTE">PENDENTE</option>';
+                                    echo '<option value="CONCLUIDO">CONCLUÍDO</option>'; 
+                                    echo '<option value="CANCELADO">CANCELADO</option>'; 
+                                  }
+
+                                  if ($status_select == 'CONCLUIDO') {
+                                    echo '<option value="CONCLUIDO" selected>CONCLUÍDO</option>';
+                                    echo '<option value="PENDENTE">PENDENTE</option>';
+                                    echo '<option value="EM ANDAMENTO">EM ANDAMENTO</option>'; 
+                                    echo '<option value="CANCELADO">CANCELADO</option>'; 
+                                  }
+
+                                  if ($status_select == 'CANCELADO') {
+                                    echo '<option value="CANCELADO" selected>CANCELADO</option>';
+                                    echo '<option value="PENDENTE">PENDENTE</option>';
+                                    echo '<option value="EM ANDAMENTO">EM ANDAMENTO</option>'; 
+                                    echo '<option value="CONCLUIDO">CONCLUÍDO</option>'; 
+                                  }              
+                                  ?>
+
                               </select>
                           </div>
 

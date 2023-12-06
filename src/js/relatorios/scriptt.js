@@ -20,35 +20,50 @@ $(document).ready(function() {
     
 });
 
-// function alertPersonalizado(){
-//     let notificacao = document.createElement('div');
-//     let divNotificacao = document.getElementsByClassName('div-notificacao');
-//     notificacao.className = 'notificacao';
-//     notificacao.style.borderLeft = '6px solid red';
+function alertPersonalizado(){
 
-//     notificacao.innerHTML = `
-//     <div class="notificacao-div">
-//             <i class="bi bi-x-circle-fill" style="color: red;"></i>
-//             <div class="mensagem">
-//                 <span class="text text-1" style="color: red;">Chamado não cadastrado.Envio em branco!</span>
-//             </div>
-//         </div>
-//         <i class="bi bi-x close" style="color: red;"></i>
-//         <div class="tempo tempo_error" style="background-color: #ddd;"></div>
-//     `;
+    let issetNotificacao = document.querySelector('.notificacao');
+    if (issetNotificacao) {
+        issetNotificacao.remove();
+    } 
+    
+    let divNotificacao = document.querySelector('.div-notificacao')
+    
+    let notificacao = document.createElement('div');
+    notificacao.className = 'notificacao';
+    
+    notificacao.style.borderLeft = '6px solid red';
 
-        
+    let codigo = `
+                                    <div class="notificacao-div">
+                                        <i class="bi bi-x-circle-fill" style="color: red;"></i>
+                                        <div class="mensagem">
+                                            <span class="text text-1" style="color: red;">Não há chamados nessa Semana.</span>
+                                        </div>
+                                    </div>
+                                    <i class="bi bi-x close" style="color: red;"></i>
+                                    <div class="tempo tempo_error" style="background-color: #ddd;"></div>
+                                </div>
+    `;
 
-//     document.body.appendChild(notificacao);
-// }
+  
+
+    notificacao.innerHTML = codigo
+
+    divNotificacao.appendChild(notificacao);
+
+    timeAlert();
+    
+
+};
 
 // Função para criar ou atualizar o gráfico de relatório semanal
 function criarOuAtualizarGraficoSemanal(dados) {
     const todosZeros = dados.every(valor => valor === '0');
 
     if (todosZeros) {
-        alert("Não há chamados nessa Semana!");
-        return; // Retorna sem criar o gráfico
+        alertPersonalizado();
+  
     }
 
    
@@ -159,13 +174,51 @@ function criarOuAtualizarGraficoSemanal(dados) {
     window.scrollBy(0, 200);
 }
 
+function alertPersonalizado2(){
+
+    let issetNotificacao = document.querySelector('.notificacao');
+    if (issetNotificacao) {
+        issetNotificacao.remove();
+    } 
+    
+    let divNotificacao = document.querySelector('.div-notificacao')
+    
+    let notificacao = document.createElement('div');
+    notificacao.className = 'notificacao';
+    
+    notificacao.style.borderLeft = '6px solid red';
+
+    let codigo = `
+                                    <div class="notificacao-div">
+                                        <i class="bi bi-x-circle-fill" style="color: red;"></i>
+                                        <div class="mensagem">
+                                            <span class="text text-1" style="color: red;">Não há chamados nesse Mês.</span>
+                                        </div>
+                                    </div>
+                                    <i class="bi bi-x close" style="color: red;"></i>
+                                    <div class="tempo tempo_error" style="background-color: #ddd;"></div>
+                                </div>
+    `;
+
+  
+
+    notificacao.innerHTML = codigo
+
+    divNotificacao.appendChild(notificacao);
+
+    timeAlert();
+    
+
+};
+
+
 // Função para criar ou atualizar o gráfico de relatório mensal
 function criarOuAtualizarGraficoMensal(dados) {
     const todosZeros = dados.every(valor => valor === '0');
 
     if (todosZeros) {
-        alert("Não há chamados nesse Mês!");
-        return; // Retorna sem criar o gráfico
+        alertPersonalizado2()
+   
     }
 
     if (graficoMensal) {
@@ -273,13 +326,50 @@ function criarOuAtualizarGraficoMensal(dados) {
     window.scrollBy(0, 200);
 }
 
+function alertPersonalizado3(){
+
+    let issetNotificacao = document.querySelector('.notificacao');
+    if (issetNotificacao) {
+        issetNotificacao.remove();
+    } 
+    
+    let divNotificacao = document.querySelector('.div-notificacao')
+    
+    let notificacao = document.createElement('div');
+    notificacao.className = 'notificacao';
+    
+    notificacao.style.borderLeft = '6px solid red';
+
+    let codigo = `
+                                    <div class="notificacao-div">
+                                        <i class="bi bi-x-circle-fill" style="color: red;"></i>
+                                        <div class="mensagem">
+                                            <span class="text text-1" style="color: red;">Não há chamados nesse Dia.</span>
+                                        </div>
+                                    </div>
+                                    <i class="bi bi-x close" style="color: red;"></i>
+                                    <div class="tempo tempo_error" style="background-color: #ddd;"></div>
+                                </div>
+    `;
+
+  
+
+    notificacao.innerHTML = codigo
+
+    divNotificacao.appendChild(notificacao);
+
+    timeAlert();
+    
+
+};
+
 // Função para criar ou atualizar o gráfico de relatório diário
 function criarOuAtualizarGraficoDiario(dados) {
     const todosZeros = dados.every(valor => valor === '0');
 
     if (todosZeros) {
-        alert("Não há chamados nesse Dia!");
-        return; // Retorna sem criar o gráfico
+        alertPersonalizado3();
+    
     }
 
     if (graficoDiario) {
@@ -379,13 +469,50 @@ function criarOuAtualizarGraficoDiario(dados) {
     window.scrollBy(0, 200);
 }
 
+function alertPersonalizado4(){
+
+    let issetNotificacao = document.querySelector('.notificacao');
+    if (issetNotificacao) {
+        issetNotificacao.remove();
+    } 
+    
+    let divNotificacao = document.querySelector('.div-notificacao')
+    
+    let notificacao = document.createElement('div');
+    notificacao.className = 'notificacao';
+    
+    notificacao.style.borderLeft = '6px solid red';
+
+    let codigo = `
+                                    <div class="notificacao-div">
+                                        <i class="bi bi-x-circle-fill" style="color: red;"></i>
+                                        <div class="mensagem">
+                                            <span class="text text-1" style="color: red;">Não há chamados nesse Ano.</span>
+                                        </div>
+                                    </div>
+                                    <i class="bi bi-x close" style="color: red;"></i>
+                                    <div class="tempo tempo_error" style="background-color: #ddd;"></div>
+                                </div>
+    `;
+
+  
+
+    notificacao.innerHTML = codigo
+
+    divNotificacao.appendChild(notificacao);
+
+    timeAlert();
+    
+
+};
+
 // Função para criar ou atualizar o gráfico de relatório anual
 function criarOuAtualizarGraficoAnual(dados) {
     const todosZeros = dados.every(valor => valor === '0');
 
     if (todosZeros) {
-        alert("Não há chamados nesse Ano");
-        return; // Retorna sem criar o gráfico
+        alertPersonalizado4();
+   
     }
 
     if (graficoAnual) {

@@ -51,9 +51,9 @@ function echoModal(){
                       <th id="contador"                
                         
                         colspan="3"
-                        style="text-align: center; background-color: #8cb2b0"
+                        style="text-align: center; background-color: #8cb2b0; font-size:25px;"
                       >
-                        X Chamados Abertos
+                         Chamados Abertos
                       </th>
                     </tr> 
                     <tr>
