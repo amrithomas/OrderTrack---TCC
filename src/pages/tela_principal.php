@@ -39,7 +39,7 @@
                 while($row_usuario = mysqli_fetch_assoc($resultado_usuario)){
                     if($row_usuario['STATUS_FUNCIONARIO'] == 'ATIVO'){
 
-                        echo '<div class="sub-card" onclick="aparecemodal(' . $row_usuario['ID_FUNCIONARIO'] . ')"alt="Ícone de Mensagem" class="mensagem-img"> ';
+                        echo '<div class="sub-card" style="width:170px;" onclick="aparecemodal(' . $row_usuario['ID_FUNCIONARIO'] . ')"alt="Ícone de Mensagem" class="mensagem-img"> ';
                         // Verifique se a imagem não está vazia
                 if (!empty($row_usuario['IMAGEM_FUNCIONARIO'])) {
                     $tipo_mime = 'image/png'; // Substitua pelo tipo MIME correto (exemplo: image/png)
