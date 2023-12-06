@@ -29,7 +29,7 @@
        document.getElementById("lista").style.opacity = "1.0";
        document.getElementById("aguardando").style.opacity = "0.4";
        document.getElementById("concluido").style.opacity = "0.4";
-       document.getElementById("contador").innerText = "x" + " Chamados Abertos";
+       document.getElementById("contador").innerText = "Chamados Abertos";
        categoriaAtual = 'abertos';
 
      
@@ -59,7 +59,7 @@
       document.getElementById("lista").style.opacity = "0.4";
       document.getElementById("aguardando").style.opacity = "1.0";
       document.getElementById("concluido").style.opacity = "0.4";
-      document.getElementById("contador").innerText = "x" + " Chamados Aguardando";
+      document.getElementById("contador").innerText = "Chamados Aguardando";
       categoriaAtual = 'aguardando';
     
   }
@@ -85,7 +85,7 @@
     document.getElementById("lista").style.opacity = "0.4";
     document.getElementById("aguardando").style.opacity = "0.4";
     document.getElementById("concluido").style.opacity = "1.0";
-    document.getElementById("contador").innerText = "x" + " Chamados Concluídos";
+    document.getElementById("contador").innerText = "Chamados Concluídos";
     categoriaAtual = 'fechados';
   }
 
