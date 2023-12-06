@@ -84,9 +84,7 @@
               <form action="../api/controller/proc_login.php" method="post">
                   <input type="text" name="usuario" placeholder="Nome de Usuário" required>
                   <input type="password" name="senha" placeholder="Senha" required>
-                  <div>
-                      <a href="recuperar_senha.php" class="forget"> Esqueceu a senha?</a>
-                  </div>
+                 
                   <button type="submit">Entrar</button>
               </form>
           </div>
