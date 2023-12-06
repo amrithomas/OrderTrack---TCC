@@ -13,9 +13,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
     
-    <link rel="stylesheet" href="../../src/styles/recuperar_senha/styles.css">
-    <link rel="shortcut icon" type="png" href="../../assets/images/icone_logo.png">
-    <title>Esqueci minha Senha</title>
+    <link rel="stylesheet" href="../../src/styles/cadastro_funcionario/styles.css">
+
+    <title>Recuperar Senha</title>
 
 </head>
 
@@ -37,7 +37,7 @@
     
     <main>
           <div class="login-form">
-              <h2>Esqueci a Minha Senha</h2>
+              <h2>Recuperar senha</h2>
               <?php
                 session_start();
                 if (isset($_SESSION['msg'])) {
@@ -45,10 +45,9 @@
                     unset($_SESSION['msg']);
                 }
               ?>
-              <form action="../api/controller/proc_login.php" method="post">
-                  <input type="email" name="email" placeholder="Digite o Email" required>
-          
-                  <button type="submit">Enviar Link de Recuperação</button>
+              <form action="../api/controller/proc_recuperar_senha.php" method="post">
+                  <input type="mail" name="email" placeholder="Digite o seu email" required>
+                  <button type="submit">Enviar</button>
               </form>
           </div>
         
