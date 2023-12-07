@@ -53,7 +53,7 @@ function echoModal(){
                         colspan="3"
                         style="text-align: center; background-color: #8cb2b0; font-size:25px;"
                       >
-                        Chamados Abertos
+                         Chamados Abertos
                       </th>
                     </tr> 
                     <tr>
