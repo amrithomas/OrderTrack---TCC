@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="../styles/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link href="../styles/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../src/styles/tela_principal/style.css">
     <title>Tela Principal</title>
     <link rel="shortcut icon" type="png" href="../../assets/images/icone_logo.png">
