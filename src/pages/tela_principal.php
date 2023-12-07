@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link href="../styles/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../src/styles/tela_principal/style.css">
     <title>Tela Principal</title>
     <link rel="shortcut icon" type="png" href="../../assets/images/icone_logo.png">
@@ -39,7 +39,7 @@
                 while($row_usuario = mysqli_fetch_assoc($resultado_usuario)){
                     if($row_usuario['STATUS_FUNCIONARIO'] == 'ATIVO'){
 
-                        echo '<div class="sub-card" onclick="aparecemodal(' . $row_usuario['ID_FUNCIONARIO'] . ')"alt="Ícone de Mensagem" class="mensagem-img"> ';
+                        echo '<div class="sub-card" style="width:170px;" onclick="aparecemodal(' . $row_usuario['ID_FUNCIONARIO'] . ')"alt="Ícone de Mensagem" class="mensagem-img"> ';
                         // Verifique se a imagem não está vazia
                 if (!empty($row_usuario['IMAGEM_FUNCIONARIO'])) {
                     $tipo_mime = 'image/png'; // Substitua pelo tipo MIME correto (exemplo: image/png)
@@ -83,10 +83,10 @@
     </footer>
     
     <!-- Incluindo os arquivos JavaScript do Bootstrap (opcional) -->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="../styles/bootstrap/dist/js/jquery-3.5.1.min.js"></script>
     <script src="../js/js_modal/aparecemodal.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> 
+    <script src="../styles/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>  -->
 
     <?php echoModal()?>
 </body>

@@ -19,6 +19,8 @@
 
     <!-- Incluindo os arquivos CSS do Bootstrap -->
     <link rel="shortcut icon" type="png" href="../../assets/images/icone_logo.png">
+    <link href="../styles/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="../styles/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
@@ -98,6 +100,9 @@
     </footer>
 
     <!-- Incluindo os arquivos JavaScript do Bootstrap (opcional) -->
+    <script src="../styles/bootstrap/dist/js/jquery-3.5.1.min.js"></script>
+    <script src="../styles/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
