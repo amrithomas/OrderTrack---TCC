@@ -4,6 +4,14 @@
 
 OrderTrack é uma solução de software desenvolvida para a gestão eficaz de ordens de serviço, especialmente adaptada para o ambiente educacional do SENAI Suíço-Brasileira “Paulo Ernesto Tolle”.
 
+## Sobre o Projeto
+
+O projeto OrderTrack é uma solução de software desenvolvida para a gestão eficaz de ordens de serviço no contexto da instituição educacional SENAI Suíço-Brasileira “Paulo Ernesto Tolle”. Ele visa otimizar o processo de comunicação e acompanhamento das atividades de manutenção, proporcionando uma plataforma integrada e intuitiva para equipe, gestores e clientes.
+
+## Objetivo
+
+O principal objetivo do OrderTrack é melhorar a eficiência operacional e a qualidade dos serviços de manutenção oferecidos pela instituição SENAI Suíço-Brasileira “Paulo Ernesto Tolle”. Ao fornecer uma ferramenta centralizada para abertura, acompanhamento e gestão de ordens de serviço, o OrderTrack busca facilitar a comunicação entre equipe e gestores, garantindo uma resposta mais rápida às necessidades de serviço e uma maior transparência em todo o processo de manutenção.
+
 ## Funcionalidades Principais
 
 - **Abertura de Ordem de Serviço:** Permite aos usuários criar novas ordens de serviço, inserindo detalhes como título, descrição, local, prioridade e data de entrega.
@@ -36,5 +44,4 @@ OrderTrack é uma solução de software desenvolvida para a gestão eficaz de or
 <img src="https://img.shields.io/badge/Canva-%2300C4CC.svg?&style=for-the-badge&logo=Canva&logoColor=white" />
 <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white" />
 
-<img src="https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white" />
 
